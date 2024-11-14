@@ -1,0 +1,9 @@
+{
+  "name": "t-scanning",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "t-scanning/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project t-scanning --web",
+  "targets": {}
+}

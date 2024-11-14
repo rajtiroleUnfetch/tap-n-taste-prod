@@ -1,0 +1,6 @@
+/* Your styles goes here. */
+/* You can add global styles to this file, and also import other style files */
+/* apps/tap-n-taste/src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
