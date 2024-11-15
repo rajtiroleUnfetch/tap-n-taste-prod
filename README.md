@@ -16,19 +16,29 @@ npx nx serve tap-n-taste
 
 To create a production bundle:
 
-```sh
-npx nx build tap-n-taste
-```
+# Tap-n-Taste Repository
 
-To see all available targets to run for a project, run:
+Welcome to the Tap-n-Taste application repository! This monorepo is structured using Nx for efficient and scalable development. Follow the guidelines below to set up the project, generate components, and maintain consistent workflows.
 
-```sh
-npx nx show project tap-n-taste
-```
+---
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Project Setup
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### 1. Install Dependencies
+
+Run the following command to install all dependencies:
+
+```bash
+pnpm i
+
+```bash
+nx serve t-scanning
+
+```bash
+nx reset
+
+
+
 
 ## Add new projects
 
@@ -99,3 +109,88 @@ And join the Nx community:
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+
+## component generate ui
+
+ npx nx generate @nx/react:component libs/ui/src/lib/<component-folder>/<t-component-name>;
+ Example -- npx nx generate @nx/react:component libs/ui/src/lib/t-main-layout/t-main-layout;
+
+
+Git Commit Message Guidelines
+For clear and consistent commit history, follow these commit conventions:
+
+feat: Introduces a new feature.
+fix: Fixes a bug.
+chore: Non-functional updates, like dependency changes or tooling updates.
+refactor: Code changes that don’t add features or fix bugs.
+style: Code style changes (formatting, etc.).
+test: Adds or updates tests.
+docs: Updates to documentation.
+Example Commit Messages
+feat: add TnButton component to ui library
+fix: resolve button alignment issue on mobile view
+chore: update dependencies and clean up config files
+docs: update README with new component generation steps
+Use the following structure:
+
+plaintext
+Copy code
+<type>: <subject>
+
+Branching Rules
+To maintain a clean and organized Git history, follow these branch and pull request conventions.
+
+Branch Naming
+Feature branches: Prefix with feature/ and a concise description.
+Example: feature/user-authentication
+Bugfix branches: Prefix with fix/ and a brief description.
+Example: fix/login-redirect
+Workflow
+Base Branch: Always branch off of dev.
+Pull Requests: Submit PRs from your feature or bugfix branch into dev.
+
+
+
+Example Workflow
+Create a New Branch:
+
+bash
+Copy code
+git checkout dev
+git pull origin dev
+git checkout -b feature/new-ui-component
+Make and Commit Changes:
+
+bash
+Copy code
+git add .
+git commit -m "feat: add new TnButton component"
+Push the Branch and Open a PR:
+
+bash
+Copy code
+git push origin feature/new-ui-component
+Then, open a pull request on GitHub from feature/new-ui-component into dev.
+
+Useful Nx Commands
+Run Development Server:
+
+bash
+Copy code
+npx nx serve <app-name>
+Build an App:
+
+bash
+Copy code
+npx nx build <app-name>
+Run Tests:
+
+bash
+Copy code
+npx nx test <project-name>
+Generate a New Library:
+
+bash
+Copy code
+npx nx generate @nx/react:library <library-name>
