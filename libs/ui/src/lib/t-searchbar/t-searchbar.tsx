@@ -1,10 +1,9 @@
+
 import React from 'react';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-
-
-export  function TSearchbar() {
+export function TSearchbar() {
   return (
     <Box display="flex" flexDirection="column" maxWidth={361}>
       <TextField
@@ -29,14 +28,14 @@ export  function TSearchbar() {
               padding: '10px 0px',
             },
             '& fieldset': {
-              borderColor: '#616161',
+              borderColor: 'transparent', // Remove the border color
               borderRadius: 3,
             },
             '&:hover fieldset': {
-              borderColor: '#424242',
+              borderColor: 'transparent', // Ensure border is still transparent on hover
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#f44336',
+              borderColor: 'transparent', // Ensure border remains transparent when focused
             },
           },
           '@media (max-width:600px)': {
