@@ -28,14 +28,14 @@ export function TSearchbar() {
               padding: '10px 0px',
             },
             '& fieldset': {
-              borderColor: 'transparent', // Remove the border color
+              borderColor: 'transparent',
               borderRadius: 3,
             },
             '&:hover fieldset': {
-              borderColor: 'transparent', // Ensure border is still transparent on hover
+              borderColor: 'transparent', 
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'transparent', // Ensure border remains transparent when focused
+              borderColor: 'transparent', 
             },
           },
           '@media (max-width:600px)': {

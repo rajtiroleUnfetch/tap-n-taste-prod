@@ -1,3 +1,10 @@
+export * from './lib/t-manage/t-manage';
+export * from './lib/t-viewbar/t-viewbar';
+
+export * from './lib/t-card';
+
+export * from './lib/t-barbutton/t-barbutton';
+
 export * from './lib/t-footer/t-footer';
 export * from './lib/t-navbutton/t-navbutton';
 // export * from './lib/libs/t-navbutton/t-navbutton';
