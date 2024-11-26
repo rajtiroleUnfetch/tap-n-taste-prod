@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { TButton, TSearchbar, TNavButton, TFooter,TBarButton,TViewBar,TManage, ImageSlider} from '@tap-n-taste/ui';
+import { TButton, TSearchbar, TNavButton, TFooter,TBarButton,TViewBar,TManage, ImageSlider, TopNav} from '@tap-n-taste/ui';
 
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import EastIcon from "@mui/icons-material/East";
@@ -30,20 +30,25 @@ const App = () => {
         <TNavButton
           icon={
             <DirectionsOutlinedIcon
-              sx={{
-                color: "#3366CC",
-                stroke: "#81D4FA",
-                strokeWidth: 0.5,
-              }}
+            sx={{
+              color: "#3366CC",
+              stroke: "#81D4FA",
+              strokeWidth: 0.5,
+            }}
             />
           }
           onClick={() => alert("Directions button clicked!")}
-        />
+          />
       </Box>
 
       {/* Welcome Message */}
       <h1>Welcome to Tap-n-Taste</h1>
       <br />
+      
+      {/* TOP NAVIGATION */}
+      <Box className="mb-10">
+        <TopNav/>
+      </Box>
 
       {/* Render the TSearchBar Component */}
       <TSearchbar />
