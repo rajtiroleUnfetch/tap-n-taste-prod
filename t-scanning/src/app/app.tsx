@@ -48,6 +48,13 @@ const App = () => {
       {/* Render the TSearchBar Component */}
       <TSearchbar />
 
+      {/* IMAGE SLIDER */}
+
+      <Box className="flex flex-row gap-10 overflow-x-auto no-scrollbar mt-10">
+        <ImageSlider/>
+      </Box>
+
+
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <Box display="flex" flexDirection="column" gap={2} alignItems="center">
           <TNavButton
@@ -133,15 +140,6 @@ const App = () => {
     />
   ))}
 </Box>
-
-{/* IMAGE SLIDER */}
-
-  <Box className="flex flex-row gap-10 overflow-x-auto no-scrollbar mt-10">
-    <ImageSlider/>
-  </Box>
-
-
-
     </div>
 
     
