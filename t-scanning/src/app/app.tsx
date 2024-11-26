@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Box } from "@mui/material";
-import { TButton, TSearchbar, TNavButton, TFooter,TBarButton,TViewBar,TManage} from '@tap-n-taste/ui';
+import { Box, Typography } from "@mui/material";
+import { TButton, TSearchbar, TNavButton, TFooter,TBarButton,TViewBar,TManage, ImageSlider} from '@tap-n-taste/ui';
 
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import EastIcon from "@mui/icons-material/East";
@@ -9,6 +9,10 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+
+import { TCard } from '@tap-n-taste/ui';
+import { cardData} from './constants/LandingPageData';
+import "./style.css";
 
 const App = () => {
   const handleRedSliderToggle = (isRight: boolean) => {
@@ -118,10 +122,29 @@ const App = () => {
 
 />
 
+{/* OFFERS SECTION */}
+  <Box className="flex flex-row gap-10 overflow-x-auto no-scrollbar mt-10">
+  {cardData.map((card, index) => (
+    <TCard
+      key={index}
+      imgURL={card.imgURL}
+      primeText={card.primeText}
+      secText={card.secText}
+    />
+  ))}
+</Box>
+
+{/* IMAGE SLIDER */}
+
+  <Box className="flex flex-row gap-10 overflow-x-auto no-scrollbar mt-10">
+    <ImageSlider/>
+  </Box>
 
 
 
     </div>
+
+    
   );
 };
 

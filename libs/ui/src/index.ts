@@ -1,3 +1,4 @@
+export * from './lib/t-image-slider/t-image-slider';
 export * from './lib/t-manage/t-manage';
 export * from './lib/t-viewbar/t-viewbar';
 
