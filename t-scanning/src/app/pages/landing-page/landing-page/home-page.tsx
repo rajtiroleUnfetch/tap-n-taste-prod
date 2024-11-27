@@ -8,6 +8,9 @@ const HomePage = () => {
     <div>nav bar</div>
      {/* add footer here */}
     <footer>footer should be here</footer>
+
+
+<Box>bottom bar</Box>
    </Box>
   )
 }

@@ -11,17 +11,14 @@ export const LandingPage = () => {
       {/* Nested Routes for LandingPage */}
       <Routes>
         <Route path="/" element={<HomePage/>} />
-        <Route path="login" element={<div>Login Page</div>} />
-        <Route path="sign-up" element={<div>Sign-Up Page</div>} />
+        <Route path="login" element={<div>type login Login Page</div>} />
+        <Route path="sign-up" element={<div> type signup Sign-Up Page</div>} />
         <Route path="menu" element={<div>Menu Page</div>} />
         <Route path="user/:userId/profile" element={<div>Profile Page</div>} />
         <Route path="user/:userId/cart" element={<div>Cart Page</div>} />
         <Route path="user/:userId/order" element={<div>Order Page</div>} />
         <Route path="user/:userId/notification" element={<div>Notification Page</div>} />
       </Routes>
-
-      {/* add bottom navigation bar here*/}
-      <BottomNavigation />
    </Box>
   );
 };
