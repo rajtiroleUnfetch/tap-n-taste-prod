@@ -12,7 +12,7 @@ export function LoginSignUp({ type }: Props) {
   return (
     <Box className="w-full h-screen flex items-center justify-center">
       <Box
-        className="w-full sm:w-[60%] md:w-[50%] lg:w-[20%] flex flex-col items-center gap-6 px-10 sm:px-5 md:px-2">
+        className="w-full sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] flex flex-col items-center gap-6 px-10 sm:px-5 md:px-2">
         <img
           src={profileIcon}
           alt="Profile Icon"
