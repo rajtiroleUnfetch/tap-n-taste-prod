@@ -101,6 +101,7 @@
 // export default TButton;
 import React from 'react';
 import styled from 'styled-components';
+import clsx from 'clsx';
 
 const StyledTButton = styled.button<{ backgroundColor?: string }>`
   background-color: ${(props) => props.backgroundColor || '#f44336'}; /* Default red background */
@@ -155,7 +156,10 @@ interface TButtonProps {
   iconPosition?: 'left' | 'right';
   marginLeftRight?: string;
   backgroundColor?: string;  // Custom background color
+  sx?: React.CSSProperties; // Custom inline styles
+  className?: string;       // Additional custom classes
 }
+
 
 export function TButton({
   icon,
@@ -164,6 +168,8 @@ export function TButton({
   iconPosition = 'left',
   marginLeftRight = '16px',
   backgroundColor,  // Custom background color passed in the props
+  sx,        // Inline styles
+  className, // Custom classes
 }: TButtonProps) {
   return (
     <StyledTButton
@@ -171,8 +177,10 @@ export function TButton({
       style={{
         marginLeft: marginLeftRight,
         marginRight: marginLeftRight,
+         ...sx, // Merge custom styles
       }}
       backgroundColor={backgroundColor}  // Apply custom background color
+      className={clsx(className)} // Combine custom classes with clsx
     >
       {icon && iconPosition === 'left' && (
         <span style={{ marginRight: '8px', display: 'flex', alignItems: 'center' }}>
