@@ -6,7 +6,7 @@ const HomePage = () => {
    <Box>
     {/* add top navigation bar here */}
     <div>nav bar</div>
-     {/* add top footer here */}
+     {/* add footer here */}
     <footer>footer should be here</footer>
    </Box>
   )
