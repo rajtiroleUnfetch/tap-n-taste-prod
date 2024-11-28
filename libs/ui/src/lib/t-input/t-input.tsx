@@ -13,6 +13,7 @@ export function TInput({  placeHolderText, styles, classNames }: Props) {
        className={classNames} // Pass className if provided
       sx={{
         width:"100%",
+        borderRadius:"8px",
         outline: "none", // Remove external outline
         backgroundColor: "#F0F0F0", // Set background color
         '& .MuiOutlinedInput-input': {

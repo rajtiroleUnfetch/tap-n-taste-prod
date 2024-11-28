@@ -12,7 +12,7 @@ export function LoginSignUp({ type }: Props) {
   return (
     <Box className="w-full h-screen flex items-center justify-center">
       <Box
-        className="w-full sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] flex flex-col items-center gap-6 px-10 sm:px-5 md:px-2">
+        className="w-full sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] 2xl:w-[20%] flex flex-col items-center gap-6 px-10 sm:px-5 md:px-2">
         <img
           src={profileIcon}
           alt="Profile Icon"
@@ -33,7 +33,7 @@ export function LoginSignUp({ type }: Props) {
         <TInput placeHolderText="Enter Your Name" />
         <TInput placeHolderText="Enter Your Mobile Number" />
         <TButton
-        className="font-semibold"
+        className="font-semibold w-full"
           text={type === "login" ? "Login" : "SignUp"} />
         <TButton
           backgroundColor="#EDEDED"
@@ -43,7 +43,7 @@ export function LoginSignUp({ type }: Props) {
             color: "black",
             boxShadow: "none"
           }}
-          className="font-semibold"
+          className="font-semibold w-full"
         />
         <TButton
           backgroundColor="#ffff"
@@ -52,7 +52,7 @@ export function LoginSignUp({ type }: Props) {
             color: "#F1414F",
             boxShadow:"none"
           }}
-          className="font-semibold underline"
+          className="font-semibold underline w-full"
         />
       </Box>
     </Box>
