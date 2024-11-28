@@ -1,3 +1,6 @@
+export * from './lib/t-input/t-input';
+export * from './lib/pages/login-sign-up/login-sign-up';
+export * from './lib/pages';
 export * from './lib/t-manage/t-manage';
 export * from './lib/t-viewbar/t-viewbar';
 
