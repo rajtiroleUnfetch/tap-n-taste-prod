@@ -14,6 +14,7 @@ const styles = {
     overflow: 'hidden',
     borderRadius: '16px',
     fontFamily: 'Poppins',
+    flexShrink:"0"
   },
   contentArea: { height: '100%', position: 'relative' },
   gradientBox: {
