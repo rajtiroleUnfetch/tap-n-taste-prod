@@ -19,12 +19,12 @@ const Label = styled.label`
 // Styling for the OTP input container (flex row layout)
 const OTPContainer = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 7px;
 `;
 
 // Individual OTP input field styling
 const OTPInput = styled.input`
-  width: 50px;
+  width: 45px;
   height: 50px;
   border: 2px solid #e53935;
   border-radius: 8px;
@@ -39,12 +39,27 @@ const OTPInput = styled.input`
   }
 `;
 
-// Additional styling for TSubmit wrapper
-const StyledTSubmit = styled.div`
-  color: pink;
+// Styling for the Submit Button
+const SubmitButton = styled.button`
+  margin-top: 16px;
+  width: 150px;
+  height: 50px;
+  background-color: #e53935;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d32f2f;
+  }
 `;
 
-export function TSubmit() {
+interface Props {}
+
+export function TSubmit({}: Props) {
   const [otp, setOtp] = useState(Array(6).fill('')); // Array for 6 input boxes
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -67,26 +82,27 @@ export function TSubmit() {
     }
   };
 
+  const handleSubmit = () => {
+    alert('submitted'); // Updated alert message
+  };
+
   return (
-    <StyledTSubmit>
-      <Container>
-        <Label>Enter OTP</Label>
-        <OTPContainer>
-          {otp.map((value, index) => (
-            <OTPInput
-              key={index}
-              type="text"
-              maxLength={1}
-              value={value}
-              onChange={(e) => handleChange(e.target.value, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              ref={(el) => (inputRefs.current[index] = el!)}
-            />
-          ))}
-        </OTPContainer>
-      </Container>
-    </StyledTSubmit>
+    <Container>
+      <Label>Enter OTP</Label>
+      <OTPContainer>
+        {otp.map((value, index) => (
+          <OTPInput
+            key={index}
+            type="text"
+            maxLength={1}
+            value={value}
+            onChange={(e) => handleChange(e.target.value, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            ref={(el) => (inputRefs.current[index] = el!)}
+          />
+        ))}
+      </OTPContainer>
+      <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+    </Container>
   );
 }
-
-export default TSubmit;
