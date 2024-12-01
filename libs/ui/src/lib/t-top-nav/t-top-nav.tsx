@@ -36,7 +36,7 @@ export function TopNav() {
   };
 
   return (
-    <Box className="flex items-center justify-between px-5 py-3 bg-white shadow-md">
+    <Box className="flex md:items-center flex-row justify-between bg-white sm:flex-row sm:w-full sm:max-w-full flex-wrap overflow-hidden">
       <TSidebar />
 
       {/* Full Brand Logo */}
