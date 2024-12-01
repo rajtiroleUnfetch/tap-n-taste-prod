@@ -9,8 +9,6 @@ export const LandingPage = () => {
 
   return (
    <Box>
-      <h1>Restaurant Landing Page - ID: {id}</h1>
-      {/* Nested Routes for LandingPage */}
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="login" element={<LoginSignUp type="login" />} />

@@ -5,7 +5,7 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-   <Box className="px-[8%] sm:px-[15%]">
+   <Box>
       {/* add top navigation bar here */}
       <TopNav />
       {/* add top footer here */}

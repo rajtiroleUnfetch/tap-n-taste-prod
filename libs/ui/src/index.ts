@@ -1,4 +1,5 @@
-export * from "./lib/t-top-nav/t-top-nav"
+export * from './lib/t-sidebar/t-sidebar';
+export * from './lib/t-top-nav/t-top-nav';
 export * from './lib/t-input/t-input';
 export * from './lib/pages/login-sign-up/login-sign-up';
 export * from './lib/pages';

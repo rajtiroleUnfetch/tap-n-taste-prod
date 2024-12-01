@@ -1,80 +1,51 @@
-import { Box, Menu, MenuItem, Snackbar, Alert } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  Box,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
 import { useState } from 'react';
-
-const themeColor = '#F1414F'; // Define your color here
+import TSidebar from '../t-sidebar/t-sidebar';
 
 export function TopNav() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false); // State for sidebar
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
-  // Handle Menu Click
-  const handleMenuClick = (event: React.MouseEvent<SVGSVGElement>) => {
-    setAnchorEl(event.currentTarget as unknown as HTMLElement); 
-  };
-
-  const handleMenuClose = (option?: string) => {
-    setAnchorEl(null); 
-    if (option) {
-      setSnackbarMessage(`${option} clicked!`);
-      setSnackbarOpen(true); 
-    }
+  // Toggle Sidebar Open/Close
+  const toggleDrawer = (open: boolean) => () => {
+    setIsDrawerOpen(open);
   };
 
   // Handle Notification Click
   const handleNotificationClick = () => {
-    setSnackbarMessage("Notifications icon clicked!");
-    setSnackbarOpen(true); 
+    setSnackbarMessage('Notifications icon clicked!');
+    setSnackbarOpen(true);
   };
 
   // Handle Snackbar Close
-  const handleSnackbarClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleSnackbarClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === 'clickaway') {
-      return; // Prevent closing if clicking outside
+      return;
     }
-    setSnackbarOpen(false); // Close Snackbar
+    setSnackbarOpen(false);
   };
 
   return (
-    <Box className="flex items-center justify-between p-5">
-      {/* Menu Icon */}
-      <MenuIcon
-         sx={{
-          fontSize: 30, 
-          cursor: 'pointer', 
-          transition: 'color 0.3s ease', 
-          '&:hover': { color: themeColor }, // Apply theme color on hover
-        }}
-        onClick={handleMenuClick} 
-      />
-
-      {/* Dropdown Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)} 
-        onClose={() => handleMenuClose()} 
-      >
-        <MenuItem onClick={() => handleMenuClose('Option 1')}>Option 1</MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 2')}>Option 2</MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 3')}>Option 3</MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 4')}>Option 4</MenuItem>
-      </Menu>
+    <Box className="flex items-center justify-between px-5 py-3 bg-white shadow-md">
+      <TSidebar />
 
       {/* Full Brand Logo */}
       <img src={fullLogo} alt="Full Brand Logo" className="h-12" />
 
       {/* Notification Icon */}
-      <NotificationsNoneIcon 
-        sx={{
-          fontSize: 30,
-          cursor: 'pointer',
-          transition: 'color 0.3s ease',
-          '&:hover': { color: themeColor }, // Apply theme color on hover
-        }} 
-        onClick={handleNotificationClick} 
+      <NotificationsNoneIcon
+        className="text-gray-600 text-2xl cursor-pointer hover:text-red-500 transition-colors"
+        onClick={handleNotificationClick}
       />
 
       {/* Snackbar */}
@@ -82,21 +53,12 @@ export function TopNav() {
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} 
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Alert 
-          onClose={handleSnackbarClose} 
-          severity="info" 
-          sx={{ 
-            width: '100%', 
-            backgroundColor: '#fff', // Set background to white
-            color: "black", // Set text color to red
-            '& .MuiSvgIcon-root': {
-              color: themeColor, // Set icon color to red
-            },
-            border: 2,
-            borderColor: "#3333"
-          }}
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="info"
+          className="w-full border-2 border-gray-300 text-black bg-white"
         >
           {snackbarMessage}
         </Alert>
