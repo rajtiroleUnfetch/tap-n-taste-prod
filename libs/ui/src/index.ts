@@ -1,3 +1,4 @@
+export * from "./lib/t-image-slider/t-image-slider"
 export * from './lib/t-pricerange/t-pricerange';
 export * from './lib/t-submit/t-submit';
 export * from './lib/t-tableselector/t-tableselector';

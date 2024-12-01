@@ -48,10 +48,10 @@ export const cardData = [
 
 
 export const sliderImages = [
-    'https://images.pexels.com/photos/10026524/pexels-photo-10026524.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/2130137/pexels-photo-2130137.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/3104527/pexels-photo-3104527.jpeg',
-    'https://images.pexels.com/photos/678076/pexels-photo-678076.jpeg',
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'https://fastly.picsum.photos/id/819/800/400.jpg?hmac=jQoI8-ogC2kU1hcNyajMxvT5phl70sMR8glAQZLK3K4',
+  'https://images.unsplash.com/photo-1522336572468-97b06e8ef143?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D ',
+  'https://fastly.picsum.photos/id/655/800/400.jpg?hmac=Lz7xeQaD2Mli647R3q6mKrWwnXAxfeojm6YfR22Kqik',
+  'https://fastly.picsum.photos/id/115/800/400.jpg?hmac=z7-PJ5mBvTBiZVILVCvi0FTd7HxN-lzHzMktfIydsxo',
+  'https://fastly.picsum.photos/id/726/800/400.jpg?hmac=lAc302yrRNeX7TadIBf1mOcygd_qRBQY72bvhQ4DUfI',
 ];
-
