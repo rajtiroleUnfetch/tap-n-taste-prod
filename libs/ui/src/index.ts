@@ -3,6 +3,15 @@ export * from './lib/t-top-nav/t-top-nav';
 export * from './lib/t-input/t-input';
 export * from './lib/pages/login-sign-up/login-sign-up';
 export * from './lib/pages';
+export * from "./lib/t-image-slider/t-image-slider"
+export * from './lib/t-pricerange/t-pricerange';
+export * from './lib/t-submit/t-submit';
+export * from './lib/t-tableselector/t-tableselector';
+export * from './lib/t-customcard/t-customcard';
+export * from './lib/t-counter/t-counter';
+export * from './lib/t-input/t-input';
+export * from './lib/pages/login-sign-up/login-sign-up';
+//export * from './lib/pages';
 export * from './lib/t-manage/t-manage';
 export * from './lib/t-viewbar/t-viewbar';
 
