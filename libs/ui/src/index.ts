@@ -1,3 +1,4 @@
+export * from "./lib/t-image-slider/t-image-slider"
 export * from "./lib/t-top-nav/t-top-nav"
 export * from './lib/t-input/t-input';
 export * from './lib/pages/login-sign-up/login-sign-up';
