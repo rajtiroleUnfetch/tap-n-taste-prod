@@ -51,7 +51,7 @@ export function ImageSlider({
     <Box
       {...handlers}
       {...rest}
-      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden mt-4 ${
+      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden mt-4 mb-4 ${
         className.root || ''
       }`}
     >
