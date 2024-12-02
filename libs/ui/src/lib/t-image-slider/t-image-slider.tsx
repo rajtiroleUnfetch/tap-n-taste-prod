@@ -11,15 +11,12 @@ interface ImageSliderProps {
     activeIndicator?: string; // Active indicator class
     inactiveIndicator?: string; // Inactive indicator class
   };
-  styles?: React.CSSProperties; // Inline styles for the root
   [rest: string]: any; // Additional props
 }
-
 
 export function ImageSlider({
   images,
   className = {},
-  styles,
   ...rest
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +26,9 @@ export function ImageSlider({
   };
 
   const handleSwipeRight = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   const handlers = useSwipeable({
@@ -40,31 +39,36 @@ export function ImageSlider({
   });
 
   useEffect(() => {
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'ArrowRight') handleSwipeLeft();
-    if (event.key === 'ArrowLeft') handleSwipeRight();
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, []);
-
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') handleSwipeLeft();
+      if (event.key === 'ArrowLeft') handleSwipeRight();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <Box
       {...handlers}
       {...rest}
-      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden ${className.root || ''}`}
-      style={{ touchAction: 'pan-y', ...styles }}
+      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden mt-4 ${
+        className.root || ''
+      }`}
     >
-      <div className="w-full h-full">
+      {/* Container for image */}
+      <div className="w-full h-full overflow-hidden">
         <img
           src={images[currentIndex]}
           alt={`Slide ${currentIndex}`}
           loading="lazy"
-          className={`w-full h-full object-cover rounded-xl transition-transform duration-500 ${className.image || ''}`}
+          className={`w-full h-full object-cover object-center rounded-xl transition-transform duration-500 ${
+            className.image || ''
+          }`}
         />
       </div>
-       <Box
+
+      {/* Indicators */}
+      <Box
         className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ${
           className.indicator || ''
         }`}
