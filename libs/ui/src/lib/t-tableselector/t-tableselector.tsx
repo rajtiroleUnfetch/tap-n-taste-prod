@@ -115,7 +115,7 @@
 // const DropdownWrapper = styled.div`
 //   width: 100%;
 //   position: relative;
-  
+
 // `;
 
 // const DropdownButton = styled.div`
@@ -209,25 +209,23 @@
 // }
 
 // export default TTableSelector;
-import React, { useState } from "react";
-import styled from "styled-components";
+import { Box } from '@mui/material';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 // Styled wrapper for TTableSelector
 const StyledTTableSelector = styled.div`
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 `;
 
 // Additional styles for the modal
 const ModalContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  position: absolute;
+  top: 12%;
+  left: 10%;
 `;
 
 const ModalTitle = styled.h2`
@@ -242,20 +240,17 @@ const DropdownWrapper = styled.div`
 `;
 
 const DropdownButton = styled.div`
-  width: 100%;
+  width: fit-content;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  font-size: 14px;
+  border: 1px solid red;
   border-radius: 5px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  background-color: #fff;
-  color: #000;
-  height: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: red;
 
   &:focus {
-    border-color: #e0e0e0; /* Change border color on focus */
+    border-color: red; /* Change border color on focus */
     outline: none;
   }
 `;
@@ -294,7 +289,7 @@ const DropdownItem = styled.li`
 `;
 
 export function TTableSelector() {
-  const [selectedTable, setSelectedTable] = useState("");
+  const [selectedTable, setSelectedTable] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => setIsDropdownOpen(!isDropdownOpen);
@@ -305,19 +300,19 @@ export function TTableSelector() {
   };
 
   return (
-    <StyledTTableSelector>
-      <ModalContainer>
-        <ModalTitle>Select your Table Number</ModalTitle>
-        <DropdownWrapper>
+    <Box className="absolute top-[35%] left-[10%]">
+      <ModalContainer className="text-red-500 w-[200px]">
+        <p className="w-[55%] font-semibold mr-2">Table No.</p>
+        <DropdownWrapper className="">
           <DropdownButton tabIndex={0} onClick={handleDropdownToggle}>
-            {selectedTable || "Select a table"}
+            {selectedTable || 'Select a table'}
           </DropdownButton>
           {isDropdownOpen && (
             <DropdownList>
-              {["B1", "B2", "B3", "B4", "B5", "B6"].map((table) => (
+              {['B1', 'B2', 'B3', 'B4', 'B5', 'B6'].map((table) => (
                 <DropdownItem
                   key={table}
-                  className={selectedTable === table ? "selected" : ""}
+                  className={selectedTable === table ? 'selected' : ''}
                   onClick={() => handleSelect(table)}
                 >
                   {table}
@@ -327,9 +322,8 @@ export function TTableSelector() {
           )}
         </DropdownWrapper>
       </ModalContainer>
-    </StyledTTableSelector>
+    </Box>
   );
 }
 
 export default TTableSelector;
-
