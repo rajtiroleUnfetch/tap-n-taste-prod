@@ -1,12 +1,11 @@
 import { Box } from '@mui/material';
 import { ImageSlider, TButton, TopNav } from '@tap-n-taste/ui';
-import { sliderImages } from 't-scanning/src/app/constants/LandingPageData';
-import React from 'react';
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
 import FooterPage from '../../footer-page/footer-page';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
+import OfferPage from '../../offers-page/offers-page';
 
 const HomePage = () => {
   return (
@@ -36,6 +35,8 @@ const HomePage = () => {
           icon={<RestaurantMenuIcon className="text-white" />}
         />
       </Box>
+      {/* Offers Section */}
+      <OfferPage />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}
