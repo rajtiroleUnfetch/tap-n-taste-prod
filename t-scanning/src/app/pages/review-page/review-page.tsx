@@ -240,7 +240,7 @@ const ReviewPage: React.FC = () => {
   };
 
   return (
-    <Box className="p-4 md:p-8 lg:p-12 xl:p-16">
+    <Box className='mt-4'>
       <Typography variant="h4" className="!mb-4 text-[#4D4D4D]">
         Reviews
       </Typography>

@@ -1,22 +1,65 @@
-
-import React from 'react';
 import { Box, TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
+import clsx from 'clsx';
 
-export function TSearchbar() {
+interface TSearchbarProps {
+  placeholder?: string; // Placeholder text for the search bar
+  value?: string; // Controlled value for the search input
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Change handler
+  onSearchIconClick?: () => void; // Click handler for the search icon
+  className?: {
+    root?: string; // Root container class
+    textField?: string; // TextField class
+    inputAdornment?: string; // InputAdornment class
+    searchIcon?: string; // Search icon class
+  };
+  styles?: React.CSSProperties; // Inline styles for the root box
+  InputProps?: object; // Additional props for MUI's `InputProps`
+  [rest: string]: any; // Additional props for the root container
+}
+
+export const TSearchbar: React.FC<TSearchbarProps> = ({
+  placeholder = 'Search...',
+  value,
+  onChange,
+  onSearchIconClick,
+  className = {},
+  styles,
+  InputProps = {},
+  ...rest
+}) => {
+  const { root = '', textField = '', inputAdornment = '', searchIcon = '' } = className;
+
   return (
-    <Box display="flex" flexDirection="column" maxWidth={361}>
+    <Box
+      className={clsx('w-full py-8', root)} // Root container with custom class
+      style={styles} // Inline styles
+      {...rest} // Additional props
+    >
       <TextField
         variant="outlined"
-        placeholder="Search Dishes"
+        placeholder={placeholder}
         fullWidth
+        value={value}
+        onChange={onChange}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start" sx={{ paddingLeft: 1 }}>
-              <SearchIcon sx={{ color: '#f44336' }} />
+            <InputAdornment
+              position="start"
+              className={clsx(inputAdornment)} // Custom InputAdornment class
+              sx={{ paddingLeft: 1, paddingY: 3 }}
+            >
+              <SearchIcon
+                onClick={onSearchIconClick}
+                className={clsx('cursor-pointer', searchIcon)} // Custom SearchIcon class
+                sx={{ color: '#f44336' }}
+              />
             </InputAdornment>
           ),
+          ...InputProps, // Merge additional InputProps
         }}
+        className={clsx(textField)} // Custom TextField class
         sx={{
           backgroundColor: 'white',
           borderRadius: 3,
@@ -32,30 +75,16 @@ export function TSearchbar() {
               borderRadius: 3,
             },
             '&:hover fieldset': {
-              borderColor: 'transparent', 
+              borderColor: 'transparent',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'transparent', 
+              borderColor: 'transparent',
             },
-          },
-          '@media (max-width:600px)': {
-            paddingLeft: '1px',
-            paddingRight: '1px',
-            fontSize: '0.9rem',
-          },
-          '@media (min-width:600px) and (max-width:900px)': {
-            paddingLeft: '1.5px',
-            paddingRight: '1.5px',
-            fontSize: '1rem',
-          },
-          '@media (min-width:900px)': {
-            paddingLeft: '2px',
-            paddingRight: '2px',
-            fontSize: '1.1rem',
           },
         }}
       />
     </Box>
   );
-}
+};
 
+export default TSearchbar;
