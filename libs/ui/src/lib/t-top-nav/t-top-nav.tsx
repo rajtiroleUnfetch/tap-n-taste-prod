@@ -1,5 +1,4 @@
-import { Box, Menu, MenuItem, Snackbar, Alert } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, Snackbar, Alert } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
 import { useState } from 'react';

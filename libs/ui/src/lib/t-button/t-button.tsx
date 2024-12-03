@@ -36,8 +36,7 @@ export const TButton: React.FC<TButtonProps> = ({
   return (
     <Button
       onClick={onClick}
-      className={
-        root }
+      className={root}
       style={styles} // Inline styles
       {...rest} // Additional props
     >
@@ -48,6 +47,7 @@ export const TButton: React.FC<TButtonProps> = ({
             'p-0 text-white flex items-center justify-center',
             iconButton // Custom IconButton class
           )}
+          sx={{ fontFamily: 'Poppins' }}
           disableRipple // Remove extra ripple for cleaner UI
         >
           {typeof icon === 'string' ? (
@@ -97,4 +97,3 @@ export const TButton: React.FC<TButtonProps> = ({
 };
 
 export default TButton;
-
