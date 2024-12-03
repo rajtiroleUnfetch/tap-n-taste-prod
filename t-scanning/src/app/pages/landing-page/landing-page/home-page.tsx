@@ -6,6 +6,7 @@ import FooterPage from '../../footer-page/footer-page';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
 import OfferPage from '../../offers-page/offers-page';
+import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
 
 const HomePage = () => {
   return (
@@ -37,6 +38,8 @@ const HomePage = () => {
       </Box>
       {/* Offers Section */}
       <OfferPage />
+      {/* Top Customer Likes Section */}
+      <TopCustomerLikes />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}

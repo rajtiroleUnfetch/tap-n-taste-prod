@@ -1,9 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { offersSectionData } from '../../constants/LandingPageData';
 import { TButton, TCard } from '@tap-n-taste/ui';
-import '../../style.css';
+import { topLinkingData } from '../../constants/LandingPageData';
 
-const OfferPage = () => {
+const TopCustomerLikes = () => {
   return (
     <Box className="mt-10 mb-10">
       <Box className="flex justify-between items-center">
@@ -11,7 +10,7 @@ const OfferPage = () => {
           variant="h5"
           sx={{ fontFamily: 'Poppins', fontWeight: 'bold' }}
         >
-          Offers of the day
+          Mostly Liked by Customers
         </Typography>
         <TButton
           text="View All"
@@ -20,18 +19,22 @@ const OfferPage = () => {
         />
       </Box>
       <Box className="flex flex-row gap-12 overflow-x-auto no-scrollbar mt-3">
-        {offersSectionData.map((card, index) => (
-          <TCard
-            key={index}
-            imgURL={card.imgURL}
-            gradient={true}
-            primeText={card.primeText}
-            secText={card.secText}
-          />
+        {topLinkingData.map((card, index) => (
+          <Box className="flex flex-col justify-center items-center">
+            <TCard
+              key={index}
+              imgURL={card.imgURL}
+              gradient={false}
+              sx={{
+                root: { width: '180px', height: '148px' }, // Pass styles directly to the root
+              }}
+            />
+            <Typography variant="h6">{card.imgTitle}</Typography>
+          </Box>
         ))}
       </Box>
     </Box>
   );
 };
 
-export default OfferPage;
+export default TopCustomerLikes;
