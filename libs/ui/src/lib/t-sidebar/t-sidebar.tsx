@@ -8,6 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon from '@mui/icons-material/Menu';
 import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
 import { Typography } from '@mui/material';
+import Logo from '../../assets/logo.png';
 
 const themeColor = '#F1414F'; // Define your color here
 
@@ -20,7 +21,7 @@ export default function TSidebar() {
 
   const DrawerList = (
     <Box
-      sx={{ width: 250, paddingY: 5 }}
+      className="w-[250px] h-full py-6 relative"
       role="presentation"
       onClick={toggleDrawer(false)}
     >
@@ -33,7 +34,12 @@ export default function TSidebar() {
               }}
             >
               <ListItemIcon>
-                <navLink.icon sx={{ fontSize: '30px' , '&:hover': { backgroundColor: themeColor, color: 'white' }}} />
+                <navLink.icon
+                  sx={{
+                    fontSize: '30px',
+                    '&:hover': { backgroundColor: themeColor, color: 'white' },
+                  }}
+                />
               </ListItemIcon>
               <Typography sx={{ fontWeight: 300, fontFamily: 'Poppins' }}>
                 {navLink.linkText}
@@ -42,6 +48,13 @@ export default function TSidebar() {
           </ListItem>
         ))}
       </List>
+
+      <Box className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+        <img src={Logo} width={40} alt="Logo" />
+        <Typography variant="body1" sx={{ fontSize: 12, marginLeft: 1 }}>
+          Powered by Tap'nTaste
+        </Typography>
+      </Box>
     </Box>
   );
 
