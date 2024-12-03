@@ -1,32 +1,33 @@
 import { Box } from '@mui/material';
 import { ImageSlider, TButton, TopNav } from '@tap-n-taste/ui';
-import { sliderImages } from 't-scanning/src/app/constants/LandingPageData';
-import React from 'react';
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
 import FooterPage from '../../footer-page/footer-page';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
+import OfferPage from '../../offers-page/offers-page';
+import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
 
 const HomePage = () => {
   return (
-    <Box className="px-4 md:px-8 lg:px-12 mt-4">
+    // <Box className="px-4 md:px-8 lg:px-12 mt-4">
+    <Box className="px-[8%] sm:px-[15%]">
       {' '}
       {/* Add padding for different screen sizes */}
       {/* Top Navigation Bar */}
       <TopNav />
-      {/* Image Slider */}
-      <ImageSlider
-        images={sliderImages}
-        className={{
-          root: 'custom-root-class',
-          image: 'custom-image-class',
-          indicator: 'custom-indicator-class',
-          activeIndicator: '',
-          inactiveIndicator: '',
-        }}
-        styles={{}}
-        id="custom-slider"
-        aria-label="Custom Image Slider"
+      {/* Image Slider Added inside the Restaurant Info*/}
+      {/* RESTAURANT INFO */}
+      <RestaurantInfoPage
+        restaurantName="Stone Water"
+        restaurantDesc="North Indian | Chinese | Thai"
+        restaurantAddress="Door 8-9/2, Rushikonda,Visakhapatnam"
+        isOpen={true}
+        closingTime={11}
+        daysOperate="Mon-Fri"
+        deliveryAndDinning={true}
+        distance={2.2}
+        ratings={4.5}
       />
       <Box className="mt-4">
         <TButton
@@ -35,6 +36,10 @@ const HomePage = () => {
           icon={<RestaurantMenuIcon className="text-white" />}
         />
       </Box>
+      {/* Offers Section */}
+      <OfferPage />
+      {/* Top Customer Likes Section */}
+      <TopCustomerLikes />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}

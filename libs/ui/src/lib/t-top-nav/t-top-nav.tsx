@@ -1,8 +1,4 @@
-import {
-  Box,
-  Snackbar,
-  Alert,
-} from '@mui/material';
+import { Box, Snackbar, Alert } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
 import { useState } from 'react';
@@ -36,7 +32,7 @@ export function TopNav() {
   };
 
   return (
-    <Box className="flex md:items-center flex-row justify-between bg-white sm:flex-row sm:w-full sm:max-w-full flex-wrap overflow-hidden">
+    <Box className="flex md:items-center flex-row justify-between items-center bg-white sm:flex-row sm:w-full sm:max-w-full flex-wrap overflow-hidden py-6">
       <TSidebar />
 
       {/* Full Brand Logo */}

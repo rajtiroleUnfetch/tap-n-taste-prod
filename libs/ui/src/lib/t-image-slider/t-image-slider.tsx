@@ -26,7 +26,9 @@ export function ImageSlider({
   };
 
   const handleSwipeRight = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   const handlers = useSwipeable({
@@ -49,7 +51,9 @@ export function ImageSlider({
     <Box
       {...handlers}
       {...rest}
-      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden mt-4 ${className.root || ''}`}
+      className={`relative w-full h-[40vh] sm:h-[60vh] overflow-hidden mt-4 mb-4 ${
+        className.root || ''
+      }`}
     >
       {/* Container for image */}
       <div className="w-full h-full overflow-hidden">
@@ -57,13 +61,17 @@ export function ImageSlider({
           src={images[currentIndex]}
           alt={`Slide ${currentIndex}`}
           loading="lazy"
-          className={`w-full h-full object-cover object-center rounded-xl transition-transform duration-500 ${className.image || ''}`}
+          className={`w-full h-full object-cover object-center rounded-xl transition-transform duration-500 ${
+            className.image || ''
+          }`}
         />
       </div>
 
       {/* Indicators */}
       <Box
-        className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ${className.indicator || ''}`}
+        className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 ${
+          className.indicator || ''
+        }`}
       >
         {images.map((_, index) => (
           <div
