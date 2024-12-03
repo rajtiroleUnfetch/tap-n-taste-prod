@@ -42,7 +42,7 @@ export function LoginSignUp({ type }: Props) {
           variant="contained"
           className={{ root: "font-semibold !bg-[#F1414F] w-full !rounded-xl !shadow-none h-12", text: 'text-white !font-bold' }}
           text={type === "login" ? "Login" : "SignUp"}
-          onClick={handleOtpNavigation} // Navigate to /otp on click
+          onClick={handleOtpNavigation} 
         />
         <TButton
           variant="contained"

@@ -1,3 +1,5 @@
+export * from './lib/t-faq/t-faq';
+export * from './lib/t-about/t-about';
 export * from './lib/t-pricerange/t-pricerange';
 export * from './lib/t-submit/t-submit';
 export * from './lib/t-tableselector/t-tableselector';
