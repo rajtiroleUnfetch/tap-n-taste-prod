@@ -4,6 +4,7 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
 import { useState } from 'react';
 import { TTableSelector } from '../t-tableselector';
+import TSidebar from '../t-sidebar/t-sidebar';
 
 const themeColor = '#F1414F'; // Define your color here
 
@@ -44,36 +45,8 @@ export function TopNav() {
 
   return (
     <Box className="flex items-center justify-between p-5 relative">
-      {/* Menu Icon */}
-      <MenuIcon
-        sx={{
-          fontSize: 30,
-          cursor: 'pointer',
-          transition: 'color 0.3s ease',
-          '&:hover': { color: themeColor }, // Apply theme color on hover
-        }}
-        onClick={handleMenuClick}
-      />
 
-      {/* Dropdown Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={() => handleMenuClose()}
-      >
-        <MenuItem onClick={() => handleMenuClose('Option 1')}>
-          Option 1
-        </MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 2')}>
-          Option 2
-        </MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 3')}>
-          Option 3
-        </MenuItem>
-        <MenuItem onClick={() => handleMenuClose('Option 4')}>
-          Option 4
-        </MenuItem>
-      </Menu>
+      <TSidebar />
 
       {/* Full Brand Logo */}
       <img src={fullLogo} alt="Full Brand Logo" className="h-12" />
