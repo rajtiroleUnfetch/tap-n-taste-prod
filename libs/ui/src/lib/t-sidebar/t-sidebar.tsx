@@ -1,17 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
+import { Typography } from '@mui/material';
+import Logo from '../../assets/logo.png';
+
+const themeColor = '#F1414F'; // Define your color here
 
 export default function TSidebar() {
   const [open, setOpen] = React.useState(false);
@@ -21,41 +20,57 @@ export default function TSidebar() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box
+      className="w-[250px] h-full py-6 relative"
+      role="presentation"
+      onClick={toggleDrawer(false)}
+    >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {navLinksData.map((navLink, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton
+              sx={{
+                '&:hover': { backgroundColor: themeColor, color: 'white' },
+              }}
+            >
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <navLink.icon
+                  sx={{
+                    fontSize: '30px',
+                    '&:hover': { backgroundColor: themeColor, color: 'white' },
+                  }}
+                />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <Typography sx={{ fontWeight: 300, fontFamily: 'Poppins' }}>
+                {navLink.linkText}
+              </Typography>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+
+      <Box className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+        <img src={Logo} width={40} alt="Logo" />
+        <Typography variant="body1" sx={{ fontSize: 12, marginLeft: 1 }}>
+          Powered by Tap'nTaste
+        </Typography>
+      </Box>
     </Box>
   );
 
   return (
     <div>
-       {/* Hamburger Menu Icon */}
-       <IconButton onClick={toggleDrawer(true)} className="text-gray-600">
-        <MenuIcon className="text-2xl" />
-      </IconButton>
+      {/* Hamburger Menu Icon */}
+      <MenuIcon
+        onClick={toggleDrawer(true)}
+        sx={{
+          fontSize: 30,
+          fontWeight: 900,
+          cursor: 'pointer',
+          transition: 'color 0.3s ease',
+          '&:hover': { color: themeColor },
+        }}
+      />
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>

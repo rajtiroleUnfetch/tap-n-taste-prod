@@ -116,3 +116,33 @@ export const topLinkingData = [
     imgTitle: 'Malai Chaap',
   },
 ];
+
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+
+
+export const navLinksData = [
+  {
+    icon: HomeOutlinedIcon,
+    linkText: 'Home',
+  },
+  {
+    icon: RestaurantMenuOutlinedIcon,
+    linkText: 'Menu',
+  },
+  {
+    icon: NotificationsActiveOutlinedIcon,
+    linkText: 'Notifications',
+  },
+  {
+    icon: InfoOutlinedIcon,
+    linkText: 'About Us',
+  },
+  {
+    icon: CallOutlinedIcon,
+    linkText: 'Contact Us',
+  },
+];
