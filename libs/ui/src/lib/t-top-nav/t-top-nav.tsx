@@ -43,8 +43,7 @@ export function TopNav() {
   };
 
   return (
-    <Box className="flex items-center justify-between p-5 relative">
-
+    <Box className="flex items-center justify-between py-5 sm:py-10 relative">
       <TSidebar />
 
       {/* Full Brand Logo */}

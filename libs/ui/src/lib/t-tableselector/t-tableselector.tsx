@@ -13,16 +13,16 @@ export function TTableSelector() {
   };
 
   return (
-    <Box className="absolute sm:top-[35%] top-[40%] sm:left-[10%] left-[12%]">
-      <div className="flex items-center justify-center text-red-500 w-[200px] sm:w-">
+    <Box className="z-50 w-fit h-fit absolute sm:top-[34%] md:left-[20%] bottom-[-10%] sm:left-[10%] left-1/2 transform -translate-x-1/2">
+      <div className="flex items-center justify-center text-red-500">
         {/* Label */}
-        <p className="w-[55%] font-semibold mr-2 hidden sm:block">Table No.</p>
+        {/* <p className="font-semibold mr-2 md:hidden sm:block">Table No.</p> */}
 
         {/* Dropdown */}
-        <div className="relative w-full">
+        <div className="relative">
           <div
             tabIndex={0}
-            className="w-fit px-[2px] sm:px-3 sm:py-2 text-[12px] sm:text-sm font-medium border border-red-500 rounded cursor-pointer text-red-500 focus:outline-none focus:border-red-500"
+            className="w-fit px-3 py-[5px] sm:py-2 text-[12px] sm:text-sm font-medium border border-red-500 rounded cursor-pointer text-red-500 focus:outline-none focus:border-red-500"
             onClick={handleDropdownToggle}
           >
             {selectedTable || 'Select a table'}
