@@ -1,111 +1,166 @@
-import React from 'react';
-import { Box, ImageList, ImageListItem, Typography } from '@mui/material';
-import { PlayCircle } from '@mui/icons-material';
-import { TButton } from '@tap-n-taste/ui';
+'use client';
+
+import { useState } from 'react';
+import {
+  Box,
+  Grid,
+  Typography,
+  Dialog,
+  IconButton,
+  useMediaQuery,
+} from '@mui/material';
+import { PlayCircle, Close } from '@mui/icons-material';
 import { reviewGalleryData } from '../../constants/LandingPageData';
+import { TButton } from '@tap-n-taste/ui';
 
-const GalleryPage = () => {
+export default function GalleryPage() {
+  const [selectedMedia, setSelectedMedia] = useState<{
+    mediaURL: string;
+    type: string;
+  } | null>(null);
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   return (
-    <Box className="mt-10 mb-10">
-      <Box className="flex justify-between items-center overflow-visible mb-4">
-        <Typography
-          variant="h5"
-          sx={{
-            fontFamily: 'Poppins, sans-serif',
-            fontWeight: 'bold',
-            color: 'text.primary',
-          }}
-        >
-          Photos and Videos
-        </Typography>
-        <TButton
-          text="View All"
-          className={{ root: 'hover:bg-none', text: 'capitalize' }}
-          sx={{ color: 'red' }}
-        />
-      </Box>
-
-      <ImageList
-        sx={{
-          width: '100%',
-          height: 'auto',
-          margin: 0,
-          gap: '16px !important',
-          gridTemplateColumns:
-            'repeat(auto-fill, minmax(200px, 1fr)) !important',
-        }}
-        gap={16}
+    <Box
+      className="px-2 sm:px-4 py-8 sm:py-10 mx-auto"
+      sx={{
+        maxWidth: 'lg',
+        mx: 'auto',
+      }}
+    >
+      <Typography
+        variant="h4"
+        textAlign="center"
+        fontWeight="bold"
+        mb={4}
+        sx={{ fontFamily: 'Poppins, sans-serif' }}
       >
+        Photo Gallery
+      </Typography>
+
+      {/* Gallery Grid */}
+      <Grid container spacing={3} className="mb-12">
         {reviewGalleryData.map((item, index) => (
-          <ImageListItem
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
             key={index}
+            onClick={() => setSelectedMedia(item)}
             sx={{
-              overflow: 'hidden',
-              borderRadius: '4px',
-              boxShadow:
-                '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-              transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
-              '&:hover': {
-                boxShadow:
-                  '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
-              },
-              '& img': {
-                borderRadius: '4px',
-                transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.05)',
-                },
-              },
+              cursor: 'pointer',
+              position: 'relative',
+              // overflow: 'hidden',
+              overflowX: 'hidden',
+              overflowY: 'hidden',
+              borderRadius: '16px',
             }}
           >
-            <img
-              src={item.img}
-              alt={item.alt}
-              className="w-full h-full object-cover aspect-square"
-              loading="lazy"
-            />
-
-            {item.isVideo && (
+            {item.type === 'img' ? (
+              <Box
+                component="img"
+                src={item.mediaURL}
+                alt={`Gallery Item ${index + 1}`}
+                sx={{
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '16px',
+                }}
+              />
+            ) : (
               <Box
                 sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  color: 'white',
-                  transition: 'transform 0.2s',
-                  '&:hover': {
-                    transform: 'translate(-50%, -50%) scale(1.1)',
-                  },
+                  width: '100%',
+                  height: '200px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'grey.900',
+                  borderRadius: '16px',
+                  position: 'relative',
                 }}
               >
-                <PlayCircle sx={{ fontSize: 48, opacity: 0.9 }} />
+                <PlayCircle sx={{ fontSize: 48, color: 'white' }} />
               </Box>
             )}
-
-            {item.extra && (
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  left: 0,
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  color: 'white',
-                  padding: '8px',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  textAlign: 'center',
-                }}
-              >
-                {item.extra} more
-              </Box>
-            )}
-          </ImageListItem>
+          </Grid>
         ))}
-      </ImageList>
+      </Grid>
+
+      <TButton
+        text="View All"
+        className={{ root: 'hover:bg-none w-full mx-auto', text: 'capitalize' }}
+        sx={{ color: 'red' }}
+      />
+
+      {/* Lightbox Dialog */}
+      <Dialog
+        open={!!selectedMedia}
+        onClose={() => setSelectedMedia(null)}
+        fullScreen={isMobile}
+        PaperProps={{
+          sx: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            boxShadow: 'none',
+            borderRadius: isMobile ? '0' : '16px',
+          },
+        }}
+      >
+        {selectedMedia && (
+          <Box
+            sx={{
+              position: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%',
+              px: 2,
+            }}
+          >
+            <IconButton
+              onClick={() => setSelectedMedia(null)}
+              sx={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                },
+              }}
+            >
+              <Close sx={{ color: 'white' }} />
+            </IconButton>
+
+            {selectedMedia.type === 'img' ? (
+              <Box
+                component="img"
+                src={selectedMedia.mediaURL}
+                alt="Selected media"
+                sx={{
+                  maxWidth: '90%',
+                  maxHeight: '90%',
+                  borderRadius: '16px',
+                  objectFit: 'contain',
+                }}
+              />
+            ) : (
+              <Box
+                component="video"
+                src={selectedMedia.mediaURL}
+                controls
+                sx={{
+                  maxWidth: '90%',
+                  maxHeight: '90%',
+                  borderRadius: '16px',
+                }}
+              />
+            )}
+          </Box>
+        )}
+      </Dialog>
     </Box>
   );
-};
-
-export default GalleryPage;
+}

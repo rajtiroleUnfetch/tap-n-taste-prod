@@ -5,7 +5,7 @@ import '../../style.css';
 
 const OfferPage = () => {
   return (
-    <Box className="mt-10 mb-10">
+    <Box className="my-20">
       <Box className="flex justify-between items-center">
         <Typography
           variant="h5"
