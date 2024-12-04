@@ -7,6 +7,7 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
 import OfferPage from '../../offers-page/offers-page';
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
+import ChefSpecial from '../../chef-special/chef-special';
 
 const HomePage = () => {
   return (
@@ -40,6 +41,8 @@ const HomePage = () => {
       <OfferPage />
       {/* Top Customer Likes Section */}
       <TopCustomerLikes />
+      {/* Chef Special Section */}
+      <ChefSpecial />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}
