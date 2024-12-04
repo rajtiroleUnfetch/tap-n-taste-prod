@@ -8,6 +8,7 @@ import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-p
 import OfferPage from '../../offers-page/offers-page';
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
 import ChefSpecial from '../../chef-special/chef-special';
+import GalleryPage from '../../gallery-page/gallery-page';
 
 const HomePage = () => {
   return (
@@ -43,6 +44,8 @@ const HomePage = () => {
       <TopCustomerLikes />
       {/* Chef Special Section */}
       <ChefSpecial />
+      {/* Gallery */}
+      <GalleryPage />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}
