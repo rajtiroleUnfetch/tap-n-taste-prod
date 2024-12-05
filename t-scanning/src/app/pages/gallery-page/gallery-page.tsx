@@ -20,6 +20,10 @@ export default function GalleryPage() {
   } | null>(null);
   const isMobile = useMediaQuery('(max-width:600px)');
 
+  const handleClose = () => {
+    setSelectedMedia(null);
+  };
+
   return (
     <Box
       className="px-2 sm:px-4 py-8 sm:py-10 mx-auto"
@@ -48,12 +52,8 @@ export default function GalleryPage() {
             md={4}
             key={index}
             onClick={() => setSelectedMedia(item)}
+            className="cursor-pointer relative overflow-hidden"
             sx={{
-              cursor: 'pointer',
-              position: 'relative',
-              // overflow: 'hidden',
-              overflowX: 'hidden',
-              overflowY: 'hidden',
               borderRadius: '16px',
             }}
           >
@@ -63,23 +63,16 @@ export default function GalleryPage() {
                 src={item.mediaURL}
                 alt={`Gallery Item ${index + 1}`}
                 sx={{
-                  width: '100%',
-                  height: '200px',
-                  objectFit: 'cover',
                   borderRadius: '16px',
                 }}
+                className="w-full h-[200px] object-cover"
               />
             ) : (
               <Box
+                className="w-full h-[200px] flex items-center justify-center relative"
                 sx={{
-                  width: '100%',
-                  height: '200px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   backgroundColor: 'grey.900',
                   borderRadius: '16px',
-                  position: 'relative',
                 }}
               >
                 <PlayCircle sx={{ fontSize: 48, color: 'white' }} />
@@ -91,70 +84,91 @@ export default function GalleryPage() {
 
       <TButton
         text="View All"
-        className={{ root: 'hover:bg-none w-full mx-auto', text: 'capitalize' }}
+        className={{
+          root: 'bg-white hover:bg-none w-full mx-auto',
+          text: 'capitalize',
+        }}
         sx={{ color: 'red' }}
       />
 
-      {/* Lightbox Dialog */}
+      {/* Dialog for Preview */}
       <Dialog
         open={!!selectedMedia}
-        onClose={() => setSelectedMedia(null)}
-        fullScreen={isMobile}
+        onClose={handleClose}
+        fullWidth
+        maxWidth="md"
         PaperProps={{
           sx: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: 'transparent',
             boxShadow: 'none',
-            borderRadius: isMobile ? '0' : '16px',
+            overflow: 'hidden',
           },
         }}
       >
         {selectedMedia && (
           <Box
+            className="rounded-2xl flex justify-center items-center relative w-full"
             sx={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100%',
-              px: 2,
+              borderRadius: '12px',
+              height: isMobile ? '300px' : '500px',
             }}
           >
-            <IconButton
-              onClick={() => setSelectedMedia(null)}
-              sx={{
-                position: 'absolute',
-                top: 16,
-                right: 16,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                '&:hover': {
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                },
-              }}
-            >
-              <Close sx={{ color: 'white' }} />
-            </IconButton>
-
+            {selectedMedia.type === 'img' && (
+              <IconButton
+                onClick={handleClose}
+                disableRipple
+                sx={{
+                  position: 'absolute',
+                  top: '4%',
+                  right: '10%',
+                  background: 'white',
+                  padding: '2px',
+                  color: 'black',
+                  '&:hover': {
+                    background: 'white',
+                  },
+                }}
+              >
+                <Close />
+              </IconButton>
+            )}
             {selectedMedia.type === 'img' ? (
               <Box
                 component="img"
                 src={selectedMedia.mediaURL}
-                alt="Selected media"
+                alt="Selected Media"
+                className="rounded-2xl"
                 sx={{
-                  maxWidth: '90%',
-                  maxHeight: '90%',
-                  borderRadius: '16px',
+                  width: '100%',
+                  height: '100%',
                   objectFit: 'contain',
+                }}
+              />
+            ) : selectedMedia.type === 'video' &&
+              selectedMedia.mediaURL.includes('youtube.com') ? (
+              <Box
+                component="iframe"
+                src={selectedMedia.mediaURL.replace('watch?v=', 'embed/')} // Convert YouTube link to embed format
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '8px',
+                  backgroundColor: 'black',
+                  border: 0,
                 }}
               />
             ) : (
               <Box
                 component="video"
-                src={selectedMedia.mediaURL}
+                src={selectedMedia?.mediaURL || ''}
                 controls
                 sx={{
-                  maxWidth: '90%',
-                  maxHeight: '90%',
-                  borderRadius: '16px',
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '8px',
+                  backgroundColor: 'black',
                 }}
               />
             )}

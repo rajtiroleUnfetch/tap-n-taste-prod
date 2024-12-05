@@ -263,8 +263,7 @@ export const reviewGalleryData = [
     type: 'img',
   },
   {
-    mediaURL:
-      'https://videos.pexels.com/video-files/2894881/2894881-uhd_2560_1440_24fps.mp4',
+    mediaURL: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ',
     type: 'video',
   },
   {
