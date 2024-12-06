@@ -1,9 +1,12 @@
 import { Box, Snackbar, Alert } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
+import Logo from '../../assets/logo.png';
 import { useState } from 'react';
 import { TTableSelector } from '../t-tableselector';
 import TSidebar from '../t-sidebar/t-sidebar';
+import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
+import { TButton } from '../t-button';
 
 const themeColor = '#F1414F'; // Define your color here
 
@@ -49,16 +52,54 @@ export function TopNav() {
       {/* Full Brand Logo */}
       <img src={fullLogo} alt="Full Brand Logo" className="h-12" />
 
-      {/* Notification Icon */}
-      <NotificationsNoneIcon
-        sx={{
-          fontSize: 30,
-          cursor: 'pointer',
-          transition: 'color 0.3s ease',
-          '&:hover': { color: themeColor }, // Apply theme color on hover
-        }}
-        onClick={handleNotificationClick}
-      />
+      {/* Logo */}
+      {/* <img src={Logo} alt="Brand Logo" className="h-12" /> */}
+
+      <Box className="max-md:hidden flex justify-between gap-8">
+        {navLinksData.map((navLink, index) => (
+          <h1 className="font-semibold uppercase max-lg:text-[12px] hover:text-[#F1414F] cursor-pointer">
+            {navLink.linkText}
+          </h1>
+        ))}
+      </Box>
+
+      <Box display="flex" gap={2}>
+        <TButton
+          text="Sign Up"
+          sx={{
+            backgroundColor: 'white',
+            border: '2px solid #F1414F',
+            color: '#F1414F',
+          }}
+        />
+
+        <TButton
+          text="Sign In"
+          sx={{
+            backgroundColor: '#F1414F',
+            border: '2px solid #F1414F',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#DC3D4A',
+            },
+          }}
+        />
+      </Box>
+
+      <Box className="md:hidden">
+        <NotificationsNoneIcon
+          sx={{
+            fontSize: 30,
+            cursor: 'pointer',
+            transition: 'color 0.3s ease',
+            '@media (min-width: 1280px)': {
+              display: 'none', // Explicitly hide after lg
+            },
+            '&:hover': { color: themeColor }, // Apply theme color on hover
+          }}
+          onClick={handleNotificationClick}
+        />
+      </Box>
 
       {/* Snackbar */}
       <Snackbar

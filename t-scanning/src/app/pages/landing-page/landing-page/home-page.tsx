@@ -13,7 +13,7 @@ import GalleryPage from '../../gallery-page/gallery-page';
 const HomePage = () => {
   return (
     // <Box className="px-4 md:px-8 lg:px-12 mt-4">
-    <Box className="px-[8%] sm:px-[15%]">
+    <Box className="px-[8%] sm:px-[10%]">
       {' '}
       {/* Add padding for different screen sizes */}
       {/* Top Navigation Bar */}

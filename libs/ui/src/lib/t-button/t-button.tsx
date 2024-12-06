@@ -36,7 +36,7 @@ export const TButton: React.FC<TButtonProps> = ({
   return (
     <Button
       onClick={onClick}
-      className={root}
+      className={clsx('bg-white', root)}
       style={styles} // Inline styles
       {...rest} // Additional props
     >
