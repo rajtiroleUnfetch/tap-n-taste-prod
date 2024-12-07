@@ -1,4 +1,4 @@
-import { Box, Snackbar, Alert } from '@mui/material';
+import { Box, Snackbar, Alert, Icon, useMediaQuery } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import fullLogo from '../../assets/full-brand.png';
 import Logo from '../../assets/logo.png';
@@ -45,61 +45,89 @@ export function TopNav() {
     setSnackbarOpen(false); // Close Snackbar
   };
 
+  // Media Query
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isTablet = useMediaQuery('(min-width: 769px) and (max-width: 1024px)');
+  const isLaptop = useMediaQuery('(min-width: 1025px) and (max-width: 1280px)');
+  const isDesktop = useMediaQuery('(min-width: 1281px)');
+
   return (
     <Box className="flex items-center justify-between py-5 sm:py-10 relative">
-      <TSidebar />
+      {/* Sidebar visible for mobile and tablet */}
+      {(isMobile || isTablet) && <TSidebar />}
 
       {/* Full Brand Logo */}
       <img src={fullLogo} alt="Full Brand Logo" className="h-12" />
 
-      {/* Logo */}
-      {/* <img src={Logo} alt="Brand Logo" className="h-12" /> */}
+      {/* NavLinks Section */}
+      {isDesktop && (
+        <Box className="flex justify-between gap-8">
+          {navLinksData.map((navLink) => (
+            <h1
+              key={navLink.linkText}
+              className="font-semibold uppercase hover:text-[#F1414F] cursor-pointer"
+            >
+              {navLink.linkText}
+            </h1>
+          ))}
+        </Box>
+      )}
 
-      <Box className="max-md:hidden flex justify-between gap-8">
-        {navLinksData.map((navLink, index) => (
-          <h1 className="font-semibold uppercase max-lg:text-[12px] hover:text-[#F1414F] cursor-pointer">
-            {navLink.linkText}
-          </h1>
-        ))}
-      </Box>
+      {isLaptop && (
+        <Box className="flex justify-between gap-5">
+          {navLinksData.map((navLink) => (
+            <navLink.icon
+              key={navLink.linkText}
+              style={{
+                padding: '1px',
+                borderRadius: '0.5rem', // Corresponds to rounded-xl
+                transition: 'all 0.3s ease',
+              }}
+              className="hover:bg-[#F1414F]/80 hover:text-white cursor-pointer"
+            />
+          ))}
+        </Box>
+      )}
 
-      <Box display="flex" gap={2}>
-        <TButton
-          text="Sign Up"
-          sx={{
-            backgroundColor: 'white',
-            border: '2px solid #F1414F',
-            color: '#F1414F',
-          }}
-        />
+      {/* Sign In / Sign Up Buttons */}
+      {!isMobile && (
+        <Box className="flex gap-4">
+          <TButton
+            text="Sign Up"
+            sx={{
+              backgroundColor: 'white',
+              border: '2px solid #F1414F',
+              color: '#F1414F',
+            }}
+          />
+          <TButton
+            text="Sign In"
+            sx={{
+              backgroundColor: '#F1414F',
+              border: '2px solid #F1414F',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#DC3D4A',
+              },
+            }}
+          />
+        </Box>
+      )}
 
-        <TButton
-          text="Sign In"
-          sx={{
-            backgroundColor: '#F1414F',
-            border: '2px solid #F1414F',
-            color: 'white',
-            '&:hover': {
-              backgroundColor: '#DC3D4A',
-            },
-          }}
-        />
-      </Box>
-
-      <Box className="md:hidden">
-        <NotificationsNoneIcon
-          sx={{
-            fontSize: 30,
-            cursor: 'pointer',
-            transition: 'color 0.3s ease',
-            '@media (min-width: 1280px)': {
-              display: 'none', // Explicitly hide after lg
-            },
-            '&:hover': { color: themeColor }, // Apply theme color on hover
-          }}
-          onClick={handleNotificationClick}
-        />
-      </Box>
+      {/* Notification Icon */}
+      {(isMobile || isTablet) && (
+        <Box>
+          <NotificationsNoneIcon
+            sx={{
+              fontSize: 30,
+              cursor: 'pointer',
+              transition: 'color 0.3s ease',
+              '&:hover': { color: themeColor },
+            }}
+            onClick={handleNotificationClick}
+          />
+        </Box>
+      )}
 
       {/* Snackbar */}
       <Snackbar
@@ -114,9 +142,9 @@ export function TopNav() {
           sx={{
             width: '100%',
             backgroundColor: '#fff', // Set background to white
-            color: 'black', // Set text color to red
+            color: 'black', // Set text color to black
             '& .MuiSvgIcon-root': {
-              color: themeColor, // Set icon color to red
+              color: themeColor, // Set icon color
             },
             border: 2,
             borderColor: '#3333',
@@ -126,7 +154,7 @@ export function TopNav() {
         </Alert>
       </Snackbar>
 
-      {/* TABLE SELECTOR */}
+      {/* Table Selector */}
       <TTableSelector />
     </Box>
   );
