@@ -20,7 +20,7 @@ const TopCustomerLikes = () => {
       </Box>
       <Box className="flex flex-row gap-12 overflow-x-auto no-scrollbar mt-3">
         {topLinkingData.map((card, index) => (
-          <Box className="flex flex-col justify-center items-center">
+          <Box className="flex flex-col justify-center items-center gap-2">
             <TCard
               key={index}
               imgURL={card.imgURL}

@@ -123,7 +123,6 @@ import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsAc
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 
-
 export const navLinksData = [
   {
     icon: HomeOutlinedIcon,
@@ -144,5 +143,147 @@ export const navLinksData = [
   {
     icon: CallOutlinedIcon,
     linkText: 'Contact Us',
+  },
+];
+
+export const chefSpecialData = [
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+  {
+    imgURL:
+      'https://plus.unsplash.com/premium_photo-1669742928112-19364a33b530?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgTitle: 'Chicken',
+    imgDesc:
+      'Grilled chicken with garlic sauce and veggies.Grilled chicken with garlic sauce and veggies.',
+  },
+];
+
+// export const reviewGalleryData = [
+//   {
+//     img: 'https://plus.unsplash.com/premium_photo-1723491285855-f1035c4c703c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'Dining room',
+//   },
+//   {
+//     img: 'https://images.unsplash.com/photo-1691972670027-184067617951?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'Another view',
+//     isVideo: true,
+//   },
+//   {
+//     img: 'https://images.unsplash.com/photo-1614873636018-548106274e2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'More dining',
+//   },
+//   {
+//     img: 'https://images.unsplash.com/photo-1614873636018-548106274e2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'More dining',
+//   },
+//   {
+//     img: 'https://images.unsplash.com/photo-1691972670027-184067617951?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'Another view',
+//     isVideo: true,
+//   },
+//   {
+//     img: 'https://images.unsplash.com/photo-1722618424569-2bfefc57c061?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//     alt: 'Food items',
+//     extra: '+2',
+//   },
+// ];
+
+export const reviewGalleryData = [
+  {
+    mediaURL:
+      'https://images.unsplash.com/photo-1722618424569-2bfefc57c061?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    type: 'img',
+  },
+  {
+    mediaURL: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ',
+    type: 'video',
+  },
+  {
+    mediaURL:
+      'https://images.unsplash.com/photo-1691972670027-184067617951?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    type: 'img',
+  },
+  {
+    mediaURL:
+      'https://images.unsplash.com/photo-1614873636018-548106274e2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    type: 'img',
+  },
+  {
+    mediaURL:
+      'https://images.unsplash.com/photo-1614873636018-548106274e2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    type: 'img',
+  },
+  {
+    mediaURL:
+      'https://images.unsplash.com/photo-1691972670027-184067617951?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    type: 'img',
   },
 ];
