@@ -32,7 +32,7 @@ export const RestaurantInfoPage = ({
   ratings,
 }: RestaurantProps) => {
   return (
-    <Box>
+    <Box className="z-10">
       <ImageSlider
         images={sliderImages}
         className={{

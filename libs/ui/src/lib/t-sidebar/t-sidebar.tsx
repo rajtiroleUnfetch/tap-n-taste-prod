@@ -21,7 +21,7 @@ export default function TSidebar() {
 
   const DrawerList = (
     <Box
-      className="w-[250px] h-full py-6 relative"
+      className="w-[250px] h-full py-6 relative lg:hidden"
       role="presentation"
       onClick={toggleDrawer(false)}
     >
@@ -59,7 +59,7 @@ export default function TSidebar() {
   );
 
   return (
-    <div>
+    <div className="lg:hidden">
       {/* Hamburger Menu Icon */}
       <MenuIcon
         onClick={toggleDrawer(true)}
