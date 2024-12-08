@@ -1,4 +1,3 @@
-
 import React from 'react';
 import styled from 'styled-components';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -9,7 +8,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 // Main container for the restaurant card
 const RestaurantCard = styled.div`
-  background-color: #f3efef;
+  background-color: #F5F6F7;
   border-radius: 8px;
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -144,6 +143,18 @@ export function TAbout({
   restaurantName = "Restaurant Name",
   openingTime = "10:00am",
   closingTime = "11:00pm",
+  cuisines = "Chinese | Italian | Cafe",
+  address = "Address, address",
+  phoneNumber = "Phone Number",
+  distance = "2.2km away",
+  facilities = [
+    "Take away Available",
+    "Indoor Seating",
+    "Event Booking",
+    "Table Booking",
+    "Dine In",
+    "Home Delivery",
+  ],
 }) {
   return (
     <RestaurantCard>
@@ -152,41 +163,27 @@ export function TAbout({
         <Rating><GradeIcon />4.5</Rating>
       </Header>
       <Details>
-        Chinese | Italian | Cafe
+        {cuisines}
         <br />
-        Address, address
+        {address}
         <br />
-        Phone Number
+        {phoneNumber}
         <br />
-        2.2km away
+        {distance}
         <Timing>
           Opens at {openingTime} | Closes at {closingTime}
         </Timing>
       </Details>
       <SectionHeader>Facilities</SectionHeader>
       <FacilityList>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Take away Available
-        </FacilityItem>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Indoor Seating
-        </FacilityItem>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Event Booking
-        </FacilityItem>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Table Booking
-        </FacilityItem>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Dine In
-        </FacilityItem>
-        <FacilityItem>
-          <Checkmark><CheckCircleIcon /></Checkmark> Home Delivery
-        </FacilityItem>
+        {facilities.map((facility, index) => (
+          <FacilityItem key={index}>
+            <Checkmark><CheckCircleIcon /></Checkmark> {facility}
+          </FacilityItem>
+        ))}
       </FacilityList>
       <SectionHeader>Connect with us</SectionHeader>
-
-<IconsButtonContainer>
+      <IconsButtonContainer>
         <IconButton>
           <InstagramIcon />
         </IconButton>
