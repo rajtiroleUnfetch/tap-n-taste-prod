@@ -1,16 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon from '@mui/icons-material/Menu';
 import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
 import { Typography } from '@mui/material';
 import Logo from '../../assets/logo.png';
-
-const themeColor = '#F1414F'; // Define your color here
 
 export default function TSidebar() {
   const [open, setOpen] = React.useState(false);
@@ -25,29 +19,27 @@ export default function TSidebar() {
       role="presentation"
       onClick={toggleDrawer(false)}
     >
-      <List>
+      <Box className="flex flex-col gap-4 cursor-pointer">
         {navLinksData.map((navLink, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton
-              sx={{
-                '&:hover': { backgroundColor: themeColor, color: 'white' },
-              }}
-            >
-              <ListItemIcon>
-                <navLink.icon
-                  sx={{
-                    fontSize: '30px',
-                    '&:hover': { backgroundColor: themeColor, color: 'white' },
-                  }}
-                />
-              </ListItemIcon>
+          <Box key={index}>
+            <Box className="px-6 py-2 hover:bg-primary hover:text-white flex gap-2 items-center justify-start transition-all duration-300">
+              <navLink.icon
+                sx={{
+                  fontSize: '30px',
+                  '&:hover': {
+                    color: 'white',
+                    backgroundColor: 'var(--primary)',
+                  },
+                }}
+                className="hover:text-white hover:bg-primary"
+              />
               <Typography sx={{ fontWeight: 300, fontFamily: 'Poppins' }}>
                 {navLink.linkText}
               </Typography>
-            </ListItemButton>
-          </ListItem>
+            </Box>
+          </Box>
         ))}
-      </List>
+      </Box>
 
       <Box className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
         <img src={Logo} width={40} alt="Logo" />
@@ -68,8 +60,9 @@ export default function TSidebar() {
           fontWeight: 900,
           cursor: 'pointer',
           transition: 'color 0.3s ease',
-          '&:hover': { color: themeColor },
+          '&:hover': { color: 'var(--primary)' }, // Using the Tailwind variable here
         }}
+        className="hover:text-primary" // Tailwind hover for icon
       />
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
