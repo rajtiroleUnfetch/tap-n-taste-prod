@@ -23,11 +23,11 @@ export const ItemInfoPage = ({
   ratings,
 }: ItemInfoProps) => {
   return (
-    <Box className="z-10 sm:w-[400px] max-lg:w-[350px] font-primary mt-4 mb-4">
+    <Box className="z-10 sm:w-[400px] max-lg:w-[350px] font-primary px-6 py-4">
       <ImageSlider
         images={itemSliderImages}
         className={{
-          root: 'custom-root-class h-56 sm:h-72',
+          root: 'custom-root-class h-56 sm:h-64',
           image: 'custom-image-class',
           indicator: 'custom-indicator-class',
           activeIndicator: '',
