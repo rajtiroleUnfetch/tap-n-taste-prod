@@ -23,11 +23,11 @@ export const ItemInfoPage = ({
   ratings,
 }: ItemInfoProps) => {
   return (
-    <Box className="z-10 sm:w-[400px] max-lg:w-[350px] font-primary px-6 py-4">
+    <Box className="z-10 sm:w-[450px] font-primary px-6 py-4">
       <ImageSlider
         images={itemSliderImages}
         className={{
-          root: 'custom-root-class h-56 sm:h-64',
+          root: 'custom-root-class h-52 sm:h-60',
           image: 'custom-image-class',
           indicator: 'custom-indicator-class',
           activeIndicator: '',
@@ -40,7 +40,7 @@ export const ItemInfoPage = ({
       <Box className="section">
         <Box className="header flex justify-between items-center">
           <Box>
-            <h1 className="text-3xl sm:text-4xl font-semibold flex gap-3">
+            <h1 className="text-2xl sm:text-3xl font-semibold flex gap-3">
               {itemName}
               <img
                 width={23}
@@ -49,11 +49,13 @@ export const ItemInfoPage = ({
                 alt={itemVeg ? 'Veg Icon' : 'NonVeg Icon'}
               />
             </h1>
-            <p className="text-[#8E8E8E] mt-3 mb-5">{itemDesc}</p>
+            <p className="text-[#8E8E8E] text-sm sm:text-base mt-3 mb-5">
+              {itemDesc}
+            </p>
           </Box>
         </Box>
         <Box className="sm:flex sm:justify-between ">
-          <h1 className="text-3xl font-semibold">₹{itemPrice}</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold">₹{itemPrice}</h1>
           <Box className="flex">
             <Rating value={ratings} readOnly precision={0.5} />
             <p>{ratings.toFixed(1)}</p>
