@@ -5,7 +5,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import Slider from '@mui/material/Slider';
 
 function valuetext(value: number) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
 const FilterPopUp = () => {
@@ -44,7 +44,7 @@ const FilterPopUp = () => {
           </Box>
           <Box className="p-3">
             <h1>Rating</h1>
-            <Box className="flex mt-2 gap-3">
+            <Box className="flex mt-2 gap-4">
               <Button
                 className="flex items-center justify-center gap-2"
                 variant="outlined"
@@ -65,15 +65,15 @@ const FilterPopUp = () => {
           </Box>
           <Box className="p-3">
             <h1>Quantity</h1>
-            <Box className="flex mt-2 gap-3">
+            <Box className="flex mt-2 gap-2 sm:gap-4">
               <Button variant="outlined" color="error">
-                <h3 className="text-sm"> Server 1-2</h3>
+                <h3 className="text-xs sm:text-sm"> Server 1-2</h3>
               </Button>
               <Button variant="outlined" color="error">
-                <h3 className="text-sm"> Server 2-3</h3>
+                <h3 className="text-xs sm:text-sm"> Server 2-3</h3>
               </Button>
               <Button variant="outlined" color="error">
-                <h3 className="text-sm"> Server 3+</h3>
+                <h3 className="text-xs sm:text-sm"> Server 3+</h3>
               </Button>
             </Box>
           </Box>

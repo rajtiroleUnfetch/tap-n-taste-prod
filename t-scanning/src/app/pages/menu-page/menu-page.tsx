@@ -9,6 +9,7 @@ import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import FilterPopUp from './filter-popup/filter-popup';
+import SortPopUp from './sort-popup/sort-popup';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -60,7 +61,8 @@ const MenuPage = () => {
 
       <FilterPopUp />
 
-      
+      <SortPopUp />
+
       <FooterPage />
     </Box>
   );
