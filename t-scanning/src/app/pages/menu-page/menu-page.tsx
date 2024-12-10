@@ -60,6 +60,7 @@ const MenuPage = () => {
 
       <FilterPopUp />
 
+      
       <FooterPage />
     </Box>
   );
