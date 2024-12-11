@@ -1,7 +1,8 @@
-import { Box, Typography, Modal } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import { useState } from 'react';
 import { TButton } from '@tap-n-taste/ui';
-import '../../style.css';
+import Cross from '../../../assets/cross.png';
+import CloseIcon from '@mui/icons-material/Close';
 
 const OrderPage = () => {
   const [open, setOpen] = useState(false);
@@ -10,21 +11,18 @@ const OrderPage = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box className="my-20 flex flex-col items-center justify-center">
-      {/* Centered Active Orders Title */}
-      <Typography
-        variant="h5"
-        sx={{
+    <Box className="font-primary my-20 flex flex-col items-center justify-center">
+      <h5
+        style={{
           fontFamily: 'Poppins',
           fontWeight: 'bold',
-          mb: 4,
+          marginBottom: '20px',
           textAlign: 'center',
         }}
       >
         Active Orders
-      </Typography>
+      </h5>
 
-      {/* Centered Cancel Order Button */}
       <TButton
         text="Cancel Order"
         className={{ root: 'hover:bg-red-100', text: 'capitalize' }}
@@ -33,11 +31,11 @@ const OrderPage = () => {
           backgroundColor: 'red',
           padding: '8px 16px',
           fontSize: '14px',
+          fontFamily: 'Poppins',  // Ensuring the font is Poppins
         }}
         onClick={handleOpen}
       />
 
-      {/* Modal for Cancel Order */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -54,69 +52,65 @@ const OrderPage = () => {
       >
         <Box
           sx={{
-            width: 325,  // Width as per your original request
-            height: 280,  // Reduced height to avoid too much space below
+            width: 325,
             bgcolor: 'white',
             borderRadius: 2,
-            boxShadow: '0px 143px 57px rgba(0, 0, 0, 0.01), 0px 81px 48px rgba(0, 0, 0, 0.05), 0px 36px 36px rgba(0, 0, 0, 0.09), 0px 9px 20px rgba(0, 0, 0, 0.1)', // Combined boxShadow
+            boxShadow:
+              '0px 143px 57px rgba(0, 0, 0, 0.01), 0px 81px 48px rgba(0, 0, 0, 0.05), 0px 36px 36px rgba(0, 0, 0, 0.09), 0px 9px 20px rgba(0, 0, 0, 0.1)',
             p: 3,
             textAlign: 'center',
             margin: 'auto',
-            mt: 5, // Adjusted top margin to balance the modal's vertical position
-            position: 'relative', // Center the modal content
-            border: '1px solid #E3E3E3',  // Adding border from CSS
+            position: 'relative',
+            border: '1px solid #E3E3E3',
+            fontFamily: 'Poppins',  // Ensuring the font is Poppins
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 350,  // Adjust height to fit everything comfortably
           }}
         >
-          {/* Close Button (X) */}
-          <Box className="flex justify-end">
-            <button
-              style={{
-                border: 'none',
-                background: 'none',
-                fontSize: '20px',
-                cursor: 'pointer',
-                position: 'absolute',
-                left: '327px',
-                top: '174px',
-              }}
-              onClick={handleClose}
-            >
-              &times;
-            </button>
-          </Box>
-
-          {/* Cross Icon */}
-          <Typography
-            variant="h4"
+          {/* Close Icon in the top-right corner */}
+          <CloseIcon
+            onClick={handleClose}
             sx={{
-              fontSize: '50px',
-              color: 'red',
-              mb: 2,
-              textAlign: 'center',
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              zIndex: 2,  // Ensuring the icon cross is at the top-right corner
+              cursor: 'pointer',
             }}
-          >
-            ❌
-          </Typography>
+          />
 
-          {/* Cancellation Message */}
-          <Typography
-            sx={{
-              fontFamily: 'Poppins',
-              fontStyle: 'normal',
+          {/* Centered Cross Image */}
+          <img
+            src={Cross}
+            alt="Cross"
+            style={{
+              width: '100px',  // Increased size of the cross image
+              height: '100px',
+              marginBottom: '20px',  // Adding space between the image and text
+            }}
+          />
+
+          {/* Message below the Cross Image */}
+          <p
+            style={{
+              
+              fontFamily: 'Poppins',  // Ensuring the font is Poppins
               fontWeight: 400,
               fontSize: '20px',
               lineHeight: '30px',
               textAlign: 'center',
               color: '#F1414F',
-              marginBottom: '20px',  // Space below the message
-              width: 'auto',
-              margin: '0 auto',  // Ensure the message is centered
+              marginBottom: '20px',  // Adding space between the message and buttons
             }}
           >
-            Do you surely want to cancel the Order?
-          </Typography>
+            Do you surely want to cancel 
+            the Order?
+          </p>
 
-          {/* Action Buttons */}
+          {/* Buttons below the message */}
           <Box className="flex justify-center gap-4">
             <TButton
               text="No, Keep It"
@@ -126,12 +120,12 @@ const OrderPage = () => {
                 backgroundColor: 'white',
                 border: '1.5px solid #F1414F',
                 borderRadius: '12px',
-                width: '120px',  // Adjust button width
-                height: '46px',  // Adjust button height
-                fontFamily: 'Poppins',  // Same font family as the message
-                fontWeight: 400,  // Same font weight as the message
-                fontSize: '20px',  // Same font size as the message
-                lineHeight: '30px',  // Same line height as the message
+                width: '120px',
+                height: '46px',
+                fontFamily: 'Poppins',  // Ensuring the font is Poppins
+                fontWeight: 400,
+                fontSize: '20px',
+                lineHeight: '30px',
               }}
               onClick={handleClose}
             />
@@ -142,12 +136,12 @@ const OrderPage = () => {
                 color: 'white',
                 backgroundColor: 'red',
                 borderRadius: '12px',
-                width: '120px',  // Adjust button width
-                height: '46px',  // Adjust button height
-                fontFamily: 'Poppins',  // Same font family as the message
-                fontWeight: 400,  // Same font weight as the message
-                fontSize: '20px',  // Same font size as the message
-                lineHeight: '30px',  // Same line height as the message
+                width: '120px',
+                height: '46px',
+                fontFamily: 'Poppins',  // Ensuring the font is Poppins
+                fontWeight: 400,
+                fontSize: '20px',
+                lineHeight: '30px',
               }}
               onClick={() => {
                 alert('Order Cancelled');
