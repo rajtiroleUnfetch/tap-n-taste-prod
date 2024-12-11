@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import BottomInfoPopUp from './bottom-info-popup/bottom-info-popup';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -56,6 +57,8 @@ const MenuPage = () => {
           ratings={3}
         />
       </Dialog>
+
+      <BottomInfoPopUp />
 
       <FooterPage />
     </Box>
