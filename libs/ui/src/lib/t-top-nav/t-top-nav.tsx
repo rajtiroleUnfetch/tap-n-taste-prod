@@ -39,6 +39,9 @@ export function TopNav() {
         <h1 className="text-xl font-bold font-primary">Tapn'Taste</h1>
       </Box>
 
+      {/* Table Selector */}
+      <TTableSelector className="z-50 w-fit h-fit absolute lg:top-[42%] xl:top-[42%] bottom-[-4%] md:bottom-[-2%] lg:left-[29%] xl:left-[22%] left-1/2 transform -translate-x-1/2" />
+
       {/* Navigation Links */}
       <Box className="hidden lg:flex gap-8">
         {navLinksData.map((navLink) => (
@@ -117,9 +120,6 @@ export function TopNav() {
           {snackbarMessage}
         </Alert>
       </Snackbar>
-
-      {/* Table Selector */}
-      <TTableSelector />
     </Box>
   );
 }
