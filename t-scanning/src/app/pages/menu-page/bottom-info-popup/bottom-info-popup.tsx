@@ -4,7 +4,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const BottomInfoPopUp = () => {
   return (
-    <Box className="flex justify-between items-center rounded-lg font-primary bg-white shadow-lg p-2 sm:p-4">
+    <Box className="flex justify-between items-center rounded-lg font-primary bg-white shadow-lg p-2 sm:p-4 mb-10 mt-10">
       {/* Content goes here */}
       <Box className="max-lg:hidden">
         <TCard

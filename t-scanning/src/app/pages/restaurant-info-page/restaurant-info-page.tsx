@@ -1,5 +1,6 @@
 import { Box, Chip, Grid, Rating, Typography } from '@mui/material';
-import { ImageSlider, TButton } from '@tap-n-taste/ui';
+import { ImageSlider } from '@tap-n-taste/ui';
+import { TButton } from '@tap-n-taste/ui';
 import { sliderImages } from '../../constants/LandingPageData';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';

@@ -27,7 +27,7 @@ export const ItemInfoPage = ({
       <ImageSlider
         images={itemSliderImages}
         className={{
-          root: 'custom-root-class h-52 sm:h-60',
+          root: 'custom-root-class h-40 sm:h-40',
           image: 'custom-image-class',
           indicator: 'custom-indicator-class',
           activeIndicator: '',
