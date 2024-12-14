@@ -28,7 +28,7 @@ const HotDeals = () => {
             primeText={card.primeText}
             secText={card.secText}
             sx={{
-              root: { height: '110px' },
+              root: { width: '310px', height: '110px' },
               primeText: { fontSize: '30px' },
               secText: { fontSize: '20px' },
             }}

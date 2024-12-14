@@ -1,4 +1,12 @@
-import { Box, InputAdornment, TextField } from '@mui/material';
+import {
+  Box,
+  CardContent,
+  Collapse,
+  InputAdornment,
+  TextareaAutosize,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { TButton, TCustomCard, TopNav, TTableSelector } from '@tap-n-taste/ui';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import ControlPointRoundedIcon from '@mui/icons-material/ControlPointRounded';
@@ -6,8 +14,16 @@ import Divider from '@mui/material/Divider';
 import ApplyCoupons from './apply-coupons/apply-coupons';
 import HotDeals from './hot-deals/hot-deals';
 import CartTable from './cart-table/cart-table';
+import { useState } from 'react';
+import { ExpandMore, ExpandMoreOutlined } from '@mui/icons-material';
 
 const CartPage = () => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <Box className="px-[8%] sm:px-[10%] font-primary">
       <TopNav />
@@ -18,10 +34,14 @@ const CartPage = () => {
       <Box className="mt-10 mb-10">
         <h1 className="text-center">Custom Card Section</h1>
       </Box>
-      <Box className="w-full flex justify-between items-center">
+      <Box className="w-full flex justify-between items-center mb-10">
         <TButton
           text="Cooking Requests"
-          icon={<KeyboardArrowDownOutlinedIcon className="text-primary" />}
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+          icon={<ExpandMoreOutlined />}
           className={{ text: 'text-primary capitalize font-semibold' }}
         />
         <TButton
@@ -31,7 +51,17 @@ const CartPage = () => {
         />
       </Box>
 
-      <Divider>
+      <Collapse className="mb-10" in={expanded} timeout="auto" unmountOnExit>
+        <CardContent className="h-60">
+          <TextareaAutosize
+            className="w-full h-60 bg-zinc-200 p-4 rounded-xl"
+            placeholder="Add Less Salt & Spices"
+            style={{ height: '150px', resize: 'none' }} // This disables the resizing handle
+          />
+        </CardContent>
+      </Collapse>
+
+      <Divider className="mt-20">
         <h1>Deals & Coupons</h1>
       </Divider>
 
@@ -46,7 +76,20 @@ const CartPage = () => {
       </Divider>
 
       <CartTable />
-      <TButton text="Place Order" />
+      <Box className="w-full flex justify-center items-center mb-10">
+        <TButton
+          text="Place Order"
+          sx={{
+            width: '100%',
+            backgroundColor: '#F1414F',
+            border: '2px solid #F1414F',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#DC3D4A',
+            },
+          }}
+        />
+      </Box>
     </Box>
   );
 };
