@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 
-<<<<<<< HEAD
 interface TTableSelectorProps {
   className?: string; // Custom className for additional styling
   sx?: object; // Inline styles for MUI's Box component
@@ -12,10 +11,6 @@ export function TTableSelector({
   sx = {},
 }: TTableSelectorProps) {
   const [selectedTable, setSelectedTable] = useState('');
-=======
-export function TTableSelector() {
-  const [selectedTable, setSelectedTable] = useState("");
->>>>>>> origin/customcard-branch
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => setIsDropdownOpen(!isDropdownOpen);

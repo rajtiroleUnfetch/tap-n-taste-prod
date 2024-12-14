@@ -16,6 +16,7 @@ import HotDeals from './hot-deals/hot-deals';
 import CartTable from './cart-table/cart-table';
 import { useState } from 'react';
 import { ExpandMore, ExpandMoreOutlined } from '@mui/icons-material';
+import { cartPageCardsData } from '../../constants/CartPageData';
 
 const CartPage = () => {
   const [expanded, setExpanded] = useState(false);
@@ -32,7 +33,16 @@ const CartPage = () => {
         <TTableSelector className="relative" />
       </Box>
       <Box className="mt-10 mb-10">
-        <TCustomCard />
+        {cartPageCardsData.map((item, index) => (
+          <TCustomCard
+            image={item.image}
+            title={item.title}
+            description={item.description}
+            rating={item.rating}
+            price={item.price}
+            veg={false}
+          />
+        ))}
       </Box>
       <Box className="w-full flex justify-between items-center mb-10">
         <TButton

@@ -1,7 +1,7 @@
 export const cartPageCardsData = [
   {
     image:
-      'https://images.unsplash.com/photo-1565299624947-b3bd4954390?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z29vZCBjaGlja2VuIHN1c2hpIHN1c2hpfGVufDB8fHw%3D',
+      'https://images.pexels.com/photos/8463429/pexels-photo-8463429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     title: 'Golden Crispy Chicken Nuggets',
     description: 'Crispy on the outside, juicy on the inside.',
     rating: 4.5,
@@ -9,7 +9,7 @@ export const cartPageCardsData = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1546069901-b9edfe52dd5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29vZCBjaGlja2VuIHN1c2hpfGVufDB8fHw%3D',
+      'https://images.pexels.com/photos/8463429/pexels-photo-8463429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     title: 'Juicy Cheeseburger',
     description: 'Classic cheeseburger with all the fixings.',
     rating: 4.2,
@@ -17,35 +17,11 @@ export const cartPageCardsData = [
   },
   {
     image:
-      'https://images.unsplash.com/photo-1565299624947-b3b4d4954390?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z29vZCBjaGlja2VuIHN1c2hpfGVufDB8fHw%3D',
+      'https://images.pexels.com/photos/8463429/pexels-photo-8463429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     title: 'Golden Crispy Chicken Nuggets',
     description: 'Crispy on the outside, juicy on the inside.',
     rating: 4.5,
     price: 9.99,
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1546069901-b9edfe52dd5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29vZCBjaGlja2VuIHN1c2hpfGVufDB8fHw%3D',
-    title: 'Juicy Cheeseburger',
-    description: 'Classic cheeseburger with all the fixings.',
-    rating: 4.2,
-    price: 12.99,
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1565299624947-b3b4d4954390?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z29vZCBjaGlja2VuIHN1c2hpfGVufDB8fHw%3D',
-    title: 'Golden Crispy Chicken Nuggets',
-    description: 'Crispy on the outside, juicy on the inside.',
-    rating: 4.5,
-    price: 9.99,
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1546069901-b9edfe52dd5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29vZCBjaGlja2VuIHN1c2hpfGVufDB8fHw%3D',
-    title: 'Juicy Cheeseburger',
-    description: 'Classic cheeseburger with all the fixings.',
-    rating: 4.2,
-    price: 12.99,
   },
 ];
 
