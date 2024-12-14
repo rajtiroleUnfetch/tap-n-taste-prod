@@ -21,7 +21,7 @@ export function TFooter() {
 
         {/* Custom styled TNavButton */}
         <StyledTNavButton
-          icon={<LocalDiningIcon sx={{ color: '#f1f1f1' }} />}
+          icon={<LocalDiningIcon sx={{ color: '#FFFFFF' }} />}
           onClick={() => alert('Button clicked!')}
           backgroundColor="red"
         />
@@ -39,16 +39,15 @@ export function TFooter() {
 
 // Wrapper div to set background color
 const Wrapper = styled.div`
-  background-color: #f1f1f1; /* Set the gray background */
+  background-color: #F3EDEC; /* Set the gray background */
    border-radius: 20px;
   padding: 20px 0;
-  height: 100px;
-  marginBottom: '5px', /* Add some padding around the footer */
+  height: 150px; /* Add some padding around the footer */
 `;
 
 const StyledTNavButton = styled(TNavButton)`
   position: absolute; /* Absolute positioning */
-  top: 50px; /* Move the button upwards by 60px */
+  top: -60px; /* Move the button upwards by 60px */
   left: 50%; /* Center the button horizontally */
   transform: translateX(-50%); /* Center it exactly */
   z-index: 999; /* Ensure it appears above other elements */
@@ -62,11 +61,10 @@ const Footer = styled.footer`
   align-items: center;
   background-color: white;
   padding: 10px 0;
-  marginBottom: '100px',
   width: 100%; /* Increase width */
   margin: 20px auto 0; /* Add margin-top to increase space from top */
   position: relative; /* Required for absolute positioning of child elements */
-  height: 80px; /* Ensure enough height to allow movement */
+  height: 120px; /* Ensure enough height to allow movement */
 `;
 
 const Button = styled.button`
