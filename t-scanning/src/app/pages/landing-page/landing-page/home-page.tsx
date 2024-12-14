@@ -7,13 +7,11 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
 import OfferPage from '../../offers-page/offers-page';
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
-import ChefSpecial from '../../chef-special/chef-special';
-import GalleryPage from '../../gallery-page/gallery-page';
 
 const HomePage = () => {
   return (
     // <Box className="px-4 md:px-8 lg:px-12 mt-4">
-    <Box className="px-[8%] sm:px-[10%]">
+    <Box className="px-[8%] sm:px-[15%]">
       {' '}
       {/* Add padding for different screen sizes */}
       {/* Top Navigation Bar */}
@@ -42,10 +40,6 @@ const HomePage = () => {
       <OfferPage />
       {/* Top Customer Likes Section */}
       <TopCustomerLikes />
-      {/* Chef Special Section */}
-      <ChefSpecial />
-      {/* Gallery */}
-      <GalleryPage />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}

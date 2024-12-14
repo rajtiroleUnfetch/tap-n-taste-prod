@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Box } from "@mui/material";
 
+<<<<<<< HEAD
 interface TTableSelectorProps {
   className?: string; // Custom className for additional styling
   sx?: object; // Inline styles for MUI's Box component
@@ -11,6 +12,10 @@ export function TTableSelector({
   sx = {},
 }: TTableSelectorProps) {
   const [selectedTable, setSelectedTable] = useState('');
+=======
+export function TTableSelector() {
+  const [selectedTable, setSelectedTable] = useState("");
+>>>>>>> origin/customcard-branch
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => setIsDropdownOpen(!isDropdownOpen);
@@ -30,17 +35,17 @@ export function TTableSelector({
             className="w-fit sm:px-2 text-[12px] sm:text-sm font-medium border border-red-500 rounded cursor-pointer text-red-500 focus:outline-none focus:border-red-500"
             onClick={handleDropdownToggle}
           >
-            {selectedTable || 'Table No.  '}
+            {selectedTable || 'Select a table'}
           </div>
 
           {/* Dropdown List */}
           {isDropdownOpen && (
             <ul className="absolute left-0 w-full bg-white border border-gray-300 rounded shadow max-h-[100px] overflow-y-auto z-10">
-              {['B1', 'B2', 'B3', 'B4', 'B5', 'B6'].map((table) => (
+              {["B1", "B2", "B3", "B4", "B5", "B6"].map((table) => (
                 <li
                   key={table}
                   className={`px-3 py-2 text-sm cursor-pointer hover:bg-red-500 hover:text-white ${
-                    selectedTable === table ? 'bg-red-500 text-white' : ''
+                    selectedTable === table ? "bg-red-500 text-white" : ""
                   }`}
                   onClick={() => handleSelect(table)}
                 >
