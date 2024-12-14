@@ -32,7 +32,7 @@ const CartPage = () => {
         <TTableSelector className="relative" />
       </Box>
       <Box className="mt-10 mb-10">
-        <h1 className="text-center">Custom Card Section</h1>
+        <TCustomCard />
       </Box>
       <Box className="w-full flex justify-between items-center mb-10">
         <TButton
