@@ -23,18 +23,8 @@
         "previewTargetName": "preview"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "test" } },
     {
       "plugin": "@nx/vite/plugin",
       "options": {
@@ -56,14 +46,13 @@
         "linter": "eslint",
         "bundler": "webpack"
       },
-      "component": {
-        "style": "css"
-      },
+      "component": { "style": "css" },
       "library": {
         "style": "css",
         "linter": "eslint",
         "unitTestRunner": "none"
       }
     }
-  }
+  },
+  "nxCloudId": "675e6ee8a460992d34bee48f"
 }
