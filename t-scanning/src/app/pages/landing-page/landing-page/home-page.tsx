@@ -1,5 +1,11 @@
 import { Box } from '@mui/material';
-import { ImageSlider, TButton, TopNav } from '@tap-n-taste/ui';
+import {
+  ImageSlider,
+  TButton,
+  TManage,
+  TopNav,
+  TViewBar,
+} from '@tap-n-taste/ui';
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
 import FooterPage from '../../footer-page/footer-page';
@@ -38,6 +44,9 @@ const HomePage = () => {
           icon={<RestaurantMenuIcon className="text-white" />}
         />
       </Box>
+      <TViewBar />
+      <TManage />
+      
       {/* Offers Section */}
       <OfferPage />
       {/* Top Customer Likes Section */}
