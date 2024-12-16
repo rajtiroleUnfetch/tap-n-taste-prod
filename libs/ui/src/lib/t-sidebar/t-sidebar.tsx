@@ -15,7 +15,7 @@ export default function TSidebar() {
 
   const DrawerList = (
     <Box
-      className="w-[250px] h-full py-6 relative lg:hidden"
+      className="w-[250px] h-full py-6 relative md:flex lg:hidden"
       role="presentation"
       onClick={toggleDrawer(false)}
     >

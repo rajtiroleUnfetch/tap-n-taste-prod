@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import {
   TCategory,
   TCustomCard,
+  TManage,
   TopNav,
   TSearchbar,
   TViewBar,
@@ -42,7 +43,10 @@ const MenuPage = () => {
       <TopNav />
       <TSearchbar />
 
-      <TCategory />
+      <Box className="flex justify-between items-center mb-8">
+        <TManage />
+        <TCategory />
+      </Box>
 
       <CuisinesOffered />
 
