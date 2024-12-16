@@ -33,7 +33,8 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      }
+      },
+      "exclude": ["tap-n-taste-api-e2e/**/*"]
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -64,6 +65,14 @@
         "linter": "eslint",
         "unitTestRunner": "none"
       }
+    }
+  },
+  "nxCloudId": "675e6e038bd4db704732f1f0",
+  "targetDefaults": {
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   }
 }
