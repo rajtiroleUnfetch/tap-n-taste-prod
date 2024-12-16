@@ -45,8 +45,9 @@ const HomePage = () => {
         />
       </Box>
       <TViewBar />
-      <TManage />
-      
+      <Box>
+        <TManage />
+      </Box>
       {/* Offers Section */}
       <OfferPage />
       {/* Top Customer Likes Section */}
