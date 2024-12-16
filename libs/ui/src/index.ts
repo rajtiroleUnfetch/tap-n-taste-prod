@@ -1,3 +1,11 @@
+export * from './lib/t-reviewpopup/t-reviewpopup';
+export * from './lib/t-couponpage/t-couponpage';
+export * from './lib/t-coupon/t-coupon';
+export * from './lib/t-notificationpage/t-notificationpage';
+export * from './lib/t-notificationitem/t-notificationitem';
+export * from './lib/t-notificationbar/t-notificationbar';
+export * from './lib/t-view/t-view';
+export * from './lib/t-orderplaced/t-orderplaced';
 export * from './lib/t-category/t-category';
 export * from './lib/t-faq/t-faq';
 export * from './lib/t-about/t-about';
@@ -21,3 +29,4 @@ export * from './lib/t-navbutton/t-navbutton';
 export * from './lib/t-searchbar/t-searchbar';
 export * from './lib/t-button/t-button';
 export * from './lib/t-main-layout';
+export * from './lib/t-image-slider';
