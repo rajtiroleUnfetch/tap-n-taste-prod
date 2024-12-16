@@ -59,6 +59,7 @@ const HomePage = () => {
         >
           Having an issue?
         </Divider>
+        <Box className="mt-8 mb-8"></Box>
         <TButton
           text="Contact Us"
           className={{
