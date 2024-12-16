@@ -33,8 +33,11 @@ export const TSearchbar: React.FC<TSearchbarProps> = ({
 
   return (
     <Box
-      className={clsx('w-full py-8', root)} // Root container with custom class
-      style={styles} // Inline styles
+      className={clsx('py-8', root)} // Root container with custom class
+      style={{ ...styles, width: '90%' }} // Inline styles including width
+      sx={{
+        margin: '0 auto', // Center the search bar
+      }}
       {...rest} // Additional props
     >
       <TextField

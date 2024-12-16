@@ -37,7 +37,7 @@ export const TButton: React.FC<TButtonProps> = ({
     <Button
       onClick={onClick}
       className={clsx('bg-white', root)}
-      style={{ fontFamily: 'Poppins', ...styles }} // Ensure Poppins is applied to the button
+      style={{ ...styles }} // Ensure Poppins is applied to the button
       {...rest} // Additional props
     >
       {/* Render Icon on the left if position is left */}
@@ -63,15 +63,14 @@ export const TButton: React.FC<TButtonProps> = ({
       )}
 
       {/* Render Text */}
-      <Typography
+      <h1
         className={clsx(
           'text-base font-medium', // Default Tailwind styling
           textClass // Custom text class
         )}
-        sx={{ fontFamily: 'Poppins' }} // Ensure font is applied to text
       >
         {text}
-      </Typography>
+      </h1>
 
       {/* Render Icon on the right if position is right */}
       {icon && iconPosition === 'right' && (

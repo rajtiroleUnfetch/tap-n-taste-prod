@@ -47,11 +47,8 @@ export function LoginSignUp({ type }: Props) {
         <TInput placeHolderText="Enter Your Mobile Number" />
         <TButton
           variant="contained"
-          className={{
-            root: 'font-semibold !bg-[#F1414F] w-full !rounded-xl !shadow-none h-12',
-            text: 'text-white !font-bold',
-          }}
-          text={isLogin ? 'Login' : 'SignUp'}
+          className={{ root: "font-semibold !bg-[#F1414F] w-full !rounded-xl !shadow-none h-12", text: 'text-white !font-bold' }}
+          text={type === "login" ? "Login" : "SignUp"}
           onClick={handleOtpNavigation} // Navigate to /otp on click
         />
         <TButton

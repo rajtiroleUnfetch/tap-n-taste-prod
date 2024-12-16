@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import {
   ImageSlider,
   TButton,
+  TCategory,
   TManage,
   TopNav,
   TViewBar,
@@ -13,13 +14,11 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
 import OfferPage from '../../offers-page/offers-page';
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
-import ChefSpecial from '../../chef-special/chef-special';
-import GalleryPage from '../../gallery-page/gallery-page';
 
 const HomePage = () => {
   return (
     // <Box className="px-4 md:px-8 lg:px-12 mt-4">
-    <Box className="px-[8%] sm:px-[10%]">
+    <Box className="px-[8%] sm:px-[15%]">
       {' '}
       {/* Add padding for different screen sizes */}
       {/* Top Navigation Bar */}
@@ -37,25 +36,22 @@ const HomePage = () => {
         distance={2.2}
         ratings={4.5}
       />
-      <Box className="mt-4">
+      <Box className="mt-4 mb-8">
         <TButton
           text="Menu"
           className={{ root: '!bg-[#F1414F] !text-white w-full' }}
           icon={<RestaurantMenuIcon className="text-white" />}
         />
       </Box>
-      <TViewBar />
-      <Box>
+      <Box className="flex justify-between items-center mb-8">
         <TManage />
+        <TCategory />
       </Box>
+      <TViewBar />
       {/* Offers Section */}
       <OfferPage />
       {/* Top Customer Likes Section */}
       <TopCustomerLikes />
-      {/* Chef Special Section */}
-      <ChefSpecial />
-      {/* Gallery */}
-      <GalleryPage />
       {/* Review Section */}
       <ReviewPage />
       {/* FAQ Section */}
