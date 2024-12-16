@@ -75,7 +75,11 @@ const HomePage = () => {
       {/* Footer Section */}
       <FooterPage />
       {/* Bottom Bar */}
-      <Box>Bottom Bar</Box>
+      <Box className="mt-10 mb-5">
+        <h1 className="text-center font-semibold text-sm text-zinc-500">
+          Powered by Tap'nTaste
+        </h1>
+      </Box>
     </Box>
   );
 };
