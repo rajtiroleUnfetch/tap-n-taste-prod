@@ -117,7 +117,7 @@ export const RestaurantInfoPage = ({
             </Box>
           </Grid>
         </Box>
-      </Box> */}
+      </Box>
     </Box>
   );
 };

@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // import styled from 'styled-components';
 // import { FaStar } from 'react-icons/fa6';
@@ -306,9 +305,17 @@ const StyledTCustomCard = styled.div`
   color: pink;
 `;
 
-export function TCustomCard({ image, title, description, rating, price, veg }: any) {
+export function TCustomCard({
+  image,
+  title,
+  description,
+  rating,
+  price,
+  veg,
+  onClick,
+}: any) {
   return (
-    <StyledTCustomCard>
+    <StyledTCustomCard onClick={onClick}>
       <CardContainer>
         <Image src={image} alt={title} />
         <InfoContainer>

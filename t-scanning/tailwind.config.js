@@ -23,6 +23,7 @@ module.exports = {
       },
       colors: {
         primary: '#F1414F', // Your main red color
+        mild: '#F3F3F3',
       },
     },
   },

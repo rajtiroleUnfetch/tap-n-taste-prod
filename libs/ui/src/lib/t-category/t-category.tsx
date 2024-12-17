@@ -57,7 +57,6 @@ export function TCategory() {
 
   return (
     <StyledTCategory>
-      <h1>Welcome to TCategory!</h1>
       <SliderContainer>
         {/* Non-Veg Toggle */}
         <Label onClick={() => setIsVeg(false)}>
