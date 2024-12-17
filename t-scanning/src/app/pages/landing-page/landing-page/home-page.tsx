@@ -1,5 +1,12 @@
 import { Box, Divider } from '@mui/material';
-import { TButton, TCategory, TManage, TopNav, TViewBar } from '@tap-n-taste/ui';
+import {
+  TButton,
+  TCategory,
+  TFooter,
+  TManage,
+  TopNav,
+  TViewBar,
+} from '@tap-n-taste/ui';
 import CallIcon from '@mui/icons-material/Call';
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
@@ -80,6 +87,7 @@ const HomePage = () => {
           Powered by Tap'nTaste
         </h1>
       </Box>
+      <TFooter />
     </Box>
   );
 };
