@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Radio from '@mui/material/Radio';
@@ -7,7 +8,11 @@ import FormControl from '@mui/material/FormControl';
 import React from 'react';
 import { sortOptions } from 't-scanning/src/app/constants/MenuPageData';
 
-const SortPopUp = () => {
+const StyledTSortPopUp = styled.div`
+  color: pink;
+`;
+
+export function TSortPopUp() {
   const [selectedValue, setSelectedValue] = React.useState('female');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +58,6 @@ const SortPopUp = () => {
       </Box>
     </Box>
   );
-};
+}
 
-export default SortPopUp;
+export default TSortPopUp;

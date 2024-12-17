@@ -48,15 +48,20 @@ const Button = styled.button`
   }
 `;
 
-export function TManage() {
+interface TManageProps {
+  onFilterClick?: () => void; // Function type for Filter button click
+  onSortClick?: () => void; // Function type for Sort button click
+}
+
+export function TManage({ onFilterClick, onSortClick }: TManageProps) {
   return (
     <StyledTManage>
       <Container>
-        <Button>
+        <Button onClick={onFilterClick}>
           <TuneIcon style={{ fontSize: '20px' }} />
           Filters
         </Button>
-        <Button>
+        <Button onClick={onSortClick}>
           <SwapVertIcon style={{ fontSize: '20px' }} />
           Sort
         </Button>
