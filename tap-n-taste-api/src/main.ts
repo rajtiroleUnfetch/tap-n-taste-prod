@@ -1,6 +1,7 @@
 import express from 'express';
 import connectDB from './config/database';
 import restaurantRoutes from './routes/restaurant.routes';
+import authRoutes from './routes/auth.routes';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandler';
 
@@ -17,6 +18,7 @@ app.use(express.json());
 connectDB();
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 // Error Handler
 app.use(errorHandler);

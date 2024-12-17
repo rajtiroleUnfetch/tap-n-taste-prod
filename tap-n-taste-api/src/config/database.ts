@@ -13,7 +13,9 @@ const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(DATABASE_URL);
+    await mongoose.connect(DATABASE_URL, {
+      dbName: 'tap-n-taste-unfetch-ai'
+    });
     console.log('MongoDB connected');
   } catch (error) {
     console.error('Database connection failed:', error);
