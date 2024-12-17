@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TuneIcon from '@mui/icons-material/Tune';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
@@ -20,7 +20,7 @@ const Button = styled.button`
   justify-content: center;
   gap: 8px;
   padding: 8px 16px;
-  background-color: #e53935; /* Matches the red background */
+  background-color: #e53935;
   color: white;
   border: none;
   border-radius: 24px;
@@ -39,7 +39,7 @@ const Button = styled.button`
   }
 
   &:hover {
-    background-color: #d32f2f; /* Slightly darker shade for hover */
+    background-color: #d32f2f;
   }
 
   &:focus {
@@ -48,12 +48,30 @@ const Button = styled.button`
   }
 `;
 
+const StyledTFilterPopUp = styled.div`
+  position: absolute;
+  top: 100px; /* Adjust the position as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+`;
+
 export function TManage() {
+  const [showFilterPopup, setShowFilterPopup] = useState(false);
+
+  const toggleFilterPopup = () => {
+    setShowFilterPopup((prev) => !prev);
+  };
+
   return (
     <StyledTManage>
-      
       <Container>
-        <Button>
+        <Button onClick={toggleFilterPopup}>
           <TuneIcon style={{ fontSize: '20px' }} />
           Filters
         </Button>
@@ -62,6 +80,13 @@ export function TManage() {
           Sort
         </Button>
       </Container>
+
+      {showFilterPopup && (
+        <StyledTFilterPopUp>
+          <h1>Filter Options</h1>
+          <button onClick={toggleFilterPopup}>Close</button>
+        </StyledTFilterPopUp>
+      )}
     </StyledTManage>
   );
 }

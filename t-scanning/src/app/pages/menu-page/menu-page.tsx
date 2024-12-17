@@ -2,16 +2,15 @@ import { Box } from '@mui/material';
 import {
   TCategory,
   TCustomCard,
+  TFooter,
   TManage,
   TopNav,
   TSearchbar,
-  TViewBar,
 } from '@tap-n-taste/ui';
 import FooterPage from '../footer-page/footer-page';
 import CuisinesOffered from './cuisines-offered/cuisines-offered';
 import { ItemInfoPage } from './item-info/item-info';
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
@@ -39,7 +38,7 @@ const MenuPage = () => {
   };
 
   return (
-    <Box className="px-[8%] sm:px-[10%]">
+    <Box className="px-[8%] sm:px-[15%]">
       <TopNav />
       <TSearchbar />
 
@@ -84,6 +83,9 @@ const MenuPage = () => {
       <BottomInfoPopUp />
 
       <FooterPage />
+
+      <Box className="mt-6 mb-6"></Box>
+      <TFooter />
     </Box>
   );
 };

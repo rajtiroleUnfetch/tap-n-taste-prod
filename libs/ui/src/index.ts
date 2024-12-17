@@ -1,3 +1,4 @@
+export * from './lib/t-filter-popup/t-filter-popup';
 export * from './lib/t-category/t-category';
 export * from './lib/t-faq/t-faq';
 export * from './lib/t-about/t-about';
