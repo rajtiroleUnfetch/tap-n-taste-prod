@@ -1,3 +1,6 @@
+export * from './lib/t-food-item-types/t-food-item-types';
+export * from './lib/t-sort-popup/t-sort-popup';
+export * from './lib/t-filter-popup/t-filter-popup';
 export * from './lib/t-category/t-category';
 export * from './lib/t-faq/t-faq';
 export * from './lib/t-about/t-about';

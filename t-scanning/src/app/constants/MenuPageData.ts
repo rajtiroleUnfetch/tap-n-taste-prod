@@ -1,3 +1,11 @@
+export const sortOptions = [
+  'Popularity',
+  'Price: High to Low',
+  'Price: Low to High',
+  'Discount',
+  'All Products',
+];
+
 export const itemSliderImages = [
   'https://images.pexels.com/photos/2702674/pexels-photo-2702674.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   'https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',

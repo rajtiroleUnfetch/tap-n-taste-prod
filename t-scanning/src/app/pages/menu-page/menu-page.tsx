@@ -2,15 +2,18 @@ import { Box } from '@mui/material';
 import {
   TCategory,
   TCustomCard,
+  TFilterPopUp,
+  TFoodItemTypes,
+  TFooter,
+  TManage,
   TopNav,
   TSearchbar,
-  TViewBar,
+  TSortPopUp,
 } from '@tap-n-taste/ui';
 import FooterPage from '../footer-page/footer-page';
 import CuisinesOffered from './cuisines-offered/cuisines-offered';
 import { ItemInfoPage } from './item-info/item-info';
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
@@ -28,6 +31,14 @@ const Transition = React.forwardRef(function Transition(
 
 const MenuPage = () => {
   const [open, setOpen] = React.useState(false);
+  const [openFilter, setOpenFilter] = React.useState(false);
+  const [openSort, setOpenSort] = React.useState(false);
+
+  const handleFilterOpen = () => setOpenFilter(true);
+  const handleFilterClose = () => setOpenFilter(false);
+
+  const handleSortOpen = () => setOpenSort(true);
+  const handleSortClose = () => setOpenSort(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,11 +49,18 @@ const MenuPage = () => {
   };
 
   return (
-    <Box className="px-[8%] sm:px-[10%]">
+    <Box className="px-[8%] sm:px-[15%]">
       <TopNav />
       <TSearchbar />
+      <TFoodItemTypes />
 
-      <TCategory />
+      <Box className="flex justify-between items-center mb-8">
+        <TManage
+          onFilterClick={handleFilterOpen}
+          onSortClick={handleSortOpen}
+        />
+        <TCategory />
+      </Box>
 
       <CuisinesOffered />
 
@@ -77,9 +95,32 @@ const MenuPage = () => {
         />
       </Dialog>
 
+      {/* Filter Dialog */}
+      <Dialog
+        open={openFilter}
+        TransitionComponent={Transition}
+        onClose={handleFilterClose}
+        className="rounded-2xl"
+      >
+        <TFilterPopUp />
+      </Dialog>
+
+      {/* Sort Dialog */}
+      <Dialog
+        open={openSort}
+        TransitionComponent={Transition}
+        onClose={handleSortClose}
+        className="rounded-2xl"
+      >
+        <TSortPopUp />
+      </Dialog>
+
       <BottomInfoPopUp />
 
       <FooterPage />
+
+      <Box className="mt-6 mb-6"></Box>
+      <TFooter />
     </Box>
   );
 };

@@ -30,7 +30,7 @@
 //   return (
 //     <StyledTBarButton>
 //       <h1>Welcome to TBarButton!</h1>
-//       <CustomButton 
+//       <CustomButton
 //         borderColor="#3498db"
 //         bgColor="#2ecc71"
 //         textColor="#fff"
@@ -49,13 +49,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 // Define the CustomButton component with customizable colors and text
-const CustomButton = styled.button<{ 
-  borderColor: string; 
-  bgColor: string; 
-  textColor: string; 
-  hoverBgColor: string; 
-  hoverBorderColor: string; 
-  hoverTextColor: string; 
+const CustomButton = styled.button<{
+  borderColor: string;
+  bgColor: string;
+  textColor: string;
+  hoverBgColor: string;
+  hoverBorderColor: string;
+  hoverTextColor: string;
 }>`
   width: 6.5em;
   height: 3em;
@@ -90,13 +90,14 @@ interface TBarButtonProps {
 export function TBarButton({ buttonText }: TBarButtonProps) {
   return (
     <StyledTBarButton>
-      <CustomButton 
-        borderColor="red"         // Red border color
-        bgColor="white"           // White background
-        textColor="red"           // Red text color
-        hoverBgColor="red"        // Red background on hover
-        hoverBorderColor="red"    // Red border on hover
-        hoverTextColor="white"    // White text on hover
+      <CustomButton
+        borderColor="red" // Red border color
+        bgColor="white" // White background
+        textColor="red" // Red text color
+        hoverBgColor="red" // Red background on hover
+        hoverBorderColor="red" // Red border on hover
+        hoverTextColor="white" // White text on hover
+        className="max-sm:text-sm"
       >
         {buttonText} {/* Display custom text */}
       </CustomButton>
