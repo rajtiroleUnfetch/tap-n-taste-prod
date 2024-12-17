@@ -15,17 +15,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@tap-n-taste/api-types": ["libs/api-types/src/index.ts"],
       "@tap-n-taste/assets": ["libs/assets/src/index.ts"],
       "@tap-n-taste/features": ["libs/features/src/index.ts"],
       "@tap-n-taste/hooks": ["libs/hooks/src/index.ts"],
       "@tap-n-taste/libs": ["libs/src/index.ts"],
       "@tap-n-taste/services": ["libs/services/src/index.ts"],
+      "@tap-n-taste/shared-types": ["shared-types/src/index.ts"],
       "@tap-n-taste/state": ["libs/state/src/index.ts"],
       "@tap-n-taste/theme": ["libs/theme/src/index.ts"],
       "@tap-n-taste/type": ["libs/type/src/index.ts"],
       "@tap-n-taste/types": ["t-scanning/libs/types/src/index.ts"],
       "@tap-n-taste/ui": ["libs/ui/src/index.ts"],
-      "@tap-n-taste/utils": ["libs/utils/src/index.ts"]
+      "@tap-n-taste/utils": ["libs/utils/src/index.ts"],
+      "@mui/icons-material": ["node_modules/@mui/icons-material"]
     }
   },
   "exclude": ["node_modules", "tmp"]

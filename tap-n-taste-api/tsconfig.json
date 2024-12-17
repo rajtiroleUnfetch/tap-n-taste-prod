@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,           // Enable esModuleInterop
+    "noEmit": true,                    // Prevent TypeScript from emitting output
+    "allowJs": true,                   // Allow JavaScript files
+    "checkJs": false,                  // Disable JS type checking
+    "strict": false,                   // Relax strict type checking
+    "skipLibCheck": true,              // Skip library type checks
+    "noUnusedLocals": false,           // Disable unused locals check
+    "noUnusedParameters": false        // Disable unused parameters check
+  },
+  "include": [
+    "src/**/*"                          // Adjust this as needed to include your files
+  ]
+}
