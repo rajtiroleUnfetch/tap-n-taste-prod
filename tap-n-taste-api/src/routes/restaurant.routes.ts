@@ -1,32 +1,33 @@
 import express from 'express';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
 import {
   createRestaurant,
-  getRestaurants,
-  getRestaurantById,
   updateRestaurant,
   deleteRestaurant,
-} from '../controllers/restaurant.controller.js';
-import menuRoutes from './menu.routes.js';
-import reviewRoutes from './review.routes.js';
+  getRestaurants,
+  getRestaurantById
+} from '../controllers/restaurant.controller';
+import menuRoutes from './menu.routes';
+import reviewRoutes from './review.routes';
 
-const router = express.Router();
+const restaurantRoutes = express.Router();
 
-// Nested routes for menus and reviews under a specific restaurant
-router.use('/:id/menu', (req, res, next) => {
-  req.restaurantId = req.params.id; // Pass the restaurant ID to the nested menu routes
-  next();
-}, menuRoutes);
+restaurantRoutes.use('/:id/menu', menuRoutes);
+restaurantRoutes.use('/:id/reviews', reviewRoutes);
 
-router.use('/:id/reviews', (req, res, next) => {
-  req.restaurantId = req.params.id; // Pass the restaurant ID to the nested review routes
-  next();
-}, reviewRoutes);
+// Create a new restaurant - only SuperAdmin can do this
+restaurantRoutes.post('/', authenticate, authorize('SuperAdmin'), createRestaurant);
 
-// Routes for restaurant CRUD operations
-router.post('/', createRestaurant); // Create a restaurant
-router.get('/', getRestaurants); // Get all restaurants
-router.get('/:id', getRestaurantById); // Get a single restaurant by ID
-router.put('/:id', updateRestaurant); // Update a restaurant by ID
-router.delete('/:id', deleteRestaurant); // Delete a restaurant by ID
+// Update a restaurant - only SuperAdmin can do this
+restaurantRoutes.put('/:id', authenticate, authorize('SuperAdmin'), updateRestaurant);
 
-export default router;
+// Delete a restaurant - only SuperAdmin can do this
+restaurantRoutes.delete('/:id', authenticate, authorize('SuperAdmin'), deleteRestaurant);
+
+// Get all restaurants - Public route
+restaurantRoutes.get('/', getRestaurants);
+
+// Get a specific restaurant by ID - Public route
+restaurantRoutes.get('/:id', getRestaurantById);
+
+export default restaurantRoutes;
