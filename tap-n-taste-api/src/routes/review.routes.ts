@@ -5,23 +5,18 @@ import {
   getReviewById,
   updateReview,
   deleteReview,
-} from '../controllers/review.controller.js';
+} from '../controllers/review.controller';
+import { authenticate } from '../middlewares/auth.middleware';
 
-const reviewRoutes = express.Router({ mergeParams: true }); // Enable access to `:id` parameter from parent route
+const reviewRoutes = express.Router({ mergeParams: true });
 
-// Create a new review
-reviewRoutes.post('/', createReview);
+// Public Routes
+reviewRoutes.get('/', getAllReviewsForRestaurant); // Get all reviews
+reviewRoutes.get('/:reviewId', getReviewById); // Get specific review
 
-// Get all reviews for a restaurant
-reviewRoutes.get('/', getAllReviewsForRestaurant);
-
-// Get a specific review by ID
-reviewRoutes.get('/:reviewId', getReviewById);
-
-// Update a specific review by ID
-reviewRoutes.put('/:reviewId', updateReview);
-
-// Delete a specific review by ID
-reviewRoutes.delete('/:reviewId', deleteReview);
+// Protected Routes (Only logged-in users)
+reviewRoutes.post('/', authenticate, createReview); // Create a review
+reviewRoutes.put('/:reviewId', authenticate, updateReview); // Update a review
+reviewRoutes.delete('/:reviewId', authenticate, deleteReview); // Delete a review
 
 export default reviewRoutes;
