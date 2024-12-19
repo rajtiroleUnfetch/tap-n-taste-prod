@@ -1,21 +1,18 @@
+import { Box, CardContent, Collapse, TextareaAutosize } from '@mui/material';
 import {
-  Box,
-  CardContent,
-  Collapse,
-  InputAdornment,
-  TextareaAutosize,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { TButton, TCustomCard, TopNav, TTableSelector } from '@tap-n-taste/ui';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+  TButton,
+  TCustomCard,
+  TFooter,
+  TopNav,
+  TTableSelector,
+} from '@tap-n-taste/ui';
 import ControlPointRoundedIcon from '@mui/icons-material/ControlPointRounded';
 import Divider from '@mui/material/Divider';
 import ApplyCoupons from './apply-coupons/apply-coupons';
 import HotDeals from './hot-deals/hot-deals';
 import CartTable from './cart-table/cart-table';
 import { useState } from 'react';
-import { ExpandMore, ExpandMoreOutlined } from '@mui/icons-material';
+import { ExpandMoreOutlined } from '@mui/icons-material';
 import { cartPageCardsData } from '../../constants/CartPageData';
 
 const CartPage = () => {
@@ -100,6 +97,8 @@ const CartPage = () => {
           }}
         />
       </Box>
+
+      <TFooter />
     </Box>
   );
 };
