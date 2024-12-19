@@ -5,6 +5,7 @@ import {
   TFooter,
   TManage,
   TopNav,
+  TTableSelector,
   TViewBar,
 } from '@tap-n-taste/ui';
 import CallIcon from '@mui/icons-material/Call';
@@ -17,13 +18,21 @@ import OfferPage from '../../offers-page/offers-page';
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
 import ChefSpecial from '../../chef-special/chef-special';
 import GalleryPage from '../../gallery-page/gallery-page';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
   return (
     // <Box className="px-4 md:px-8 lg:px-12 mt-4">
     <Box className="px-[8%] sm:px-[15%]">
       {/* Top Navigation Bar */}
       <TopNav />
+
+      {/* Table Selector */}
+      <Box className="w-full flex items-center justify-center">
+        <TTableSelector />
+      </Box>
+
       {/* RESTAURANT INFO */}
       <RestaurantInfoPage
         restaurantName="Stone Water"
@@ -41,6 +50,7 @@ const HomePage = () => {
           text="Menu"
           className={{ root: '!bg-[#F1414F] !text-white w-full' }}
           icon={<RestaurantMenuIcon className="text-white" />}
+          onClick={() => navigate('/restaurants/:id/menu')} // Navigate to Menu
         />
       </Box>
       <Box className="flex justify-between items-center mb-8">

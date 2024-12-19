@@ -1,5 +1,3 @@
-
-import React from "react";
 import styled from "styled-components";
 import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";

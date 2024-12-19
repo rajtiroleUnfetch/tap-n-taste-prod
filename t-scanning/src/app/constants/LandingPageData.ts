@@ -127,22 +127,32 @@ export const navLinksData = [
   {
     icon: HomeOutlinedIcon,
     linkText: 'Home',
+    path: '/restaurants/:id',
+    end: true, // Active only for the exact "/restaurants/:id"
   },
   {
     icon: RestaurantMenuOutlinedIcon,
     linkText: 'Menu',
+    path: '/restaurants/:id/menu',
+    end: false, // Sub-paths are fine
   },
   {
     icon: NotificationsActiveOutlinedIcon,
     linkText: 'Notifications',
+    path: '/restaurants/:id/user/:userId/notification',
+    end: true,
   },
   {
     icon: InfoOutlinedIcon,
     linkText: 'About Us',
+    path: '/about',
+    end: true,
   },
   {
     icon: CallOutlinedIcon,
     linkText: 'Contact Us',
+    path: '/contact',
+    end: true,
   },
 ];
 

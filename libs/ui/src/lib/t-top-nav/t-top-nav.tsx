@@ -2,14 +2,15 @@ import { Box, Snackbar, Alert } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Logo from '../../assets/logo.png';
 import { useState } from 'react';
-import { TTableSelector } from '../t-tableselector';
 import TSidebar from '../t-sidebar/t-sidebar';
 import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
 import { TButton } from '../t-button';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const themeColor = '#F1414F'; // Define your color here
 
 export function TopNav() {
+  const navigate = useNavigate();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
@@ -29,7 +30,7 @@ export function TopNav() {
   };
 
   return (
-    <Box className="mb-8">
+    <Box className="">
       <Box className="flex items-center justify-between py-5 sm:py-10 relative">
         {/* Sidebar for mobile and tablet screens */}
         <TSidebar />
@@ -43,24 +44,20 @@ export function TopNav() {
         {/* Navigation Links */}
         <Box className="hidden lg:flex gap-2 xl:gap-8">
           {navLinksData.map((navLink) => (
-            <h1
+            <NavLink
               key={navLink.linkText}
-              className="font-semibold lg:text-sm uppercase hover:text-primary cursor-pointer"
+              to={navLink.path}
+              end={navLink.end}
+              className={({ isActive }) =>
+                `font-semibold lg:text-sm uppercase flex items-center gap-2 cursor-pointer ${
+                  isActive ? 'text-red-500' : 'hover:text-primary'
+                }`
+              }
             >
               {navLink.linkText}
-            </h1>
+            </NavLink>
           ))}
         </Box>
-
-        {/* Icon Navigation Links (Visible on md and lg only)
-      <Box className="hidden md:flex lg:hidden gap-4">
-        {navLinksData.map((navLink) => (
-          <navLink.icon
-            key={navLink.linkText}
-            className="hover:bg-[#F1414F] hover:text-white p-1 rounded-xl cursor-pointer transition-all duration-500"
-          />
-        ))}
-      </Box> */}
 
         {/* Sign In / Sign Up Buttons */}
         <Box className="hidden md:flex gap-4 max-lg:gap-2">
@@ -72,6 +69,7 @@ export function TopNav() {
               border: '2px solid #F1414F',
               color: '#F1414F',
             }}
+            onClick={() => navigate('/restaurants/:id/sign-up')} // Navigate to sign-up
           />
           <TButton
             text="Sign In"
@@ -84,6 +82,7 @@ export function TopNav() {
                 backgroundColor: '#DC3D4A',
               },
             }}
+            onClick={() => navigate('/restaurants/:id/login')} // Navigate to login
           />
         </Box>
 
@@ -121,9 +120,6 @@ export function TopNav() {
           </Alert>
         </Snackbar>
       </Box>
-
-      {/* Table Selector */}
-      <TTableSelector />
     </Box>
   );
 }

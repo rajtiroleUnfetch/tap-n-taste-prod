@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import TuneIcon from '@mui/icons-material/Tune';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import Slide from '@mui/material/Slide';
+import { TransitionProps } from '@mui/material/transitions';
+import { Dialog } from '@mui/material';
+import { TFilterPopUp } from '../t-filter-popup';
+import { TSortPopUp } from '../t-sort-popup';
 
 const StyledTManage = styled.div`
   color: pink;
@@ -48,25 +53,59 @@ const Button = styled.button`
   }
 `;
 
-interface TManageProps {
-  onFilterClick?: () => void; // Function type for Filter button click
-  onSortClick?: () => void; // Function type for Sort button click
-}
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
-export function TManage({ onFilterClick, onSortClick }: TManageProps) {
+export function TManage() {
+  const [openFilter, setOpenFilter] = React.useState(false);
+  const [openSort, setOpenSort] = React.useState(false);
+
+  const handleFilterOpen = () => setOpenFilter(true);
+  const handleFilterClose = () => setOpenFilter(false);
+
+  const handleSortOpen = () => setOpenSort(true);
+  const handleSortClose = () => setOpenSort(false);
+
   return (
-    <StyledTManage>
-      <Container>
-        <Button onClick={onFilterClick}>
-          <TuneIcon style={{ fontSize: '20px' }} />
-          Filters
-        </Button>
-        <Button onClick={onSortClick}>
-          <SwapVertIcon style={{ fontSize: '20px' }} />
-          Sort
-        </Button>
-      </Container>
-    </StyledTManage>
+    <>
+      <StyledTManage>
+        <Container>
+          <Button onClick={handleFilterOpen}>
+            <TuneIcon style={{ fontSize: '20px' }} />
+            Filters
+          </Button>
+          <Button onClick={handleSortOpen}>
+            <SwapVertIcon style={{ fontSize: '20px' }} />
+            Sort
+          </Button>
+        </Container>
+      </StyledTManage>
+      {/* Filter Dialog */}
+      <Dialog
+        open={openFilter}
+        TransitionComponent={Transition}
+        onClose={handleFilterClose}
+        className="rounded-2xl"
+      >
+        <TFilterPopUp />
+      </Dialog>
+
+      {/* Sort Dialog */}
+      <Dialog
+        open={openSort}
+        TransitionComponent={Transition}
+        onClose={handleSortClose}
+        className="rounded-2xl"
+      >
+        <TSortPopUp />
+      </Dialog>
+    </>
   );
 }
 
