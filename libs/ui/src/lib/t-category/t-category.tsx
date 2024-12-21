@@ -49,7 +49,7 @@ const Label = styled.div`
 `;
 
 // Functional Component
-function TCategory() {
+export function TCategory() {
   const [isNonVegActive, setNonVegActive] = useState(false);
   const [isVegActive, setVegActive] = useState(false);
 
@@ -64,17 +64,6 @@ function TCategory() {
   };
 
   return (
-<<<<<<< HEAD
-    <StyledTCategory>
-      <SliderContainer>
-        {/* Non-Veg Toggle */}
-        <Label onClick={() => setIsVeg(false)}>
-          Non-Veg
-          <SliderWrapper isSelected={!isVeg}>
-            <SliderDot isActive={!isVeg} color="red" />
-          </SliderWrapper>
-        </Label>
-=======
     <Wrapper>
       {/* Non-Veg Slider */}
       <ButtonContainer>
@@ -86,7 +75,6 @@ function TCategory() {
           />
         </SliderWrapper>
       </ButtonContainer>
->>>>>>> origin/filtersort-branch
 
       {/* Veg Slider */}
       <ButtonContainer>

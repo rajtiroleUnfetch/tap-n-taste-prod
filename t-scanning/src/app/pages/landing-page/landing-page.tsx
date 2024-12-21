@@ -1,23 +1,13 @@
-<<<<<<< HEAD
-import { Box, BottomNavigation } from '@mui/material';
 import { TFaq } from '@tap-n-taste/ui';
 import CartPage from '../cart-page/cart-page';
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./landing-page/home-page";
-import { LoginSignUp } from "@tap-n-taste/ui";
-import {TSubmit} from "@tap-n-taste/ui";
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './landing-page/home-page';
+import { LoginSignUp } from '@tap-n-taste/ui';
+import { TSubmit } from '@tap-n-taste/ui';
 import MenuPage from '../menu-page/menu-page';
-=======
-
-import { Box } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./landing-page/home-page";
-import { LoginSignUp } from "@tap-n-taste/ui";
-import { TSubmit } from "@tap-n-taste/ui";
-import { TFaq } from "@tap-n-taste/ui";
-import { TOrderplaced ,TNotificationPage,TCouponpage} from "@tap-n-taste/ui";
-import ProductAdd from "../productadd-page/productadd";
->>>>>>> origin/filtersort-branch
+import { Box } from '@mui/material';
+import { TOrderplaced, TNotificationPage, TCouponpage } from '@tap-n-taste/ui';
+import ProductAdd from '../productadd-page/productadd';
 
 export const LandingPage = () => {
   return (
@@ -30,24 +20,22 @@ export const LandingPage = () => {
         <Route path="user/:userId/profile" element={<div>Profile Page</div>} />
         <Route path="user/:userId/cart" element={<CartPage />} />
         <Route path="user/:userId/order" element={<div>Order Page</div>} />
-<<<<<<< HEAD
         <Route
           path="user/:userId/notification"
           element={<div>Notification Page</div>}
         />
-=======
-        {/* <Route path="user/:userId/notification" element={<div>Notification Page</div>} /> */}
->>>>>>> origin/filtersort-branch
         <Route path="faq" element={<TFaq />} />
         <Route path="login/otp" element={<TSubmit />} />
         {/* Pass props here */}
-        <Route 
-          path="login/orderplaced" 
-          element={<TOrderplaced mainText="Order Successfully" subText="Placed!" />} 
+        <Route
+          path="login/orderplaced"
+          element={
+            <TOrderplaced mainText="Order Successfully" subText="Placed!" />
+          }
         />
-        <Route path="notification" element={<TNotificationPage/>} />
-        <Route path="coupons" element={<TCouponpage/>} />
-        <Route path="productadd" element={<ProductAdd/>} />
+        <Route path="notification" element={<TNotificationPage />} />
+        <Route path="coupons" element={<TCouponpage />} />
+        <Route path="productadd" element={<ProductAdd />} />
       </Routes>
     </Box>
   );

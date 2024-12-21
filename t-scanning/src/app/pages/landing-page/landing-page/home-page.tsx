@@ -1,20 +1,19 @@
-<<<<<<< HEAD
 import { Box, Divider } from '@mui/material';
 import {
+  TAbout,
   TButton,
   TCategory,
+  TCustomCard,
+  TFaq,
   TFooter,
   TManage,
   TopNav,
+  TOrderplaced,
+  TReviewpopup,
   TTableSelector,
   TViewBar,
 } from '@tap-n-taste/ui';
 import CallIcon from '@mui/icons-material/Call';
-=======
-import { Box } from '@mui/material';
-import { ImageSlider } from '@tap-n-taste/ui';
-import { TAbout, TButton, TFaq, TopNav, TFooter, TOrderplaced, TManage, TViewBar, TSearchbar, TView, TReviewpopup, TCustomCard} from '@tap-n-taste/ui';
->>>>>>> origin/filtersort-branch
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
 import FooterPage from '../../footer-page/footer-page';
@@ -25,19 +24,14 @@ import TSetting from '../../setting-page/setting-page';
 import TPayment from '../../payment-page/t-payment';
 
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
-<<<<<<< HEAD
 import ChefSpecial from '../../chef-special/chef-special';
 import GalleryPage from '../../gallery-page/gallery-page';
 import { useNavigate } from 'react-router-dom';
-=======
-import TCategory from 'libs/ui/src/lib/t-category/t-category';
 import { Discount } from '@mui/icons-material';
-import burgerImage from './burger.jpg';  // Adjust the path if it's in a different folder
-import pastaImage from './pasta.jpg'; 
-import friesImage from './potatofries.jpg'; 
+import burgerImage from './burger.jpg'; // Adjust the path if it's in a different folder
+import pastaImage from './pasta.jpg';
+import friesImage from './potatofries.jpg';
 import Tpayment from '../../payment-page/t-payment';
-
->>>>>>> origin/filtersort-branch
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -46,16 +40,12 @@ const HomePage = () => {
       {/* Top Navigation Bar */}
       <TopNav />
 
-<<<<<<< HEAD
       {/* Table Selector */}
       <Box className="w-full flex items-center justify-center">
         <TTableSelector />
       </Box>
 
       {/* RESTAURANT INFO */}
-=======
-      {/* Restaurant Info */}
->>>>>>> origin/filtersort-branch
       <RestaurantInfoPage
         restaurantName="Stone Water"
         restaurantDesc="North Indian | Chinese | Thai"
@@ -67,12 +57,7 @@ const HomePage = () => {
         distance={2.2}
         ratings={4.5}
       />
-<<<<<<< HEAD
       <Box className="mt-4 mb-8">
-=======
-
-      <Box className="mt-4">
->>>>>>> origin/filtersort-branch
         <TButton
           text="Menu"
           className={{ root: '!bg-[#F1414F] !text-white w-full' }}
@@ -80,31 +65,16 @@ const HomePage = () => {
           onClick={() => navigate('/restaurants/:id/menu')} // Navigate to Menu
         />
       </Box>
-<<<<<<< HEAD
       <Box className="flex justify-between items-center mb-8">
         <TManage />
         <TCategory />
       </Box>
       <TViewBar />
-=======
-
-      <TSearchbar />
-      <TView />
-
-      <div className="flex justify-between mb-4">
-        <TManage />
-        {/* <TCategory /> */}
-      </div>
-
-      <TViewBar />
-
->>>>>>> origin/filtersort-branch
       {/* Offers Section */}
       <OfferPage />
 
       {/* Top Customer Likes Section */}
       <TopCustomerLikes />
-<<<<<<< HEAD
       <ChefSpecial />
       <GalleryPage />
       {/* Review Section */}
@@ -141,7 +111,6 @@ const HomePage = () => {
         </h1>
       </Box>
       <TFooter />
-=======
 
       {/* Review Section */}
       <ReviewPage />
@@ -168,35 +137,33 @@ const HomePage = () => {
 
       {/* Custom Card */}
       <Box className="mb-4">
-       
-          <TCustomCard
-        image={burgerImage}
-        title="Burger"
-        description="Succulent Grilled Chicken Patty Nestled Between Toasted Buns, Crowned With Crisp Lettuce And Tangy Mayo, Delivering Savory Satisfaction In Every Bite."
-        rating={4.5}
-        price={250}
-        veg={true} // Non-vegetarian
-      />
-      <TCustomCard
-        image={pastaImage}
-        title="Pasta"
-        description="A creamy, comforting dish made with al dente pasta, rich sauce, and a blend of fresh herbs"
-        rating={4.8}
-        price={200}
-        veg={false} // Vegetarian
-      />
-      <TCustomCard
-        image={friesImage}
-        title="Fries"
-        description="Golden, crispy on the outside and soft on the inside, these perfectly seasoned fries are the ultimate snack for any craving."
-        rating={4.1}
-        price={200}
-        veg={true} // Vegetarian
-      />
-      <TSetting></TSetting>
-      <Tpayment></Tpayment>
+        <TCustomCard
+          image={burgerImage}
+          title="Burger"
+          description="Succulent Grilled Chicken Patty Nestled Between Toasted Buns, Crowned With Crisp Lettuce And Tangy Mayo, Delivering Savory Satisfaction In Every Bite."
+          rating={4.5}
+          price={250}
+          veg={true} // Non-vegetarian
+        />
+        <TCustomCard
+          image={pastaImage}
+          title="Pasta"
+          description="A creamy, comforting dish made with al dente pasta, rich sauce, and a blend of fresh herbs"
+          rating={4.8}
+          price={200}
+          veg={false} // Vegetarian
+        />
+        <TCustomCard
+          image={friesImage}
+          title="Fries"
+          description="Golden, crispy on the outside and soft on the inside, these perfectly seasoned fries are the ultimate snack for any craving."
+          rating={4.1}
+          price={200}
+          veg={true} // Vegetarian
+        />
+        <TSetting></TSetting>
+        <Tpayment></Tpayment>
       </Box>
->>>>>>> origin/filtersort-branch
     </Box>
   );
 };

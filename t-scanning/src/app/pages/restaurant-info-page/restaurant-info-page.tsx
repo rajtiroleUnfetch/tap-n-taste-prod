@@ -33,11 +33,7 @@ export const RestaurantInfoPage = ({
   ratings,
 }: RestaurantProps) => {
   return (
-<<<<<<< HEAD
     <Box className="z-10 font-primary">
-=======
-    <Box className="z-10">
->>>>>>> origin/filtersort-branch
       <ImageSlider
         images={sliderImages}
         className={{
