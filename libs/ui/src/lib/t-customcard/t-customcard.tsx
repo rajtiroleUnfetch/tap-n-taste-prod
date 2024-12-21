@@ -1,8 +1,7 @@
-
-import React from 'react';
-import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa6';
-import TCounter from '../t-counter/t-counter';
+import React from "react";
+import styled from "styled-components";
+import { FaStar } from "react-icons/fa6";
+import TCounter from "../t-counter/t-counter";
 
 const CardContainer = styled.div`
   display: flex;
@@ -62,16 +61,15 @@ const PriceContainer = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: #424242;
-  align-self: flex-start; /* Align the price to the start of its container */
-  margin-right: auto; /*
+  align-self: flex-start;
+  margin-right: auto;
 `;
-
 
 const ActionContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 8px; /* Adds space between review and actions */
+  margin-top: 8px;
 `;
 
 const AddButton = styled.button`
@@ -98,7 +96,7 @@ const StyledTCustomCard = styled.div`
   color: pink;
 `;
 
-export function TCustomCard({ image, title, description, rating, price }: any) {
+export function TCustomCard({ image, title, description, rating, price }:any) {
   return (
     <StyledTCustomCard>
       <CardContainer>
@@ -106,12 +104,12 @@ export function TCustomCard({ image, title, description, rating, price }: any) {
         <InfoContainer>
           <Title>{title}</Title>
           <Description>{description}</Description>
-         
+
           <ActionContainer>
-          <RatingContainer>
-            <RatingIcon />
-            <RatingText>{rating}</RatingText>
-          </RatingContainer>
+            <RatingContainer>
+              <RatingIcon />
+              <RatingText>{rating}</RatingText>
+            </RatingContainer>
             <TCounter />
             <AddButton>ADD</AddButton>
           </ActionContainer>

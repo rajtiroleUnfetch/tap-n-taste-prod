@@ -7,7 +7,8 @@ import OrderPage from "../order-page/order-page";
 import ProfilePage from "../profile-page/profile-page";
 import OrderPrepare from "../order-prepare/order-prepare";
 import OrderComplete from "../order-complete/order-complete";
-import OrderedPage from "../ordered-page/ordered-page";
+
+import OrderFlow from "../order-flow/order-flow";
 export const LandingPage = () => {
   return (
     <Box>
@@ -21,8 +22,11 @@ export const LandingPage = () => {
         <Route path="user/:userId/order" element={<OrderPage/>} />
         <Route path="user/:userId/order-prepare" element={<OrderPrepare/>} />
         <Route path="user/:userId/order-complete" element={<OrderComplete/>} />
-        <Route path="user/:userId/ordered-page" element={<OrderedPage/>} />
+       
         <Route path="user/:userId/profilepage" element={<ProfilePage/>} />
+
+        <Route path="user/:userId/order-flow" element={<OrderFlow/>} />
+
         <Route path="user/:userId/notification" element={<div>Notification Page</div>} />
         {/* Route for OTP */}
         <Route path="otp" element={<TSubmit />} />

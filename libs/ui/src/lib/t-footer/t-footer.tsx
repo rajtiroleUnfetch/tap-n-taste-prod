@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import { TNavButton } from '@tap-n-taste/ui';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import { TNavButton } from "@tap-n-taste/ui";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 export function TFooter() {
   return (
@@ -16,13 +16,10 @@ export function TFooter() {
         <Button>
           <TbTruckDelivery />
         </Button>
-        
 
-
-        {/* Custom styled TNavButton */}
         <StyledTNavButton
-          icon={<LocalDiningIcon sx={{ color: '#f1f1f1' }} />}
-          onClick={() => alert('Button clicked!')}
+          icon={<LocalDiningIcon sx={{ color: "#f1f1f1" }} />}
+          onClick={() => alert("Button clicked!")}
           backgroundColor="red"
         />
 
@@ -39,21 +36,21 @@ export function TFooter() {
 
 // Wrapper div to set background color
 const Wrapper = styled.div`
-  background-color: #f1f1f1; /* Set the gray background */
-   border-radius: 20px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
   padding: 20px 0;
   height: 100px;
-  marginBottom: '5px', /* Add some padding around the footer */
+  margin-bottom: 5px;
 `;
 
 const StyledTNavButton = styled(TNavButton)`
-  position: absolute; /* Absolute positioning */
-  top: 50px; /* Move the button upwards by 60px */
-  left: 50%; /* Center the button horizontally */
-  transform: translateX(-50%); /* Center it exactly */
-  z-index: 999; /* Ensure it appears above other elements */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
-  background-color: red; /* Adding a background to test visibility */
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: red;
 `;
 
 const Footer = styled.footer`
@@ -62,11 +59,11 @@ const Footer = styled.footer`
   align-items: center;
   background-color: white;
   padding: 10px 0;
-  marginBottom: '100px',
-  width: 100%; /* Increase width */
-  margin: 20px auto 0; /* Add margin-top to increase space from top */
-  position: relative; /* Required for absolute positioning of child elements */
-  height: 80px; /* Ensure enough height to allow movement */
+  margin-bottom: 100px;
+  width: 100%;
+  margin: 20px auto 0;
+  position: relative;
+  height: 80px;
 `;
 
 const Button = styled.button`
