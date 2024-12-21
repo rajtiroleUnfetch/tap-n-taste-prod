@@ -1,34 +1,48 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document, Types } from 'mongoose';
 
-const reviewSchema = new mongoose.Schema(
+export interface IReview extends Document {
+  restaurant: Types.ObjectId; // Reference to Restaurant
+  user: Types.ObjectId; // Reference to User
+  rating: number;
+  review: string;
+  images?: string[]; // Optional array of image URLs
+}
+
+const reviewSchema = new Schema<IReview>(
   {
     restaurant: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Restaurant',
       required: true,
     },
     user: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     rating: {
       type: Number,
       min: 1,
       max: 5,
-      required: true,
+      required: [true, 'Rating is required'],
     },
     review: {
       type: String,
-      required: true,
+      required: [true, 'Review text is required'],
+      trim: true,
     },
-    images: [String], // Array of image URLs if any
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
+    images: [
+      {
+        type: String,
+        validate: {
+          validator: (v: string) => /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/.test(v),
+          message: 'Image URL must be valid and point to an image file.',
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
 
-const Review = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model<IReview>('Review', reviewSchema);
 export default Review;

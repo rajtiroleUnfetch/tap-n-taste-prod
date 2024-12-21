@@ -1,61 +1,70 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-// Styled container for the overall TCategory
-const StyledTCategory = styled.div`
-  color: pink;
+// Styled Components
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+`;
+
+const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 `;
 
-// Container for the toggles
-const SliderContainer = styled.div`
+const SliderWrapper = styled.div`
+  width: 60px; /* Match slider width */
+  height: 30px; /* Match slider height */
+  border: 2px solid #d3d3d3; /* Light gray border for outer wrapper */
+  border-radius: 25px; /* Fully rounded corners */
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 220px;
-`;
-
-// Label for each toggle (Non-Veg and Veg)
-const Label = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  color: #333;
-  cursor: pointer;
-`;
-
-// Wrapper for the slider with border styling
-const SliderWrapper = styled.div<{ isSelected: boolean }>`
+  justify-content: space-between;
+  background-color: #f9f9f9; /* Slightly off-white background */
   position: relative;
-  width: 60px;
-  height: 30px;
-  background-color: #f0f0f0;
-  border-radius: 15px;
-  border: 2px solid ${(props) => (props.isSelected ? '#333' : '#ccc')};
-  display: flex;
-  align-items: center;
-  margin-top: 5px;
+  padding: 2px; /* Ensure padding for proper alignment */
 `;
 
-// Sliding square dot
-const SliderDot = styled.div<{ isActive: boolean; color: string }>`
+const SliderCircle = styled.div<{ position: "left" | "right"; color: string }>`
   width: 20px;
   height: 20px;
   background-color: ${(props) => props.color};
-  border-radius: 4px;
+  border: 2px solid ${(props) => props.color};
+  border-radius: 50%; /* Circle shape */
   position: absolute;
-  left: ${(props) => (props.isActive ? '30px' : '5px')};
-  transition: left 0.3s ease-in-out;
+  top: 50%;
+  transform: translateY(-50%);
+  ${(props) => (props.position === "left" ? "left: 5px;" : "right: 5px;")}
 `;
 
-export function TCategory() {
-  const [isVeg, setIsVeg] = useState(true); // Tracks Veg/Non-Veg selection
+const Label = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 6px;
+`;
+
+// Functional Component
+function TCategory() {
+  const [isNonVegActive, setNonVegActive] = useState(false);
+  const [isVegActive, setVegActive] = useState(false);
+
+  const handleNonVegClick = () => {
+    setNonVegActive(!isNonVegActive);
+    console.log("Non-Veg slider toggled");
+  };
+
+  const handleVegClick = () => {
+    setVegActive(!isVegActive);
+    console.log("Veg slider toggled");
+  };
 
   return (
+<<<<<<< HEAD
     <StyledTCategory>
       <SliderContainer>
         {/* Non-Veg Toggle */}
@@ -65,16 +74,31 @@ export function TCategory() {
             <SliderDot isActive={!isVeg} color="red" />
           </SliderWrapper>
         </Label>
+=======
+    <Wrapper>
+      {/* Non-Veg Slider */}
+      <ButtonContainer>
+        <Label>Non-Veg</Label>
+        <SliderWrapper onClick={handleNonVegClick}>
+          <SliderCircle
+            color="red"
+            position={isNonVegActive ? "right" : "left"}
+          />
+        </SliderWrapper>
+      </ButtonContainer>
+>>>>>>> origin/filtersort-branch
 
-        {/* Veg Toggle */}
-        <Label onClick={() => setIsVeg(true)}>
-          Veg
-          <SliderWrapper isSelected={isVeg}>
-            <SliderDot isActive={isVeg} color="green" />
-          </SliderWrapper>
-        </Label>
-      </SliderContainer>
-    </StyledTCategory>
+      {/* Veg Slider */}
+      <ButtonContainer>
+        <Label>Veg</Label>
+        <SliderWrapper onClick={handleVegClick}>
+          <SliderCircle
+            color="green"
+            position={isVegActive ? "right" : "left"}
+          />
+        </SliderWrapper>
+      </ButtonContainer>
+    </Wrapper>
   );
 }
 

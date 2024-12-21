@@ -1,27 +1,28 @@
 import express from 'express';
+import { authenticate, authorize } from '../middlewares/auth.middleware';
 import {
   createMenuItem,
   getAllMenuItemsForRestaurant,
   getMenuItemById,
   updateMenuItem,
   deleteMenuItem
-} from '../controllers/menu.controller.js';
+} from '../controllers/menu.controller';
 
-const menuRoutes = express.Router({ mergeParams: true }); // Enable access to `:id` parameter from parent route
+const menuRoutes = express.Router({ mergeParams: true });
 
-// Route to create a new menu item for a restaurant
-menuRoutes.post('/', createMenuItem);
+// Create a new menu item - Admin and SuperAdmin
+menuRoutes.post('/', authenticate, authorize('Admin', 'SuperAdmin'), createMenuItem);
 
-// Route to get all menu items for a restaurant
+// Get all menu items - All users can access
 menuRoutes.get('/', getAllMenuItemsForRestaurant);
 
-// Route to get a specific menu item by ID for a restaurant
+// Get a specific menu item by ID - All users can access
 menuRoutes.get('/:menuId', getMenuItemById);
 
-// Route to update a specific menu item by ID for a restaurant
-menuRoutes.put('/:menuId', updateMenuItem);
+// Update a menu item - Admin and SuperAdmin
+menuRoutes.put('/:menuId', authenticate, authorize('Admin', 'SuperAdmin'), updateMenuItem);
 
-// Route to delete a specific menu item by ID for a restaurant
-menuRoutes.delete('/:menuId', deleteMenuItem);
+// Delete a menu item - Admin and SuperAdmin
+menuRoutes.delete('/:menuId', authenticate, authorize('Admin', 'SuperAdmin'), deleteMenuItem);
 
 export default menuRoutes;

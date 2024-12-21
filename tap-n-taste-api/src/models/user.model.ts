@@ -7,7 +7,8 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: 'User' | 'Admin' | 'SuperAdmin';
-  restaurantId: mongoose.Types.ObjectId | null;
+  status?: 'pending' | 'active';
+  restaurantId?: mongoose.Types.ObjectId;
   comparePassword: (candidatePassword: string) => Promise<boolean>; // Add comparePassword method type
 }
 
@@ -39,6 +40,11 @@ const userSchema = new mongoose.Schema(
       ref: 'Restaurant',
       default: null, // Only for Admins
     },
+    status: {
+      type: String,
+      enum: ['pending', 'active'],
+      default: 'active'
+    }
   },
   { timestamps: true }
 );

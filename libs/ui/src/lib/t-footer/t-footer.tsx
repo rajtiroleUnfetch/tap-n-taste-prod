@@ -8,6 +8,7 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 export function TFooter() {
   return (
     <Wrapper>
+      
       <Footer>
         <Button>
           <IoHomeOutline />
@@ -38,7 +39,7 @@ export function TFooter() {
 
 // Wrapper div to set background color
 const Wrapper = styled.div`
-  background-color: #F3EDEC; /* Set the gray background */
+  background-color: #F5F6F7; /* Set the gray background */
    border-radius: 20px;
   padding: 20px 0;
   height: 150px; /* Add some padding around the footer */

@@ -1,99 +1,97 @@
 {
-    "info": {
-      "name": "Tap-n-Taste API",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-    },
-    "item": [
-      {
-        "name": "Restaurant API",
-        "item": [
-          {
-            "name": "Create Restaurant",
-            "request": {
-              "method": "POST",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "{\n  \"name\": \"Stone Place\",\n  \"slug\": \"stone-place\",\n  \"location\": {\n    \"longitude\": 77.5946,\n    \"latitude\": 12.9716,\n    \"street\": \"123 Main St\",\n    \"city\": \"Bangalore\",\n    \"state\": \"Karnataka\",\n    \"country\": \"India\",\n    \"zipCode\": \"560001\"\n  },\n  \"phone\": \"+91-9876543210\",\n  \"email\": \"stoneplace@example.com\",\n  \"tagline\": \"North Indian | Chinese | Thai\",\n  \"description\": \"A fine dining experience with a variety of cuisines.\",\n  \"openHours\": {\n    \"days\": [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"],\n    \"hours\": \"10:00 AM - 10:00 PM\"\n  },\n  \"features\": [\"Dine-in\", \"Delivery\"],\n  \"categories\": [\"North Indian\", \"Chinese\"],\n  \"distance\": 2.2,\n  \"images\": {\n    \"banner\": \"https://example.com/banner.jpg\",\n    \"gallery\": [\n      \"https://example.com/image1.jpg\",\n      \"https://example.com/image2.jpg\"\n    ]\n  },\n  \"videos\": [\"https://example.com/video.mp4\"],\n  \"facilities\": [\"Indoor Seating\", \"Takeaway Available\"],\n  \"socialLinks\": {\n    \"facebook\": \"https://facebook.com/stoneplace\",\n    \"instagram\": \"https://instagram.com/stoneplace\"\n  },\n  \"faq\": [\n    {\n      \"question\": \"Do you provide home delivery?\",\n      \"answer\": \"Yes, we provide home delivery.\"\n    }\n  ],\n  \"recommendations\": {\n    \"chefSpecials\": [\"Butter Chicken\", \"Pad Thai\"],\n    \"mostLiked\": [\"Spring Rolls\"]\n  }\n}"
-              },
-              "url": {
-                "raw": "http://localhost:3000/api/restaurants",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["api", "restaurants"]
+  "info": {
+    "name": "Tap-n-Taste API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Restaurant API",
+      "item": [
+        {
+          "name": "Create Restaurant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
               }
-            }
-          },
-          {
-            "name": "Get All Restaurants",
-            "request": {
-              "method": "GET",
-              "url": {
-                "raw": "http://localhost:3000/api/restaurants",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["api", "restaurants"]
-              }
-            }
-          },
-          {
-            "name": "Get Restaurant by ID",
-            "request": {
-              "method": "GET",
-              "url": {
-                "raw": "http://localhost:3000/api/restaurants/:id",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["api", "restaurants", ":id"]
-              }
-            }
-          },
-          {
-            "name": "Update Restaurant",
-            "request": {
-              "method": "PUT",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "{\n  \"name\": \"Updated Stone Place\",\n  \"description\": \"An updated description for the restaurant.\"\n}"
-              },
-              "url": {
-                "raw": "http://localhost:3000/api/restaurants/:id",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["api", "restaurants", ":id"]
-              }
-            }
-          },
-          {
-            "name": "Delete Restaurant",
-            "request": {
-              "method": "DELETE",
-              "url": {
-                "raw": "http://localhost:3000/api/restaurants/:id",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["api", "restaurants", ":id"]
-              }
+            ],
+            "body": {
+              "mode": "raw"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/restaurants",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "restaurants"]
             }
           }
-        ]
-      }
-    ]
-  }
-  
+        },
+        {
+          "name": "Get All Restaurants",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/restaurants",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "restaurants"]
+            }
+          }
+        },
+        {
+          "name": "Get Restaurant by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/api/restaurants/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "restaurants", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Restaurant",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Stone Place\",\n  \"description\": \"An updated description for the restaurant.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/restaurants/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "restaurants", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Restaurant",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/api/restaurants/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "restaurants", ":id"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
