@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { ImageSlider } from '@tap-n-taste/ui';
-import { TAbout, TButton, TFaq, TopNav, TFooter, TOrderplaced, TManage, TViewBar, TSearchbar, TView, TReviewpopup, TCustomCard } from '@tap-n-taste/ui';
+import { TAbout, TButton, TFaq, TopNav, TFooter, TOrderplaced, TManage, TViewBar, TSearchbar, TView, TReviewpopup, TCustomCard} from '@tap-n-taste/ui';
 import ReviewPage from '../../review-page/review-page';
 import FaqPage from '../../faq-page/faq-page';
 import FooterPage from '../../footer-page/footer-page';
@@ -8,7 +8,7 @@ import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { RestaurantInfoPage } from '../../restaurant-info-page/restaurant-info-page';
 import OfferPage from '../../offers-page/offers-page';
 import TSetting from '../../setting-page/setting-page';
-
+import TPayment from '../../payment-page/t-payment';
 
 import TopCustomerLikes from '../../top-customer-likes/top-customer-likes';
 import TCategory from 'libs/ui/src/lib/t-category/t-category';
@@ -16,6 +16,7 @@ import { Discount } from '@mui/icons-material';
 import burgerImage from './burger.jpg';  // Adjust the path if it's in a different folder
 import pastaImage from './pasta.jpg'; 
 import friesImage from './potatofries.jpg'; 
+import Tpayment from '../../payment-page/t-payment';
 
 
 const HomePage = () => {
@@ -50,7 +51,7 @@ const HomePage = () => {
 
       <div className="flex justify-between mb-4">
         <TManage />
-        <TCategory />
+        {/* <TCategory /> */}
       </div>
 
       <TViewBar />
@@ -112,6 +113,7 @@ const HomePage = () => {
         veg={true} // Vegetarian
       />
       <TSetting></TSetting>
+      <Tpayment></Tpayment>
       </Box>
     </Box>
   );

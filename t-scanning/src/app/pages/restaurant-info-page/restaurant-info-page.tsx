@@ -1,4 +1,4 @@
-import { Box, Chip, Grid, Rating, Typography } from '@mui/material';
+import { Box, Chip, Grid, Rating } from '@mui/material';
 import { ImageSlider } from '@tap-n-taste/ui';
 import { TButton } from '@tap-n-taste/ui';
 import { sliderImages } from '../../constants/LandingPageData';
@@ -66,7 +66,6 @@ export const RestaurantInfoPage = ({
                 />
               }
             />
-
             <TButton text="" className={{ root: 'p-0' }} icon={<CallIcon />} />
           </Box>
         </Box>
@@ -74,7 +73,7 @@ export const RestaurantInfoPage = ({
           <Grid item xs={12} sm={6}>
             <Box display="flex" alignItems="center" mb={2}>
               <LocationOnIcon color="action" sx={{ mr: 1 }} />
-              <p className="">{restaurantAddress}</p>
+              <p>{restaurantAddress}</p>
             </Box>
             <Box display="flex" alignItems="center" mb={2}>
               <AccessTimeIcon color="action" sx={{ mr: 1 }} />
@@ -117,7 +116,7 @@ export const RestaurantInfoPage = ({
             </Box>
           </Grid>
         </Box>
-      </Box> */}
+      </Box>
     </Box>
   );
 };
