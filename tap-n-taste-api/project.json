@@ -1,0 +1,59 @@
+{
+  "name": "tap-n-taste-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tap-n-taste-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/tap-n-taste-api",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "tap-n-taste-api/src/main.ts",
+        "tsConfig": "tap-n-taste-api/tsconfig.app.json",
+        "assets": ["tap-n-taste-api/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "tap-n-taste-api:build",
+        "runBuildTargetDependencies": false,
+        "port": 5000
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tap-n-taste-api:build:development"
+        },
+        "production": {
+          "buildTarget": "tap-n-taste-api:build:production"
+        }
+      }
+    }
+  }
+}

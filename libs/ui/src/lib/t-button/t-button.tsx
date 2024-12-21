@@ -37,7 +37,7 @@ export const TButton: React.FC<TButtonProps> = ({
     <Button
       onClick={onClick}
       className={clsx('bg-white', root)}
-      style={styles} // Inline styles
+      style={{ fontFamily: 'Poppins', ...styles }} // Ensure Poppins is applied to the button
       {...rest} // Additional props
     >
       {/* Render Icon on the left if position is left */}
@@ -47,7 +47,7 @@ export const TButton: React.FC<TButtonProps> = ({
             'p-0 text-white flex items-center justify-center',
             iconButton // Custom IconButton class
           )}
-          sx={{ fontFamily: 'Poppins' }}
+          sx={{ fontFamily: 'Poppins' }} // Font applied for the icon
           disableRipple // Remove extra ripple for cleaner UI
         >
           {typeof icon === 'string' ? (
@@ -68,6 +68,7 @@ export const TButton: React.FC<TButtonProps> = ({
           'text-base font-medium', // Default Tailwind styling
           textClass // Custom text class
         )}
+        sx={{ fontFamily: 'Poppins' }} // Ensure font is applied to text
       >
         {text}
       </Typography>
@@ -79,6 +80,7 @@ export const TButton: React.FC<TButtonProps> = ({
             'p-0 text-white flex items-center justify-center',
             iconButton // Custom IconButton class
           )}
+          sx={{ fontFamily: 'Poppins' }} // Font applied for the icon
           disableRipple // Remove extra ripple for cleaner UI
         >
           {typeof icon === 'string' ? (

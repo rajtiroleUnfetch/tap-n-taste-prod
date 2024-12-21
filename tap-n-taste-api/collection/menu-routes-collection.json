@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "Menu Routes for Restaurant",
+    "description": "CRUD operations for the /api/restaurants/:id/menu route.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Menu Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/menu",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "restaurants",
+            "675ec7e58b7323fd536cfc01",
+            "menu"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Margherita Pizza\",\n  \"price\": 499,\n  \"category\": \"Pizza\",\n  \"description\": \"Classic margherita pizza with fresh mozzarella and basil.\",\n  \"preparationTime\": 20,\n  \"ingredients\": [\"Mozzarella\", \"Basil\", \"Tomato Sauce\"],\n  \"tags\": [\"Vegetarian\"],\n  \"isChefSpecial\": true\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Menu Items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/menu",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "restaurants",
+            "675ec7e58b7323fd536cfc01",
+            "menu"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Specific Menu Item",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/menu/:menuId",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "restaurants",
+            "675ec7e58b7323fd536cfc01",
+            "menu",
+            ":menuId"
+          ],
+          "variable": [
+            {
+              "key": "menuId",
+              "value": "<replace-with-menuId>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Menu Item",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/menu/:menuId",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "restaurants",
+            "675ec7e58b7323fd536cfc01",
+            "menu",
+            ":menuId"
+          ],
+          "variable": [
+            {
+              "key": "menuId",
+              "value": "<replace-with-menuId>"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 599,\n  \"tags\": [\"Vegetarian\", \"Italian\"]\n}"
+        }
+      }
+    }
+  ]
+}

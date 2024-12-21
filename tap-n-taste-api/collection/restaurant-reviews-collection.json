@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Restaurant Reviews API",
+    "description": "CRUD operations for restaurant reviews",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Review",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user\": \"John Doe\",\n  \"rating\": 5,\n  \"review\": \"Amazing food and great service!\",\n  \"images\": [\"https://example.com/image1.jpg\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/reviews",
+          "host": ["http://localhost:3000"],
+          "path": ["api", "restaurants", "675ec7e58b7323fd536cfc01", "reviews"]
+        }
+      }
+    },
+    {
+      "name": "Get All Reviews",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/reviews",
+          "host": ["http://localhost:3000"],
+          "path": ["api", "restaurants", "675ec7e58b7323fd536cfc01", "reviews"]
+        }
+      }
+    },
+    {
+      "name": "Get Review by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/reviews/{reviewId}",
+          "host": ["http://localhost:3000"],
+          "path": ["api", "restaurants", "675ec7e58b7323fd536cfc01", "reviews", "{reviewId}"]
+        }
+      }
+    },
+    {
+      "name": "Update Review",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rating\": 4,\n  \"review\": \"Good food, but service could be better.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/reviews/{reviewId}",
+          "host": ["http://localhost:3000"],
+          "path": ["api", "restaurants", "675ec7e58b7323fd536cfc01", "reviews", "{reviewId}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Review",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/api/restaurants/675ec7e58b7323fd536cfc01/reviews/{reviewId}",
+          "host": ["http://localhost:3000"],
+          "path": ["api", "restaurants", "675ec7e58b7323fd536cfc01", "reviews", "{reviewId}"]
+        }
+      }
+    }
+  ]
+}

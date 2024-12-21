@@ -4,7 +4,7 @@ import { topLinkingData } from '../../constants/LandingPageData';
 
 const TopCustomerLikes = () => {
   return (
-    <Box className="mt-10 mb-10">
+    <Box className="mt-10 mb-10 font-primary">
       <Box className="flex justify-between items-center">
         <Typography
           variant="h5"
