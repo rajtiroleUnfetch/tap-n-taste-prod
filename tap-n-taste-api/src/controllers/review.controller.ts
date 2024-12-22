@@ -7,6 +7,7 @@ export {};
 declare module 'express' {
   export interface Request {
     user: {
+      role: string;
       id: string;
       // Add other user properties if needed
     }
