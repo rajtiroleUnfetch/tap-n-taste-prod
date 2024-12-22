@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
-import { TbTruckDelivery } from "react-icons/tb";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import styled from 'styled-components';
+import { IoHomeOutline, IoCartOutline } from 'react-icons/io5';
+import { TbTruckDelivery } from 'react-icons/tb';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { TNavButton } from '@tap-n-taste/ui';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
@@ -16,8 +15,6 @@ export function TFooter() {
         <Button>
           <TbTruckDelivery />
         </Button>
-        
-
 
         {/* Custom styled TNavButton */}
         <StyledTNavButton
@@ -39,8 +36,8 @@ export function TFooter() {
 
 // Wrapper div to set background color
 const Wrapper = styled.div`
-  background-color: #F3EDEC; /* Set the gray background */
-   border-radius: 20px;
+  background-color: #f3edec; /* Set the gray background */
+  border-radius: 20px;
   padding: 20px 0;
   height: 150px; /* Add some padding around the footer */
 `;

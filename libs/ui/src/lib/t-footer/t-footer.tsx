@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-import React from "react";
->>>>>>> origin/order-flow
 import styled from "styled-components";
 import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -40,13 +36,8 @@ export function TFooter() {
 
 // Wrapper div to set background color
 const Wrapper = styled.div`
-<<<<<<< HEAD
   background-color: #F5F6F7; /* Set the gray background */
    border-radius: 20px;
-=======
-  background-color: #f1f1f1;
-  border-radius: 20px;
->>>>>>> origin/order-flow
   padding: 20px 0;
   height: 100px;
   margin-bottom: 5px;
