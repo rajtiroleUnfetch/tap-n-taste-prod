@@ -13,27 +13,43 @@ export const googleAuth = passport.authenticate('google', { scope: ['profile', '
 
 export const googleAuthCallback = (req: Request, res: Response) => {
   passport.authenticate('google', { session: false }, async (err, user) => {
-    if (err || !user) return res.status(401).json({ error: 'Google authentication failed' });
+    console.log('Error:', err);
+    console.log('User:', user);
 
-    // Check if the user exists in the database
-    let existingUser = await User.findOne({ email: user.email });
-    
-    // If the user doesn't exist, create a new user
-    if (!existingUser) {
-      existingUser = new User({
-        name: user.displayName,
-        email: user.email,
-        role: 'User', // Default role
-        status: 'verified', // Assume user is verified after Google login
-      });
-      await existingUser.save();
+    if (err || !user) {
+      return res.status(401).json({ error: 'Google authentication failed' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ id: existingUser._id, email: existingUser.email, role: existingUser.role }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
-    res.status(200).json({ token, user: existingUser });
+    try {
+      let existingUser = await User.findOne({ email: user.email });
+
+      if (!existingUser) {
+        existingUser = new User({
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          status: user.status,
+          password: user.password,
+          profileImage: user.profileImage,
+        });
+
+        await existingUser.save();
+      }
+
+      const token = jwt.sign(
+        { id: existingUser._id, email: existingUser.email, role: existingUser.role },
+        JWT_SECRET,
+        { expiresIn: JWT_EXPIRY }
+      );
+
+      res.status(200).json({ token, user: existingUser });
+    } catch (error) {
+      console.error('Error during callback processing:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   })(req, res);
 };
+
 
 // Regular User Signup
 export const signup = async (req: Request, res: Response) => {
@@ -47,10 +63,10 @@ export const signup = async (req: Request, res: Response) => {
     }
 
     // Generate OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
     // Send OTP to email
-    await sendSignupOTPEmail(email, otp);
+    // await sendSignupOTPEmail('rajtirole23454@gmail.com', otp);
 
     // Create new user and save with status 'pending'
     const user = new User({
@@ -58,14 +74,14 @@ export const signup = async (req: Request, res: Response) => {
       email,
       password,
       phone,
-      otp,
-      otpExpiry: Date.now() + OTP_EXPIRY, // Set OTP expiry time
+      // otp,
+      // otpExpiry: Date.now() + OTP_EXPIRY, // Set OTP expiry time
       role: 'User',
-      status: 'pending',
+      status: 'verified',
     });
     await user.save();
 
-    res.status(200).json({ message: 'OTP sent to email' });
+    res.status(200).json({ message: 'User created successfully', user });
   } catch (error) {
     res.status(500).json({ error: 'Signup failed' });
   }
