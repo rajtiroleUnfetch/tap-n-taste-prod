@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React from 'react';
 // import styled from 'styled-components';
 // import { FaStar } from 'react-icons/fa6';
@@ -152,6 +153,12 @@ import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa6';
 import { TbSquareDot } from 'react-icons/tb'; // Import the TbSquareDot icon
 import TCounter from '../t-counter/t-counter';
+=======
+import React from "react";
+import styled from "styled-components";
+import { FaStar } from "react-icons/fa6";
+import TCounter from "../t-counter/t-counter";
+>>>>>>> origin/order-flow
 
 const CardContainer = styled.div`
   display: flex;
@@ -238,6 +245,7 @@ const PriceContainer = styled.div`
   font-weight: bold;
   color: #424242;
   align-self: flex-start;
+<<<<<<< HEAD
   margin-top: 8px;
 
   @media (max-width: 768px) {
@@ -246,11 +254,17 @@ const PriceContainer = styled.div`
   }
 `;
 
+=======
+  margin-right: auto;
+`;
+
+>>>>>>> origin/order-flow
 const ActionContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
   margin-top: 8px;
+<<<<<<< HEAD
   justify-content: space-between;
   width: 100%;
   position: relative;
@@ -274,6 +288,8 @@ const RightContainer = styled.div`
     width: 100%; /* Allow container to take full width */
     justify-content: flex-start; /* Align to the start */
   }
+=======
+>>>>>>> origin/order-flow
 `;
 
 const AddButton = styled.button`
@@ -305,6 +321,7 @@ const StyledTCustomCard = styled.div`
   color: pink;
 `;
 
+<<<<<<< HEAD
 export function TCustomCard({
   image,
   title,
@@ -314,6 +331,9 @@ export function TCustomCard({
   veg,
   onClick,
 }: any) {
+=======
+export function TCustomCard({ image, title, description, rating, price }:any) {
+>>>>>>> origin/order-flow
   return (
     <StyledTCustomCard onClick={onClick}>
       <CardContainer>
@@ -336,10 +356,15 @@ export function TCustomCard({
               <RatingIcon />
               <RatingText>{rating}</RatingText>
             </RatingContainer>
+<<<<<<< HEAD
             <RightContainer>
               <TCounter />
               <AddButton>ADD</AddButton>
             </RightContainer>
+=======
+            <TCounter />
+            <AddButton>ADD</AddButton>
+>>>>>>> origin/order-flow
           </ActionContainer>
         </InfoContainer>
         <PriceContainer>₹{price}</PriceContainer>
