@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.routes';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandler';
 import { handleFileUpload } from './middlewares/uploadMiddleware';
+import passport from './utils/googleAuth';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -21,7 +22,8 @@ connectDB();
 //  Middleware to parse JSON and handle file upload
 app.use(express.urlencoded({ extended: true }));
 app.use(handleFileUpload); // Global file upload middleware
-
+// Initialize Passport
+app.use(passport.initialize());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);

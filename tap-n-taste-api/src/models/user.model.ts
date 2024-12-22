@@ -6,7 +6,8 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  phone: string;
+  phone?: string;
+  profileImage?: string;
   otp: string; 
   otpExpiry?: number; // Add OTP expiry date
   role: 'User' | 'Admin' | 'SuperAdmin';
@@ -35,12 +36,15 @@ const userSchema = new mongoose.Schema(
     otp: { 
       type: String 
     },
+    profileImage: { 
+      type: String 
+    },
     otpExpiry: {
       type: Date,
     },
     phone: { 
       type: String, 
-      required: true, 
+      // required: true, 
       unique: true 
     },
     restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }, // Only for Admin
