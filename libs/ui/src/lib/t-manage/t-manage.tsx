@@ -4,54 +4,9 @@ import TuneIcon from '@mui/icons-material/Tune';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import { Dialog } from '@mui/material';
+import { Container, Dialog } from '@mui/material';
 import { TFilterPopUp } from '../t-filter-popup';
 import { TSortPopUp } from '../t-sort-popup';
-
-const StyledTManage = styled.div`
-  color: pink;
-`;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-`;
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background-color: #e53935; /* Matches the red background */
-  color: white;
-  border: none;
-  border-radius: 24px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 500;
-
-  &:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  &:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &:hover {
-    background-color: #d32f2f; /* Slightly darker shade for hover */
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  }
-`;
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -110,3 +65,43 @@ export function TManage() {
 }
 
 export default TManage;
+
+// Styled Components
+const StyledTManage = styled.div`
+  display: flex;
+  align-items: stretch; /* Ensures children fill the height */
+  background-color: #f94f4f;
+  border-radius: 50px;
+  overflow: hidden;
+  width: fit-content;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 10px 10px; /* Decreased padding for smaller height */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  span {
+    font-weight: 300;
+  }
+`;
+
+const Divider = styled.div`
+  width: 2px; /* Increased thickness for bold effect */
+  background-color: white;
+  opacity: 1; /* Full opacity for bold look */
+  margin: 0; /* Removes extra spacing */
+`;

@@ -20,7 +20,7 @@ interface TSearchbarProps {
 }
 
 export const TSearchbar: React.FC<TSearchbarProps> = ({
-  placeholder = 'Search...',
+  placeholder = 'Search Dishes',
   value,
   onChange,
   onSearchIconClick,
@@ -39,7 +39,7 @@ export const TSearchbar: React.FC<TSearchbarProps> = ({
   return (
     <Box
       className={clsx('py-8', root)} // Root container with custom class
-      style={{ ...styles, width: '100%' }} // Inline styles including width
+      style={{ ...styles, width: '100%' }} // Updated width
       sx={{
         margin: '0 auto', // Center the search bar
       }}
@@ -61,7 +61,7 @@ export const TSearchbar: React.FC<TSearchbarProps> = ({
               <SearchIcon
                 onClick={onSearchIconClick}
                 className={clsx('cursor-pointer', searchIcon)} // Custom SearchIcon class
-                sx={{ color: '#f44336' }}
+                sx={{ color: '#F1414F' }} // Icon color
               />
             </InputAdornment>
           ),
@@ -71,12 +71,17 @@ export const TSearchbar: React.FC<TSearchbarProps> = ({
         sx={{
           backgroundColor: 'white',
           borderRadius: 3,
-          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+          boxShadow: '0px 4px 12px #B9B5B5', // Box shadow color
           '& .MuiOutlinedInput-root': {
             paddingLeft: 1.5,
             paddingRight: 1.5,
             '& input': {
               padding: '10px 0px',
+              color: '#757575', // Text color
+            },
+            '& input::placeholder': {
+              color: '#757575', // Placeholder text color
+              opacity: 1, // Ensure the placeholder is fully visible
             },
             '& fieldset': {
               borderColor: 'transparent',

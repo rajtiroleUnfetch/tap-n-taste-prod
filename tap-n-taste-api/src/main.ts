@@ -1,9 +1,14 @@
 import express from 'express';
 import connectDB from './config/database';
 import restaurantRoutes from './routes/restaurant.routes';
+import authRoutes from './routes/auth.routes';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandler';
 import { handleFileUpload } from './middlewares/uploadMiddleware';
+<<<<<<< HEAD
+=======
+import passport from './utils/googleAuth';
+>>>>>>> 30f794ba4720a7171c6262cbd08210541ea8594f
 
 // Load environment variables from .env file
 dotenv.config();
@@ -20,8 +25,14 @@ connectDB();
 //  Middleware to parse JSON and handle file upload
 app.use(express.urlencoded({ extended: true }));
 app.use(handleFileUpload); // Global file upload middleware
+<<<<<<< HEAD
 
+=======
+// Initialize Passport
+app.use(passport.initialize());
+>>>>>>> 30f794ba4720a7171c6262cbd08210541ea8594f
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/restaurants', restaurantRoutes);
 // Error Handler
 app.use(errorHandler);

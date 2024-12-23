@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 import Review from '../models/review.model.js';
 import Restaurant from '../models/restaurant.model.js';
 =======
+=======
+>>>>>>> 30f794ba4720a7171c6262cbd08210541ea8594f
 import { Request, Response } from 'express';
 import Review from '../models/review.model';
 import Restaurant from '../models/restaurant.model';
@@ -17,94 +20,133 @@ declare module 'express' {
     }
   }
 }
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 30f794ba4720a7171c6262cbd08210541ea8594f
 
 // Create a new review
-export const createReview = async (req, res) => {
+export const createReview = async (req: Request, res: Response) => {
   try {
-    const { id: restaurantId } = req.params;
-    const { user, rating, review, images } = req.body;
+    const { id } = req.params; // Restaurant ID from URL
+    const { rating, review, images } = req.body;
 
-    if (!user || !rating || !review) {
-      return res.status(400).json({ error: 'User, rating, and review are required.' });
-    }
+    const userId = req.user.id; // Authenticated user's ID (from middleware)
 
-    const restaurant = await Restaurant.findById(restaurantId);
-    if (!restaurant) {
+    // Ensure restaurant exists
+    const restaurantExists = await Restaurant.findById(id);
+    if (!restaurantExists) {
       return res.status(404).json({ error: 'Restaurant not found.' });
     }
 
-    const newReview = new Review({ restaurant: restaurantId, user, rating, review, images });
-    const savedReview = await newReview.save();
+    // Create and save the review
+    const newReview = await Review.create({
+      restaurant: id,
+      user: userId,
+      rating,
+      review,
+      images,
+    });
 
-    res.status(201).json({ message: 'Review created successfully.', data: savedReview });
+    res.status(201).json({
+      message: 'Review created successfully.',
+      review: newReview,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create review.', details: error.message });
+    res.status(500).json({
+      error: 'Failed to create review.',
+      details: error.message,
+    });
   }
 };
 
 // Get all reviews for a restaurant
-export const getAllReviewsForRestaurant = async (req, res) => {
+export const getAllReviewsForRestaurant = async (req: Request, res: Response) => {
   try {
-    const { id: restaurantId } = req.params;
+    const { id } = req.params;
 
-    const reviews = await Review.find({ restaurant: restaurantId });
-    res.status(200).json({ data: reviews });
+    const reviews = await Review.find({ restaurant: id })
+      .populate('user', 'name email') // Populate user details
+      .sort({ createdAt: -1 }); // Sort by latest reviews
+
+    res.status(200).json(reviews);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch reviews.', details: error.message });
+    res.status(500).json({
+      error: 'Failed to fetch reviews.',
+      details: error.message,
+    });
   }
 };
 
 // Get a specific review by ID
-export const getReviewById = async (req, res) => {
+export const getReviewById = async (req: Request, res: Response) => {
   try {
-    const { id: restaurantId, reviewId } = req.params;
+    const { reviewId } = req.params;
 
-    const review = await Review.findOne({ _id: reviewId, restaurant: restaurantId });
+    const review = await Review.findById(reviewId).populate('user', 'name email');
     if (!review) {
       return res.status(404).json({ error: 'Review not found.' });
     }
 
-    res.status(200).json({ data: review });
+    res.status(200).json(review);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch review.', details: error.message });
+    res.status(500).json({
+      error: 'Failed to fetch review.',
+      details: error.message,
+    });
   }
 };
 
-// Update a specific review by ID
-export const updateReview = async (req, res) => {
+// Update a review
+export const updateReview = async (req: Request, res: Response) => {
   try {
-    const { id: restaurantId, reviewId } = req.params;
+    const { reviewId } = req.params;
+    const { rating, review, images } = req.body;
+
+    const userId = req.user.id; // Authenticated user
 
     const updatedReview = await Review.findOneAndUpdate(
-      { _id: reviewId, restaurant: restaurantId },
-      req.body,
+      { _id: reviewId, user: userId }, // Only review owner can update
+      { rating, review, images },
       { new: true, runValidators: true }
     );
 
     if (!updatedReview) {
-      return res.status(404).json({ error: 'Review not found.' });
+      return res.status(404).json({ error: 'Review not found or unauthorized.' });
     }
 
-    res.status(200).json({ message: 'Review updated successfully.', data: updatedReview });
+    res.status(200).json({
+      message: 'Review updated successfully.',
+      review: updatedReview,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update review.', details: error.message });
+    res.status(500).json({
+      error: 'Failed to update review.',
+      details: error.message,
+    });
   }
 };
 
-// Delete a specific review by ID
-export const deleteReview = async (req, res) => {
+// Delete a review
+export const deleteReview = async (req: Request, res: Response) => {
   try {
-    const { id: restaurantId, reviewId } = req.params;
+    const { reviewId } = req.params;
+    const userId = req.user.id;
 
-    const deletedReview = await Review.findOneAndDelete({ _id: reviewId, restaurant: restaurantId });
+    const deletedReview = await Review.findOneAndDelete({
+      _id: reviewId,
+      user: userId, // Ensure only review owner can delete
+    });
 
     if (!deletedReview) {
-      return res.status(404).json({ error: 'Review not found.' });
+      return res.status(404).json({ error: 'Review not found or unauthorized.' });
     }
 
     res.status(200).json({ message: 'Review deleted successfully.' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete review.', details: error.message });
+    res.status(500).json({
+      error: 'Failed to delete review.',
+      details: error.message,
+    });
   }
 };

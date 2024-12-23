@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { TCustomCard, TFooter } from '@tap-n-taste/ui';
-import SearchIcon from "../../../assets/mynaui_search - Copy.png";
+
+//import SearchIcon from "../../../assets/mynaui_search - Copy.png";
+
+import SearchIcon from "../../../assets/mynaui_search.png";
+
 import { oneorderdata, OrderPageData } from "../../constants/orderpagedata";
 
 const OrderComplete: React.FC = () => {

@@ -24,7 +24,10 @@ export const OrderPageData = [
       price: 9.99,
     },
   ];
+
   export const oneorderdata = [
+
+  
     {
       image:
         'https://images.pexels.com/photos/8463429/pexels-photo-8463429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
