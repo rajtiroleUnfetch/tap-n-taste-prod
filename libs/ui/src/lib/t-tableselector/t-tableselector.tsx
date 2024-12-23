@@ -1,7 +1,15 @@
-import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import { Box } from '@mui/material';
 
-export function TTableSelector() {
+interface TTableSelectorProps {
+  className?: string; // Custom className for additional styling
+  sx?: object; // Inline styles for MUI's Box component
+}
+
+export function TTableSelector({
+  className = '',
+  sx = {},
+}: TTableSelectorProps) {
   const [selectedTable, setSelectedTable] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -13,16 +21,17 @@ export function TTableSelector() {
   };
 
   return (
-    <Box className="z-50 w-fit h-fit absolute lg:top-[42%] xl:top-[42%] bottom-[-4%] md:bottom-[-2%] lg:left-[29%] xl:left-[22%] left-1/2 transform -translate-x-1/2">
+    <Box className={`z-50 w-fit h-fit ${className}`} sx={sx}>
       <div className="flex items-center justify-center text-red-500">
         {/* Dropdown */}
-        <div className="relative">
+        <h1 className="font-semibold text-black mr-2">Table No.</h1>
+        <div className="ml-2 relative">
           <div
             tabIndex={0}
-            className="w-fit sm:px-2 text-[12px] sm:text-sm font-medium border border-red-500 rounded cursor-pointer text-red-500 focus:outline-none focus:border-red-500"
+            className="w-fit sm:px-2 px-3 py-2 text-[12px] sm:text-sm font-medium border border-red-500 rounded cursor-pointer text-red-500 focus:outline-none focus:border-red-500"
             onClick={handleDropdownToggle}
           >
-            {selectedTable || 'Table No.  '}
+            {selectedTable || 'Select a table'}
           </div>
 
           {/* Dropdown List */}
