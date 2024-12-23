@@ -8,7 +8,7 @@ export interface IUser extends Document {
   password: string;
   phone?: string;
   profileImage?: string;
-  otp: string; 
+  otp: string;
   otpExpiry?: number; // Add OTP expiry date
   role: 'User' | 'Admin' | 'SuperAdmin';
   restaurantId?: mongoose.Schema.Types.ObjectId; // Admin only, linking to restaurant
@@ -18,36 +18,36 @@ export interface IUser extends Document {
 
 const userSchema = new mongoose.Schema(
   {
-    name: { 
-      type: String, 
-      required: true, 
-      trim: true 
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    email: { 
-      type: String, 
-      // required: true, 
-      unique: true, 
-      default:null,
-      lowercase: true 
+    email: {
+      type: String,
+      // required: true,
+      unique: true,
+      default: null,
+      lowercase: true,
     },
-    password: { 
-      type: String, 
-      required: true 
+    password: {
+      type: String,
+      required: true,
     },
-    otp: { 
-      type: String 
+    otp: {
+      type: String,
     },
-    profileImage: { 
-      type: String 
+    profileImage: {
+      type: String,
     },
     otpExpiry: {
       type: Date,
     },
-    phone: { 
-      type: String, 
-      // required: true, 
+    phone: {
+      type: String,
+      // required: true,
       unique: true,
-      default:null
+      default: null,
     },
     restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }, // Only for Admin
     role: {
@@ -55,10 +55,10 @@ const userSchema = new mongoose.Schema(
       enum: ['User', 'Admin', 'SuperAdmin'],
       default: 'User',
     },
-    status: { 
-      type: String, 
-      enum: ['pending', 'verified'], 
-      default: 'pending' 
+    status: {
+      type: String,
+      enum: ['pending', 'verified'],
+      default: 'pending',
     },
     accessToken: { type: String },
     refreshToken: { type: String },

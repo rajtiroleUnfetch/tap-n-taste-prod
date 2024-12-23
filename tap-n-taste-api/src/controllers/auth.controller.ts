@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/user.model';
 import { v4 as uuidv4 } from 'uuid';
+import { sendLoginOTPEmail } from '../utils/otpService';
 
 const OTP_EXPIRY = 5 * 60 * 1000; // OTP expires in 5 minutes
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
@@ -201,10 +202,10 @@ export const signup = async (req: Request, res: Response) => {
     if (phone) query.phone = phone;
 
     // Check if user with the same email or phone already exists
-    const existingUser = await User.findOne({email});
-    const existingUserPhone = await User.findOne({phone});
+    const existingUser = await User.findOne({ email });
+    const existingUserPhone = await User.findOne({ phone });
 
-    if (existingUser||existingUserPhone) {
+    if (existingUser || existingUserPhone) {
       return res
         .status(400)
         .json({ error: 'Email or Phone already registered', existingUser });
