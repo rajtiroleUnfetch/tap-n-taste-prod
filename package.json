@@ -42,7 +42,8 @@
     "react-swipeable": "^7.0.2",
     "react-toastify": "^10.0.6",
     "styled-components": "5.3.6",
-    "twilio": "^5.4.0"
+    "twilio": "^5.4.0",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
