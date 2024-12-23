@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/user.model';
-import { sendSignupOTPEmail, sendLoginOTPEmail } from '../utils/otpService';
+import { v4 as uuidv4 } from 'uuid';
 
 const OTP_EXPIRY = 5 * 60 * 1000; // OTP expires in 5 minutes
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
@@ -34,8 +34,8 @@ export const googleAuthCallback = (req: Request, res: Response) => {
           password: user.password,
           phone: user.email,
           profileImage: user.profileImage,
-          GAccessToken:user.GAccessToken,
-          GRefreshToken:user.GRefreshToken,
+          GAccessToken: user.GAccessToken,
+          GRefreshToken: user.GRefreshToken,
         });
 
         await existingUser.save();
@@ -51,15 +51,15 @@ export const googleAuthCallback = (req: Request, res: Response) => {
         { expiresIn: JWT_EXPIRY }
       );
 
-        // Set token in headers
-        res.setHeader('Authorization', `Bearer ${token}`);
+      // Set token in headers
+      res.setHeader('Authorization', `Bearer ${token}`);
 
-        // Set token in cookies
-        res.cookie('token', token, {
-          httpOnly: true, // Prevents client-side JS from accessing the cookie
-          secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-          sameSite: 'strict', // Mitigate CSRF attacks
-        });
+      // Set token in cookies
+      res.cookie('token', token, {
+        httpOnly: true, // Prevents client-side JS from accessing the cookie
+        secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+        sameSite: 'strict', // Mitigate CSRF attacks
+      });
 
       res.status(200).json({ token, user: existingUser });
     } catch (error) {
@@ -190,11 +190,9 @@ export const signup = async (req: Request, res: Response) => {
 
     // Validate inputs
     if (!name || !password || (!email && !phone)) {
-      return res
-        .status(400)
-        .json({
-          error: 'Name, password, and either email or phone are required',
-        });
+      return res.status(400).json({
+        error: 'Name, password, and either email or phone are required',
+      });
     }
 
     // Build query conditionally
@@ -203,9 +201,10 @@ export const signup = async (req: Request, res: Response) => {
     if (phone) query.phone = phone;
 
     // Check if user with the same email or phone already exists
-    const existingUser = await User.findOne(query);
+    const existingUser = await User.findOne({email});
+    const existingUserPhone = await User.findOne({phone});
 
-    if (existingUser) {
+    if (existingUser||existingUserPhone) {
       return res
         .status(400)
         .json({ error: 'Email or Phone already registered', existingUser });
@@ -214,8 +213,8 @@ export const signup = async (req: Request, res: Response) => {
     // Create new user
     const user = new User({
       name,
-      email: email || null, // Set to null if not provided
-      phone: phone || null, // Set to null if not provided
+      email: email || phone || uuidv4(), // Set to null if not provided
+      phone: phone || email || uuidv4(), // Set to null if not provided
       password,
       role: 'User', // Default role
       status: 'verified', // Directly set status as verified for signup
@@ -282,15 +281,15 @@ export const login = async (req: Request, res: Response) => {
       JWT_SECRET,
       { expiresIn: JWT_EXPIRY }
     );
-      // Set token in headers
-      res.setHeader('Authorization', `Bearer ${token}`);
+    // Set token in headers
+    res.setHeader('Authorization', `Bearer ${token}`);
 
-      // Set token in cookies
-      res.cookie('token', token, {
-        httpOnly: true, // Prevents client-side JS from accessing the cookie
-        secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-        sameSite: 'strict', // Mitigate CSRF attacks
-      });
+    // Set token in cookies
+    res.cookie('token', token, {
+      httpOnly: true, // Prevents client-side JS from accessing the cookie
+      secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+      sameSite: 'strict', // Mitigate CSRF attacks
+    });
 
     res.status(200).json({ token, user });
   } catch (error) {

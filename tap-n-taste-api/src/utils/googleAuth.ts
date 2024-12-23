@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { v4 as uuidv4 } from 'uuid';
 import User from '../models/user.model'; // Adjust the path based on your project structure
 passport.use(
   new GoogleStrategy(
@@ -18,11 +19,11 @@ passport.use(
             email: profile.emails[0].value,
             password: 'gauthUserPassword',
             role: 'User',
-            phone: profile.emails[0].value,
+            phone: profile.emails[0].value || uuidv4(),
             status: profile.emails[0].verified ? 'verified' : 'pending',
             profileImage: profile.photos[0]?.value,
-            GAccessToken:accessToken,
-            GRefreshToken:refreshToken,
+            GAccessToken: accessToken,
+            GRefreshToken: refreshToken,
           });
         }
         done(null, user);
