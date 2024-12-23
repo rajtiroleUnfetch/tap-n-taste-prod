@@ -1,8 +1,16 @@
-import { useState, useEffect } from 'react';
-import { getAllRestaurants } from '../../../services/api/src/lib/restaurants';
+import { useEffect, useState } from 'react';
+import api from '../../../services/api/src/lib/api';
 
-export const useRestaurants = () => {
-  const [restaurants, setRestaurants] = useState<any[]>([]);
+interface Restaurant {
+  id: string;
+  name: string;
+  location: string;
+  cuisine: string;
+  image: string; // Adjust fields based on your API response
+}
+
+const useRestaurants = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -11,10 +19,10 @@ export const useRestaurants = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await getAllRestaurants();
-        setRestaurants(data);
+        const response = await api.get('/restaurants'); // Replace with your actual endpoint
+        setRestaurants(response.data); // Adjust based on your API's response shape
       } catch (err: any) {
-        setError('Failed to fetch restaurants');
+        setError(err.message || 'Failed to fetch restaurants');
       } finally {
         setLoading(false);
       }
@@ -25,3 +33,5 @@ export const useRestaurants = () => {
 
   return { restaurants, loading, error };
 };
+
+export default useRestaurants;

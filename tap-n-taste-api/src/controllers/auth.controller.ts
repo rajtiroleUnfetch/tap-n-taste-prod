@@ -2,72 +2,299 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/user.model';
-import { sendSignupOTPEmail, sendLoginOTPEmail } from '../utils/otpService';
+import { v4 as uuidv4 } from 'uuid';
 
 const OTP_EXPIRY = 5 * 60 * 1000; // OTP expires in 5 minutes
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 
 // Google Auth Logic
-export const googleAuth = passport.authenticate('google', { scope: ['profile', 'email'] });
+export const googleAuth = passport.authenticate('google', {
+  scope: ['profile', 'email'],
+});
 
 export const googleAuthCallback = (req: Request, res: Response) => {
   passport.authenticate('google', { session: false }, async (err, user) => {
-    if (err || !user) return res.status(401).json({ error: 'Google authentication failed' });
+    console.log('Error:', err);
+    console.log('User:', user);
 
-    // Check if the user exists in the database
-    let existingUser = await User.findOne({ email: user.email });
-    
-    // If the user doesn't exist, create a new user
-    if (!existingUser) {
-      existingUser = new User({
-        name: user.displayName,
-        email: user.email,
-        role: 'User', // Default role
-        status: 'verified', // Assume user is verified after Google login
-      });
-      await existingUser.save();
+    if (err || !user) {
+      return res.status(401).json({ error: 'Google authentication failed' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ id: existingUser._id, email: existingUser.email, role: existingUser.role }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
-    res.status(200).json({ token, user: existingUser });
+    try {
+      let existingUser = await User.findOne({ email: user.email });
+
+      if (!existingUser) {
+        existingUser = new User({
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          status: user.status,
+          password: user.password,
+          phone: user.email,
+          profileImage: user.profileImage,
+          GAccessToken: user.GAccessToken,
+          GRefreshToken: user.GRefreshToken,
+        });
+
+        await existingUser.save();
+      }
+
+      const token = jwt.sign(
+        {
+          id: existingUser._id,
+          email: existingUser.email,
+          role: existingUser.role,
+        },
+        JWT_SECRET,
+        { expiresIn: JWT_EXPIRY }
+      );
+
+      // Set token in headers
+      res.setHeader('Authorization', `Bearer ${token}`);
+
+      // Set token in cookies
+      res.cookie('token', token, {
+        httpOnly: true, // Prevents client-side JS from accessing the cookie
+        secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+        sameSite: 'strict', // Mitigate CSRF attacks
+      });
+
+      res.status(200).json({ token, user: existingUser });
+    } catch (error) {
+      console.error('Error during callback processing:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   })(req, res);
 };
 
 // Regular User Signup
+// export const signup = async (req: Request, res: Response) => {
+//   try {
+//     const { name, email, password, phone } = req.body;
+
+//     // Check if user exists
+//     const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
+//     if (existingUser) {
+//       return res.status(400).json({ existingUser,error: 'Email or Phone already registered' });
+//     }
+
+//     // Generate OTP
+//     // const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+//     // Send OTP to email
+//     // await sendSignupOTPEmail('rajtirole23454@gmail.com', otp);
+
+//     // Create new user and save with status 'pending'
+//     const user = new User({
+//       name,
+//       email,
+//       password,
+//       phone,
+//       // otp,
+//       // otpExpiry: Date.now() + OTP_EXPIRY, // Set OTP expiry time
+//       role: 'User',
+//       status: 'verified',
+//     });
+//     await user.save();
+
+//     res.status(200).json({ message: 'User created successfully', user });
+//   } catch (error) {
+//     res.status(500).json({ error: 'Signup failed' });
+//   }
+// };
+// export const signup = async (req: Request, res: Response) => {
+//   try {
+//     const { name, email, password, phone } = req.body;
+
+//     // Validate inputs
+//     if (!name || !password || (!email && !phone)) {
+//       return res.status(400).json({ error: 'Name, password, and either email or phone are required' });
+//     }
+
+//     const query=email ? { email } : { phone };
+
+//     // Check if user with the same email or phone already exists
+//     const existingUser = await User.findOne({
+//       query
+//     });
+//     if (existingUser) {
+//       return res
+//         .status(400)
+//         .json({ error: 'Email or Phone already registered', existingUser });
+//     }
+
+//     // Create new user
+//     const user = new User({
+//       name,
+//       email: email || null, // Set to null if not provided
+//       phone: phone || null, // Set to null if not provided
+//       password,
+//       role: 'User', // Default role
+//       status: 'verified', // Directly set status as verified for signup
+//     });
+
+//     await user.save();
+
+//     // Return success response
+//     res.status(201).json({
+//       message: 'User created successfully',
+//       user: {
+//         id: user._id,
+//         name: user.name,
+//         email: user.email,
+//         phone: user.phone,
+//         role: user.role,
+//         status: user.status,
+//       },
+//     });
+//   } catch (error) {
+//     console.error('Signup error:', error);
+//     res.status(500).json({ error: 'Signup failed' });
+//   }
+// };
+
+// export const login = async (req: Request, res: Response) => {
+//   try {
+//     const { email, phone, password } = req.body;
+
+//     // Find user by email or phone
+//     const user = await User.findOne({ $or: [{ email }, { phone }] });
+//     if (!user) {
+//       return res.status(401).json({ user,error: 'Invalid credentials' });
+//     }
+
+//     // Check password match
+//     const isMatch = await user.comparePassword(password);
+//     if (!isMatch) {
+//       return res.status(401).json({ user,error: 'Invalid credentials' });
+//     }
+
+//     // Admin check: Only active admins can login
+//     if (user.role === 'Admin' && user.status !== 'verified') {
+//       return res.status(401).json({ error: 'Admin account pending approval' });
+//     }
+
+//     // Generate JWT token
+//     const token = jwt.sign({ id: user._id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
+
+//     res.status(200).json({ token, user });
+//   } catch (error) {
+//     res.status(500).json({ error: 'Login failed' });
+//   }
+// };
 export const signup = async (req: Request, res: Response) => {
   try {
     const { name, email, password, phone } = req.body;
 
-    // Check if user exists
-    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
-    if (existingUser) {
-      return res.status(400).json({ error: 'Email or Phone already registered' });
+    // Validate inputs
+    if (!name || !password || (!email && !phone)) {
+      return res.status(400).json({
+        error: 'Name, password, and either email or phone are required',
+      });
     }
 
-    // Generate OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // Build query conditionally
+    const query: any = {};
+    if (email) query.email = email;
+    if (phone) query.phone = phone;
 
-    // Send OTP to email
-    await sendSignupOTPEmail(email, otp);
+    // Check if user with the same email or phone already exists
+    const existingUser = await User.findOne({email});
+    const existingUserPhone = await User.findOne({phone});
 
-    // Create new user and save with status 'pending'
+    if (existingUser||existingUserPhone) {
+      return res
+        .status(400)
+        .json({ error: 'Email or Phone already registered', existingUser });
+    }
+
+    // Create new user
     const user = new User({
       name,
-      email,
+      email: email || phone || uuidv4(), // Set to null if not provided
+      phone: phone || email || uuidv4(), // Set to null if not provided
       password,
-      phone,
-      otp,
-      otpExpiry: Date.now() + OTP_EXPIRY, // Set OTP expiry time
-      role: 'User',
-      status: 'pending',
+      role: 'User', // Default role
+      status: 'verified', // Directly set status as verified for signup
     });
+
     await user.save();
 
-    res.status(200).json({ message: 'OTP sent to email' });
+    // Return success response
+    res.status(201).json({
+      message: 'User created successfully',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        status: user.status,
+      },
+    });
   } catch (error) {
+    console.error('Signup error:', error);
     res.status(500).json({ error: 'Signup failed' });
+  }
+};
+
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { email, phone, password } = req.body;
+
+    if (!password || (!email && !phone)) {
+      return res
+        .status(400)
+        .json({ error: 'Password and either email or phone are required' });
+    }
+
+    // Build query conditionally
+    const query: any = {};
+    if (email) query.email = email;
+    if (phone) query.phone = phone;
+
+    // Find user by email or phone
+    const user = await User.findOne({
+      $or: Object.keys(query).map((key) => ({ [key]: query[key] })),
+    });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Check password match
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Admin check: Only active admins can login
+    if (user.role === 'Admin' && user.status !== 'verified') {
+      return res.status(401).json({ error: 'Admin account pending approval' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRY }
+    );
+    // Set token in headers
+    res.setHeader('Authorization', `Bearer ${token}`);
+
+    // Set token in cookies
+    res.cookie('token', token, {
+      httpOnly: true, // Prevents client-side JS from accessing the cookie
+      secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+      sameSite: 'strict', // Mitigate CSRF attacks
+    });
+
+    res.status(200).json({ token, user });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Login failed' });
   }
 };
 
@@ -99,35 +326,6 @@ export const verifySignupOTP = async (req: Request, res: Response) => {
 };
 
 // Login (Using Email or Phone and Password)
-export const login = async (req: Request, res: Response) => {
-  try {
-    const { email, phone, password } = req.body;
-
-    // Find user by email or phone
-    const user = await User.findOne({ $or: [{ email }, { phone }] });
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    // Check password match
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    // Admin check: Only active admins can login
-    if (user.role === 'Admin' && user.status !== 'verified') {
-      return res.status(401).json({ error: 'Admin account pending approval' });
-    }
-
-    // Generate JWT token
-    const token = jwt.sign({ id: user._id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
-
-    res.status(200).json({ token, user });
-  } catch (error) {
-    res.status(500).json({ error: 'Login failed' });
-  }
-};
 
 // Send OTP for Login
 export const sendLoginOTP = async (req: Request, res: Response) => {
@@ -158,10 +356,16 @@ export const verifyLoginOTP = async (req: Request, res: Response) => {
     const { email, otp } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user || user.otp !== otp) return res.status(400).json({ error: 'Invalid OTP' });
-    if (Date.now() > user.otpExpiry) return res.status(400).json({ error: 'OTP expired' });
+    if (!user || user.otp !== otp)
+      return res.status(400).json({ error: 'Invalid OTP' });
+    if (Date.now() > user.otpExpiry)
+      return res.status(400).json({ error: 'OTP expired' });
 
-    const token = jwt.sign({ id: user._id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRY });
+    const token = jwt.sign(
+      { id: user._id, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRY }
+    );
     res.status(200).json({ token, user });
   } catch (error) {
     res.status(500).json({ error: 'OTP verification failed' });
@@ -189,7 +393,9 @@ export const requestAdminSignup = async (req: Request, res: Response) => {
     });
 
     await admin.save();
-    res.status(201).json({ message: 'Admin registration request submitted for approval' });
+    res
+      .status(201)
+      .json({ message: 'Admin registration request submitted for approval' });
   } catch (error) {
     res.status(500).json({ error: 'Registration request failed' });
   }

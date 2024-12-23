@@ -4,9 +4,10 @@ import bcrypt from 'bcrypt';
 // Define the User interface extending Document
 export interface IUser extends Document {
   name: string;
-  email: string;
+  email?: string;
   password: string;
-  phone: string;
+  phone?: string;
+  profileImage?: string;
   otp: string; 
   otpExpiry?: number; // Add OTP expiry date
   role: 'User' | 'Admin' | 'SuperAdmin';
@@ -24,8 +25,9 @@ const userSchema = new mongoose.Schema(
     },
     email: { 
       type: String, 
-      required: true, 
+      // required: true, 
       unique: true, 
+      default:null,
       lowercase: true 
     },
     password: { 
@@ -35,13 +37,17 @@ const userSchema = new mongoose.Schema(
     otp: { 
       type: String 
     },
+    profileImage: { 
+      type: String 
+    },
     otpExpiry: {
       type: Date,
     },
     phone: { 
       type: String, 
-      required: true, 
-      unique: true 
+      // required: true, 
+      unique: true,
+      default:null
     },
     restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }, // Only for Admin
     role: {
@@ -54,6 +60,10 @@ const userSchema = new mongoose.Schema(
       enum: ['pending', 'verified'], 
       default: 'pending' 
     },
+    accessToken: { type: String },
+    refreshToken: { type: String },
+    GAccessToken: { type: String },
+    GRefreshToken: { type: String },
   },
   { timestamps: true }
 );
