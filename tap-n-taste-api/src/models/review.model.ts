@@ -1,48 +1,59 @@
-import mongoose, { Schema, Document, Types } from 'mongoose';
+import mongoose from 'mongoose';
 
-export interface IReview extends Document {
-  restaurant: Types.ObjectId; // Reference to Restaurant
-  user: Types.ObjectId; // Reference to User
-  rating: number;
-  review: string;
-  images?: string[]; // Optional array of image URLs
-}
-
-const reviewSchema = new Schema<IReview>(
-  {
-    restaurant: {
-      type: Schema.Types.ObjectId,
-      ref: 'Restaurant',
-      required: true,
-    },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    rating: {
-      type: Number,
-      min: 1,
-      max: 5,
-      required: [true, 'Rating is required'],
-    },
-    review: {
-      type: String,
-      required: [true, 'Review text is required'],
-      trim: true,
-    },
-    images: [
-      {
-        type: String,
-        validate: {
-          validator: (v: string) => /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/.test(v),
-          message: 'Image URL must be valid and point to an image file.',
-        },
-      },
-    ],
+const reviewSchema = new mongoose.Schema({
+  // Link to the User who created the review
+  user: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User', 
+    required: true
   },
-  { timestamps: true }
-);
 
-const Review = mongoose.model<IReview>('Review', reviewSchema);
+  // Link to the Restaurant to which the review belongs
+  restaurant: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Restaurant', 
+    required: true 
+  },
+
+  // User details (Optional but included for context)
+  userDetails: {
+    name: { type: String, required: true },
+    profileImage: { type: String },
+    role: { type: String, enum: ['User', 'Admin', 'SuperAdmin'], default: 'User' },
+    phone: { type: String },
+  },
+
+  // Review content
+  rating: { 
+    type: Number, 
+    required: true, 
+    min: 1, 
+    max: 5 
+  },
+  
+  review: { 
+    type: String, 
+    trim: true,
+  },
+  
+  // Media attached to the review (e.g., images or videos)
+  media: { 
+    type: [String], 
+    default: [] 
+  },
+
+  // Timestamps for creation and last update
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  },
+  
+  updatedAt: { 
+    type: Date 
+  },
+  
+}, { timestamps: true });
+
+
+const Review = mongoose.model('Review', reviewSchema);
 export default Review;
