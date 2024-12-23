@@ -18,8 +18,11 @@ passport.use(
             email: profile.emails[0].value,
             password: 'gauthUserPassword',
             role: 'User',
+            phone: profile.emails[0].value,
             status: profile.emails[0].verified ? 'verified' : 'pending',
             profileImage: profile.photos[0]?.value,
+            GAccessToken:accessToken,
+            GRefreshToken:refreshToken,
           });
         }
         done(null, user);
@@ -30,4 +33,4 @@ passport.use(
     }
   )
 );
-export default passport
+export default passport;
