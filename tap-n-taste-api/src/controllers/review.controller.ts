@@ -1,5 +1,23 @@
+<<<<<<< Updated upstream
 import Review from '../models/review.model.js';
 import Restaurant from '../models/restaurant.model.js';
+=======
+import { Request, Response } from 'express';
+import Review from '../models/review.model';
+import Restaurant from '../models/restaurant.model';
+
+export {};
+
+declare module 'express' {
+  export interface Request {
+    user: {
+      role: string;
+      id: string;
+      // Add other user properties if needed
+    }
+  }
+}
+>>>>>>> Stashed changes
 
 // Create a new review
 export const createReview = async (req, res) => {

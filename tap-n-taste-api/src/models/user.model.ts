@@ -6,38 +6,58 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  phone: string;
+  otp: string; 
+  otpExpiry?: number; // Add OTP expiry date
   role: 'User' | 'Admin' | 'SuperAdmin';
+<<<<<<< Updated upstream
   restaurantId: mongoose.Types.ObjectId | null;
   comparePassword: (candidatePassword: string) => Promise<boolean>; // Add comparePassword method type
+=======
+  restaurantId?: mongoose.Schema.Types.ObjectId; // Admin only, linking to restaurant
+  status: 'pending' | 'verified'; // Status after email verification
+  comparePassword: (candidatePassword: string) => Promise<boolean>;
+>>>>>>> Stashed changes
 }
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
+    name: { 
+      type: String, 
+      required: true, 
+      trim: true 
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
+    email: { 
+      type: String, 
+      required: true, 
+      unique: true, 
+      lowercase: true 
     },
-    password: {
-      type: String,
-      required: true,
+    password: { 
+      type: String, 
+      required: true 
     },
+    otp: { 
+      type: String 
+    },
+    otpExpiry: {
+      type: Date,
+    },
+    phone: { 
+      type: String, 
+      required: true, 
+      unique: true 
+    },
+    restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }, // Only for Admin
     role: {
       type: String,
       enum: ['User', 'Admin', 'SuperAdmin'],
       default: 'User',
     },
-    restaurantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Restaurant',
-      default: null, // Only for Admins
+    status: { 
+      type: String, 
+      enum: ['pending', 'verified'], 
+      default: 'pending' 
     },
   },
   { timestamps: true }
@@ -45,16 +65,18 @@ const userSchema = new mongoose.Schema(
 
 // Password hashing before saving
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
   next();
 });
 
 // Method to compare passwords
-userSchema.methods.comparePassword = async function (candidatePassword: string) {
-  return await bcrypt.compare(candidatePassword, this.password);
+userSchema.methods.comparePassword = async function (
+  candidatePassword: string
+) {
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
-// Define and export the model with the IUser interface
 const User = mongoose.model<IUser>('User', userSchema);
 export default User;

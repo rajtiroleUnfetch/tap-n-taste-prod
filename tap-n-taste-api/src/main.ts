@@ -3,6 +3,7 @@ import connectDB from './config/database';
 import restaurantRoutes from './routes/restaurant.routes';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandler';
+import { handleFileUpload } from './middlewares/uploadMiddleware';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -15,6 +16,10 @@ app.use(express.json());
 
 // Database Connection
 connectDB();
+
+//  Middleware to parse JSON and handle file upload
+app.use(express.urlencoded({ extended: true }));
+app.use(handleFileUpload); // Global file upload middleware
 
 // Routes
 app.use('/api/restaurants', restaurantRoutes);
