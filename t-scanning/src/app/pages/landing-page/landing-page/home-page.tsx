@@ -32,139 +32,165 @@ import burgerImage from './burger.jpg'; // Adjust the path if it's in a differen
 import pastaImage from './pasta.jpg';
 import friesImage from './potatofries.jpg';
 import Tpayment from '../../payment-page/t-payment';
+import { useRestaurants } from '../../../../../../libs/hooks/src/lib/useRestaurants';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { restaurants, loading, error } = useRestaurants();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
+
   return (
-    <Box className="px-[8%] sm:px-[15%]">
-      {/* Top Navigation Bar */}
-      <TopNav />
-
-      {/* Table Selector */}
-      <Box className="w-full flex items-center justify-center">
-        <TTableSelector />
-      </Box>
-
-      {/* RESTAURANT INFO */}
-      <RestaurantInfoPage
-        restaurantName="Stone Water"
-        restaurantDesc="North Indian | Chinese | Thai"
-        restaurantAddress="Door 8-9/2, Rushikonda, Visakhapatnam"
-        isOpen={true}
-        closingTime={11}
-        daysOperate="Mon-Fri"
-        deliveryAndDinning={true}
-        distance={2.2}
-        ratings={4.5}
-      />
-      <Box className="mt-4 mb-8">
-        <TButton
-          text="Menu"
-          className={{ root: '!bg-[#F1414F] !text-white w-full' }}
-          icon={<RestaurantMenuIcon className="text-white" />}
-          onClick={() => navigate('/restaurants/:id/menu')} // Navigate to Menu
-        />
-      </Box>
-      <Box className="flex justify-between items-center mb-8">
-        <TManage />
-        <TCategory />
-      </Box>
-      <TViewBar />
-      {/* Offers Section */}
-      <OfferPage />
-
-      {/* Top Customer Likes Section */}
-      <TopCustomerLikes />
-      <ChefSpecial />
-      <GalleryPage />
-      {/* Review Section */}
-      <ReviewPage />
-      {/* FAQ Section */}
-      <FaqPage />
-      {/* Issue */}
-      <Box className="mt-6 mb-20">
-        <Divider
-          textAlign="left"
-          className="text-2xl text-zinc-700 font-semibold mb-6"
-        >
-          Having an issue?
-        </Divider>
-        <Box className="mt-8 mb-8"></Box>
-        <TButton
-          text="Contact Us"
-          className={{
-            root: 'w-full mt-8 bg-white',
-            text: 'text-primary',
-          }}
-          styles={{
-            border: '2px solid #F1414F',
-          }}
-          icon={<CallIcon className="text-primary" />}
-        />
-      </Box>
-      {/* Footer Section */}
-      <FooterPage />
-      {/* Bottom Bar */}
-      <Box className="mt-10 mb-5">
-        <h1 className="text-center font-semibold text-sm text-zinc-500">
-          Powered by Tap'nTaste
-        </h1>
-      </Box>
-      <TFooter />
-
-      {/* Review Section */}
-      <ReviewPage />
-
-      <TOrderplaced
-        mainText="Your order is accepted"
-        subText="by the restaurant!"
-      />
-
-      <Box className="mb-4">
-        <TFaq />
-      </Box>
-
-      {/* About Section */}
-      <Box className="mb-4">
-        <TAbout />
-      </Box>
-
-      {/* Footer Section */}
-      <Box className="mb-4">
-        <TFooter />
-        <TReviewpopup />
-      </Box>
-
-      {/* Custom Card */}
-      <Box className="mb-4">
-        <TCustomCard
-          image={burgerImage}
-          title="Burger"
-          description="Succulent Grilled Chicken Patty Nestled Between Toasted Buns, Crowned With Crisp Lettuce And Tangy Mayo, Delivering Savory Satisfaction In Every Bite."
-          rating={4.5}
-          price={250}
-          veg={true} // Non-vegetarian
-        />
-        <TCustomCard
-          image={pastaImage}
-          title="Pasta"
-          description="A creamy, comforting dish made with al dente pasta, rich sauce, and a blend of fresh herbs"
-          rating={4.8}
-          price={200}
-          veg={false} // Vegetarian
-        />
-        <TCustomCard
-          image={friesImage}
-          title="Fries"
-          description="Golden, crispy on the outside and soft on the inside, these perfectly seasoned fries are the ultimate snack for any craving."
-          rating={4.1}
-          price={200}
-          veg={true} // Vegetarian
-        />
-        <TSetting></TSetting>
-        <Tpayment></Tpayment>
-      </Box>
+    <Box>
+      <h1>Test</h1>
+      {restaurants.map((restaurant) => (
+        <div key={restaurant.id}>
+          <img
+            src={restaurant.image || '/placeholder.jpg'}
+            alt={restaurant.name}
+            className="w-full h-32 object-cover rounded-md mb-2"
+          />
+          <h2>{restaurant.name}</h2>
+          <p>{restaurant.description}</p>
+          <p>{restaurant.location}</p>
+        </div>
+      ))}
     </Box>
+    // <Box className="px-[8%] sm:px-[15%]">
+    //   {/* Top Navigation Bar */}
+    //   <TopNav />
+
+    //   {/* Table Selector */}
+    //   <Box className="w-full flex items-center justify-center">
+    //     <TTableSelector />
+    //   </Box>
+
+    //   {/* RESTAURANT INFO */}
+    //   <RestaurantInfoPage
+    //     restaurantName="Stone Water"
+    //     restaurantDesc="North Indian | Chinese | Thai"
+    //     restaurantAddress="Door 8-9/2, Rushikonda, Visakhapatnam"
+    //     isOpen={true}
+    //     closingTime={11}
+    //     daysOperate="Mon-Fri"
+    //     deliveryAndDinning={true}
+    //     distance={2.2}
+    //     ratings={4.5}
+    //   />
+    //   <Box className="mt-4 mb-8">
+    //     <TButton
+    //       text="Menu"
+    //       className={{ root: '!bg-[#F1414F] !text-white w-full' }}
+    //       icon={<RestaurantMenuIcon className="text-white" />}
+    //       onClick={() => navigate('/restaurants/:id/menu')} // Navigate to Menu
+    //     />
+    //   </Box>
+    //   <Box className="flex justify-between items-center mb-8">
+    //     <TManage />
+    //     <TCategory />
+    //   </Box>
+    //   <TViewBar />
+    //   {/* Offers Section */}
+    //   <OfferPage />
+
+    //   {/* Top Customer Likes Section */}
+    //   <TopCustomerLikes />
+    //   <ChefSpecial />
+    //   <GalleryPage />
+    //   {/* Review Section */}
+    //   <ReviewPage />
+    //   {/* FAQ Section */}
+    //   <FaqPage />
+    //   {/* Issue */}
+    //   <Box className="mt-6 mb-20">
+    //     <Divider
+    //       textAlign="left"
+    //       className="text-2xl text-zinc-700 font-semibold mb-6"
+    //     >
+    //       Having an issue?
+    //     </Divider>
+    //     <Box className="mt-8 mb-8"></Box>
+    //     <TButton
+    //       text="Contact Us"
+    //       className={{
+    //         root: 'w-full mt-8 bg-white',
+    //         text: 'text-primary',
+    //       }}
+    //       styles={{
+    //         border: '2px solid #F1414F',
+    //       }}
+    //       icon={<CallIcon className="text-primary" />}
+    //     />
+    //   </Box>
+    //   {/* Footer Section */}
+    //   <FooterPage />
+    //   {/* Bottom Bar */}
+    //   <Box className="mt-10 mb-5">
+    //     <h1 className="text-center font-semibold text-sm text-zinc-500">
+    //       Powered by Tap'nTaste
+    //     </h1>
+    //   </Box>
+    //   <TFooter />
+
+    //   {/* Review Section */}
+    //   <ReviewPage />
+
+    //   <TOrderplaced
+    //     mainText="Your order is accepted"
+    //     subText="by the restaurant!"
+    //   />
+
+    //   <Box className="mb-4">
+    //     <TFaq />
+    //   </Box>
+
+    //   {/* About Section */}
+    //   <Box className="mb-4">
+    //     <TAbout />
+    //   </Box>
+
+    //   {/* Footer Section */}
+    //   <Box className="mb-4">
+    //     <TFooter />
+    //     <TReviewpopup />
+    //   </Box>
+
+    //   {/* Custom Card */}
+    //   <Box className="mb-4">
+    //     <TCustomCard
+    //       image={burgerImage}
+    //       title="Burger"
+    //       description="Succulent Grilled Chicken Patty Nestled Between Toasted Buns, Crowned With Crisp Lettuce And Tangy Mayo, Delivering Savory Satisfaction In Every Bite."
+    //       rating={4.5}
+    //       price={250}
+    //       veg={true} // Non-vegetarian
+    //     />
+    //     <TCustomCard
+    //       image={pastaImage}
+    //       title="Pasta"
+    //       description="A creamy, comforting dish made with al dente pasta, rich sauce, and a blend of fresh herbs"
+    //       rating={4.8}
+    //       price={200}
+    //       veg={false} // Vegetarian
+    //     />
+    //     <TCustomCard
+    //       image={friesImage}
+    //       title="Fries"
+    //       description="Golden, crispy on the outside and soft on the inside, these perfectly seasoned fries are the ultimate snack for any craving."
+    //       rating={4.1}
+    //       price={200}
+    //       veg={true} // Vegetarian
+    //     />
+    //     <TSetting></TSetting>
+    //     <Tpayment></Tpayment>
+    //   </Box>
+    // </Box>
   );
 };
 
