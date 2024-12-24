@@ -29,6 +29,7 @@
       "@tap-n-taste/types": ["t-scanning/libs/types/src/index.ts"],
       "@tap-n-taste/ui": ["libs/ui/src/index.ts"],
       "@tap-n-taste/utils": ["libs/utils/src/index.ts"],
+      "@tap-n-taste/admin": ["t-admin/src/index.ts"],
       "@mui/icons-material": ["node_modules/@mui/icons-material"]
     }
   },
