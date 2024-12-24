@@ -113,4 +113,3 @@ const eventSchema = new mongoose.Schema(
 // Create and export the Event model
 const Event = mongoose.model('Event', eventSchema);
 export default Event;
-``````` ``  z

@@ -343,7 +343,7 @@ export const sendLoginOTP = async (req: Request, res: Response) => {
     await user.save();
 
     // Send OTP via email
-    if (email) await sendLoginOTPEmail(email, otp);
+    // if (email) await sendLoginOTPEmail(email, otp);
     res.status(200).json({ message: 'OTP sent successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Failed to send OTP' });
