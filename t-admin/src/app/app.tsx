@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { RestaurantAdminPage } from './pages'; // Assuming you have this component
 import theme from '../theme';
+import './app.css'
+import "@fontsource/poppins"; // Defaults to weight 400
 
 // Main App Component
 const App: React.FC = () => {

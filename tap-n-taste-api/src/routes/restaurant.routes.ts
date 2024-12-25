@@ -9,10 +9,12 @@ import {
 } from '../controllers/restaurant.controller';
 import menuRoutes from './menu.routes';
 import reviewRoutes from './review.routes';
+import orderRoutes from './order.routes';
 
 const restaurantRoutes = express.Router();
 
 restaurantRoutes.use('/:id/menu', menuRoutes);
+restaurantRoutes.use('/:id/orders', orderRoutes);
 restaurantRoutes.use('/:id/reviews', reviewRoutes);
 
 // Create a new restaurant - only SuperAdmin can do this

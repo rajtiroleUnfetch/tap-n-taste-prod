@@ -10,4 +10,6 @@ export * from './t-admin-revenue-order'
 export * from './t-admin-event-booking'
 export * from './t-admin-order-frequency'
 export * from './t-admin-orders-type-breakdown'
+export * from './t-admin-organize-menu'
+export * from './t-admin-menu-item-card'
 

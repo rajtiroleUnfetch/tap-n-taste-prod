@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { Box, IconButton, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText, Divider, Button } from '@mui/material';
 import { IoCloseCircleOutline } from 'react-icons/io5';
+import { AdminPageroutes} from '@tap-n-taste/admin'; // Importing routes configuration
+import { MenuCard} from '@tap-n-taste/ui'; // Importing routes configuration
 
 export const Sidebar: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDrawerToggle }) => {
   // Get the dynamic `id` and `adminId` from the URL
@@ -30,69 +32,23 @@ export const Sidebar: React.FC<{ handleDrawerToggle: () => void }> = ({ handleDr
       <Box className="mb-6 text-xl font-bold">Tap'n Taste</Box>
 
       <List>
-        {/* Dashboard Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/dashboard`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Dashboard" />
-          </NavLink>
-        </ListItem>
-
-        {/* Orders Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/orders`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Orders" />
-          </NavLink>
-        </ListItem>
-
-        {/* Payments Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/payments`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Payments" />
-          </NavLink>
-        </ListItem>
-
-        {/* Notifications Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/notifications`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Notifications" />
-          </NavLink>
-        </ListItem>
-
-        {/* Settings Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/settings`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Settings" />
-          </NavLink>
-        </ListItem>
-
-        {/* Logout Link */}
-        <ListItem component="button" onClick={handleLinkClick}>
-          <NavLink
-            to={`/admin/${adminId}/restaurant/${id}/logout`}
-            className="hover:text-gray-300 w-full"
-          >
-            <ListItemText primary="Logout" />
-          </NavLink>
-        </ListItem>
+        {AdminPageroutes.map((route) => (
+          <ListItem key={route.path} component={Button} onClick={handleLinkClick}>
+            <NavLink
+              to={`/admin/${adminId}/restaurant/${id}${route.path}`}
+              className="hover:text-gray-300 w-full flex items-center"
+              style={{ textDecoration: 'none' }}
+            >
+              <ListItemIcon sx={{ minWidth: 40 }}>{<route.icon />}</ListItemIcon>
+              <ListItemText primary={route.label} />
+            </NavLink>
+          </ListItem>
+        ))}
       </List>
 
       {/* Divider */}
-      <Divider sx={{ borderColor: 'white', marginY: 2 }} />
+      <Divider  />
+      <MenuCard />
     </Box>
   );
 };
