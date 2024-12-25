@@ -11,6 +11,7 @@ const initialMenuItems = [
     price: 10,
     image: 'https://via.placeholder.com/100',
     available: true,
+    status: 'Available',  // Added status field
   },
   {
     id: '002',
@@ -19,6 +20,7 @@ const initialMenuItems = [
     price: 15,
     image: 'https://via.placeholder.com/100',
     available: true,
+    status: 'Available',  // Added status field
   },
   {
     id: '003',
@@ -27,6 +29,7 @@ const initialMenuItems = [
     price: 8,
     image: 'https://via.placeholder.com/100',
     available: false,
+    status: 'Unavailable',  // Added status field
   },
 ];
 
@@ -61,6 +64,14 @@ export const AdminMenuPage = () => {
     setFormValues({
       ...formValues,
       available: e.target.value === 'Available' ? true : false,
+    });
+  };
+
+  // Handle status change
+  const handleStatusChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setFormValues({
+      ...formValues,
+      status: e.target.value as string,  // Update the status
     });
   };
 
@@ -128,10 +139,24 @@ export const AdminMenuPage = () => {
             <Select
               name="available"
               value={formValues.available ? 'Available' : 'Unavailable'}
-            //   onChange={handleAvailabilityChange}
+              onChange={handleAvailabilityChange}
             >
               <MenuItem value="Available">Available</MenuItem>
               <MenuItem value="Unavailable">Unavailable</MenuItem>
+            </Select>
+          </FormControl>
+
+          {/* Added status field */}
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Status</InputLabel>
+            <Select
+              name="status"
+              value={formValues.status || 'Available'}
+              onChange={handleStatusChange}
+            >
+              <MenuItem value="Available">Available</MenuItem>
+              <MenuItem value="Unavailable">Unavailable</MenuItem>
+              <MenuItem value="Out of Stock">Out of Stock</MenuItem>
             </Select>
           </FormControl>
 
