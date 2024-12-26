@@ -139,7 +139,7 @@ export const AdminMenuPage = () => {
             <Select
               name="available"
               value={formValues.available ? 'Available' : 'Unavailable'}
-              onChange={handleAvailabilityChange}
+              // onChange={handleAvailabilityChange}
             >
               <MenuItem value="Available">Available</MenuItem>
               <MenuItem value="Unavailable">Unavailable</MenuItem>
@@ -152,7 +152,7 @@ export const AdminMenuPage = () => {
             <Select
               name="status"
               value={formValues.status || 'Available'}
-              onChange={handleStatusChange}
+              // onChange={handleStatusChange}
             >
               <MenuItem value="Available">Available</MenuItem>
               <MenuItem value="Unavailable">Unavailable</MenuItem>
