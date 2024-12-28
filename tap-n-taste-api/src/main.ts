@@ -23,7 +23,7 @@ export const io = new socketIo.Server(server, {  // Initialize Socket.IO
 
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middleware 
 app.use(express.json());
 
 // Database Connection
