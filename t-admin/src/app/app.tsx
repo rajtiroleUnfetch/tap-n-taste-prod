@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 import { RestaurantAdminPage } from './pages'; // Assuming you have this component
 import theme from '../theme';
 import './app.css'
-import "@fontsource/poppins"; // Defaults to weight 400
+// import "@fontsource/poppins"; // Defaults to weight 400
 import { LoginSignUp } from '@tap-n-taste/ui';
 
 // Main App Component
