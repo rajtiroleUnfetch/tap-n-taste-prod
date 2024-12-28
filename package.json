@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "start:backend": "nx serve tap-n-taste-api",
-    "start:admin": "nx serve t-admin",
-    "start:scanning": "nx serve t-scanning",
+    "start:backend": "nx serve tap-n-taste-api --port 3000",
+    "start:admin": "nx serve t-admin --port 4200",
+    "start:scanning": "nx serve t-scanning --port 4300",
     "build": "nx build",
     "build:backend": "nx build tap-n-taste-api",
     "build:admin": "nx build t-admin",

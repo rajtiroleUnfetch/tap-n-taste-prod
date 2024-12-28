@@ -53,7 +53,7 @@ const useOrders = () => {
     }
   };
 
-  // Fetch orders (if needed for admin panel)
+  // Fetch orders (if needed for admin panel) orders page that we have in figma
   const fetchOrders = async () => {
     try {
       setLoading(true);

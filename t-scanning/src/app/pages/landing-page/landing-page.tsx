@@ -19,6 +19,7 @@ export const LandingPage = () => {
     <Box>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/user/:userId" element={<HomePage />} />
         <Route path="login" element={<LoginSignUp type="login" />} />
         <Route path="sign-up" element={<LoginSignUp type="signup" />} />
         <Route path="menu" element={<MenuPage />} />

@@ -5,7 +5,7 @@ import { TAbout } from '@tap-n-taste/ui';
 const App = () => (
   <Routes>
     <Route path="/" element={<div>Tap-n-Taste Page</div>} />
-    <Route path="/restaurants/:id/*" element={<LandingPage />} />
+    <Route path="/restaurant/:restaurantId/*" element={<LandingPage />} />
     <Route path="/about*" element={<TAbout/>} />
   </Routes>
 );
