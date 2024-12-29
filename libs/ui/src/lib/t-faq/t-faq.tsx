@@ -1,8 +1,7 @@
-
-import React, { useState } from "react";
-import styled from "styled-components";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const StyledFaq = styled.div`
   font-family: Arial, sans-serif;
@@ -72,18 +71,19 @@ interface TFaqProps {
 export function TFaq({
   faqs = [
     {
-      question: "Do you offer catering services?",
+      question: 'Do you offer catering services?',
       answer:
         "Currently, we don't offer catering services, but we're happy to accommodate large orders for pickup or delivery. Please contact us for more information.",
     },
     {
-      question: "Are there vegan options?",
+      question: 'Are there vegan options?',
       answer:
-        "Yes, we offer a variety of vegan options. Check our menu for details.",
+        'Yes, we offer a variety of vegan options. Check our menu for details.',
     },
     {
-      question: "How long does delivery take?",
-      answer: "Delivery usually takes 30-45 minutes depending on your location.",
+      question: 'How long does delivery take?',
+      answer:
+        'Delivery usually takes 30-45 minutes depending on your location.',
     },
   ],
 }: TFaqProps) {
@@ -101,7 +101,7 @@ export function TFaq({
       </div>
       {faqs.map((faq, index) => (
         <div
-          className={`faq-item ${activeIndex === index ? "active" : ""}`}
+          className={`faq-item ${activeIndex === index ? 'active' : ''}`}
           key={index}
         >
           <h3 onClick={() => toggleFaq(index)}>

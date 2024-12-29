@@ -23,15 +23,9 @@ export const LandingPage = () => {
         <Route path="login" element={<LoginSignUp type="login" />} />
         <Route path="sign-up" element={<LoginSignUp type="signup" />} />
         <Route path="menu" element={<MenuPage />} />
-        {/* <Route path="user/:userId/profile" element={<div>Profile Page</div>} /> */}
         <Route path="user/:userId/cart" element={<CartPage />} />
-        {/* <Route
-          path="user/:userId/notification"
-          element={<div>Notification Page</div>}
-        /> */}
         <Route path="faq" element={<TFaq />} />
         <Route path="login/otp" element={<TSubmit />} />
-        {/* Pass props here */}
         <Route
           path="login/orderplaced"
           element={
@@ -46,7 +40,6 @@ export const LandingPage = () => {
         <Route path="user/:userId/order-complete" element={<OrderComplete />} />
         <Route path="user/:userId/profile" element={<ProfilePage />} />
         <Route path="user/:userId/order-flow" element={<OrderFlow />} />
-        {/* Route for OTP */}
         <Route path="otp" element={<TSubmit />} />
       </Routes>
     </Box>

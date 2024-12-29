@@ -42,7 +42,7 @@ const MenuPage = () => {
     <Box className="px-[8%] sm:px-[15%]">
       <TopNav />
       <TSearchbar />
-      <TFoodItemTypes />
+      {/* <TFoodItemTypes /> */}
 
       <Box className="flex justify-between items-center mb-8">
         <TManage />
@@ -87,6 +87,7 @@ const MenuPage = () => {
       <FooterPage />
 
       <Box className="mt-6 mb-6"></Box>
+
       <TFooter />
     </Box>
   );

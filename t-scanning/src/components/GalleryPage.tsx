@@ -10,8 +10,8 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { PlayCircle, Close } from '@mui/icons-material';
-import { reviewGalleryData } from '../../constants/LandingPageData';
 import { TButton } from '@tap-n-taste/ui';
+import { reviewGalleryData } from '../app/constants/LandingPageData';
 
 export default function GalleryPage() {
   const [selectedMedia, setSelectedMedia] = useState<{

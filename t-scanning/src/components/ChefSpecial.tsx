@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { TButton, TCard } from '@tap-n-taste/ui';
-import { chefSpecialData } from '../../constants/LandingPageData';
+import { chefSpecialData } from '../app/constants/LandingPageData';
 
 const ChefSpecial = () => {
   return (
