@@ -1,34 +1,54 @@
-import { OutlinedInput, SxProps, Theme } from '@mui/material';
+import React, { forwardRef } from 'react';
+import { TextField } from '@mui/material';
 
 interface Props {
-  placeHolderText: string;
-  styles?: SxProps<Theme>; // Optional sx prop for custom styles
-  classNames?: string;  // Optional className prop for additional Tailwind or custom classes
+  label?: string; // Optional label for the input
+  placeHolderText: string; // Placeholder for the input
+  error?: boolean; // Indicates whether the input is in an error state
+  helperText?: string; // Helper text to display below the input
+  required?: boolean; // Whether the input is required
+  tailwindClasses?: string; // Tailwind CSS classes for custom styling
+  [key: string]: any; // Rest props for additional attributes
 }
 
-export function TInput({  placeHolderText, styles, classNames }: Props) {
-  return (
-    <OutlinedInput
-      placeholder={placeHolderText}
-       className={classNames} // Pass className if provided
-      sx={{
-        width:"100%",
-        borderRadius:"8px",
-        outline: "none", // Remove external outline
-        backgroundColor: "#F0F0F0", // Set background color
-        '& .MuiOutlinedInput-input': {
-          color: "#757575", // Default text color inside input
-        },
-        '& .MuiOutlinedInput-notchedOutline': {
-          border: "none", // Remove the black outline
-        },
-        '&:focus-within .MuiOutlinedInput-notchedOutline': {
-          border: "2px solid #F1414F", // Set border color to red on focus
-        },
-        ...styles, // Merge with custom styles
-      }}
-    />
-  );
-}
+export const TInput = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      label,
+      placeHolderText,
+      error = false,
+      helperText,
+      required = false, // Default to false if not provided
+      tailwindClasses = '', // Default to an empty string if not provided
+      ...rest
+    },
+    ref // Accept the forwarded ref
+  ) => {
+    return (
+      <div className={`w-full ${tailwindClasses}`}>
+        {label && (
+          <label className="block text-gray-700 font-medium mb-1">
+            {label}
+            {required && <span className="text-red-500 ml-1">*</span>}
+          </label>
+        )}
+        <TextField
+          placeholder={placeHolderText} // Set placeholder
+          error={error} // Set error state
+          helperText={helperText} // Display helper text
+          variant="outlined"
+          fullWidth
+          inputRef={ref} // Pass the ref to the TextField
+          {...rest} // Spread the rest props
+        />
+        {helperText && (
+          <p className={`text-sm mt-1 ${error ? 'text-red-500' : 'text-gray-500'}`}>
+            {helperText}
+          </p>
+        )}
+      </div>
+    );
+  }
+);
 
 export default TInput;

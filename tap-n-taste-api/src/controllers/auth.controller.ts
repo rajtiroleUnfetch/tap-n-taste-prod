@@ -53,7 +53,7 @@ export const googleAuthCallback = (req: Request, res: Response) => {
       res.cookie('token', token, {
         httpOnly: true, // Prevents client-side JS from accessing the cookie
         secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-        sameSite: 'strict', // Mitigate CSRF attacks
+        sameSite: 'none', // Mitigate CSRF attacks
       });
       // Extract restaurant ID from the request if provided
       const providedRestaurantId = req.query.restaurantId;
@@ -299,14 +299,12 @@ export const login = async (req: Request, res: Response) => {
     // Set token in headers
     res.setHeader('Authorization', `Bearer ${token}`);
 
-    // Set token in cookies
-    res.cookie('token', token, {
-      httpOnly: true, // Prevents client-side JS from accessing the cookie
-      secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-      sameSite: 'strict', // Mitigate CSRF attacks
-    });
 
-    res.status(200).json({ token, user });
+    res.setHeader('token',token).status(200).json({ token, user }).cookie('token', token, {
+      httpOnly: true, // Prevents client-side JS from accessing the cookie
+      secure: true, // Send only over HTTPS in production
+      sameSite: 'none',  // For cross-origin requests, SameSite must be 'None'
+    });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Login failed' });

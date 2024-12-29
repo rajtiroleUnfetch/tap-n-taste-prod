@@ -1,5 +1,5 @@
 import Order from '../models/order.model'; // Assuming you have a Mongoose model for the order
-import { io } from '../main'; // Importing the socket instance
+// import { io } from '../main'; // Importing the socket instance
 
 // Create Order
 export const createOrder = async (req, res) => {
@@ -8,7 +8,7 @@ export const createOrder = async (req, res) => {
     const order = await Order.create(req.body);
 
     // Notify clients about the new order (via Socket.IO)
-    io.emit('new-order', order);  // This will emit a 'new-order' event to all connected clients
+    // io.emit('new-order', order);  // This will emit a 'new-order' event to all connected clients
 
     // Return the created order as a response
     res.status(201).json(order);
