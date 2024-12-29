@@ -41,11 +41,6 @@ export const TInput = forwardRef<HTMLInputElement, Props>(
           inputRef={ref} // Pass the ref to the TextField
           {...rest} // Spread the rest props
         />
-        {helperText && (
-          <p className={`text-sm mt-1 ${error ? 'text-red-500' : 'text-gray-500'}`}>
-            {helperText}
-          </p>
-        )}
       </div>
     );
   }

@@ -8,6 +8,7 @@ import { handleFileUpload } from './middlewares/uploadMiddleware';
 import passport from './utils/googleAuth';
 import http from 'http';  // Import HTTP to create server
 import socketIo from 'socket.io';  // Import Socket.IO
+import cors from 'cors';  // Import CORS for cross-origin handling
 
 // Load environment variables from .env file
 dotenv.config();
@@ -15,13 +16,20 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);  // Create an HTTP server from Express
 export const io = new socketIo.Server(server, {  // Initialize Socket.IO
-  cors: {
-    origin: '*',  // Allow all origins or restrict to a specific one
-    methods: ['GET', 'POST'],
-  },
+  
 });
 
 const PORT = process.env.PORT || 3000;
+
+// CORS Configuration
+const corsOptions = {
+  origin:[ 'http://localhost:4200', 'http://localhost:4300'],  // Allow both frontend URLs
+  credentials: true,  // Allow cookies to be sent with requests
+};
+
+
+// Enable CORS with the specified options
+app.use(cors(corsOptions));
 
 // Middleware 
 app.use(express.json());

@@ -7,7 +7,7 @@ import {
   AdminOrderViews,
   AdminPaymentPage,
   AdminMenuPage,
-  GoogleAuthCallback
+  
 } from '@tap-n-taste/admin';
 import { LoginSignUp, Navbar } from '@tap-n-taste/ui';
 

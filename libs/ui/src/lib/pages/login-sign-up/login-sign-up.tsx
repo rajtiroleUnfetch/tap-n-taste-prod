@@ -5,7 +5,7 @@ import googleIcon from '../../../assets/devicon_google.svg';
 import { Box, TextField, Typography } from '@mui/material';
 import { TButton, TInput } from '@tap-n-taste/ui';
 import { BackendUrl } from '@tap-n-taste/admin';
-import { useAuth } from '@tap-n-taste/hooks';
+import { axiosInstance, useAuth } from '@tap-n-taste/hooks';
 import { useForm, Controller } from 'react-hook-form';
 import { restaurantId } from '@tap-n-taste/constant';
 import axios from 'axios';
@@ -19,7 +19,8 @@ interface FormValues {
   name: string;
   phone: string;
   password: string;
-  mobileNumber: string;
+  email: string;
+  emailPhone: string;
   restaurantId?: string;
 }
 
@@ -39,7 +40,8 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
       name: '',
       phone: '',
       password: '',
-      mobileNumber: '',
+      email: '',
+      emailPhone: '',
       restaurantId: '',
     },
   });
@@ -79,28 +81,32 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
     setIsLogin(!isLogin);
   };
   const handleSignupLogin = async (data: FormValues) => {
-    const payload =
-      isAdminSignUpLogin && !isLogin ? { ...data, restaurantId } : data;
-    const options = {
-      method: 'POST',
-      header: { 'content-type': 'application/json' },
-      url: 'http://localhost:3000/api/auth/login',
-      withCookies: true,
-      withCredentials: true,
-      data:data
-    };
-    const res = await axios(options);
-    console.log(res);
-    
+    console.log(data);
 
-    const result = await signupOrLogin(
-      isLogin ? '/auth/login' : '/auth/signup',
-      payload
+    const payload = isLogin
+      ? { ...data, email: data.emailPhone, phone: data.emailPhone }
+      : data;
+    // const options = {
+    //   method: 'POST',
+    //   header: { 'content-type': 'application/json' },
+    //   url: 'http://localhost:3000/api/auth/signup',
+    //   data: data,
+    // };
+    // const res = await axios(options);
+
+    // console.log(res); // Handle response as needed
+    // console.log(res);
+
+    await signupOrLogin(
+      isLogin
+        ? '/auth/login'
+        : isAdminSignUpLogin
+        ? '/auth/admin/signup'
+        : '/auth/signup',
+      payload,
+      isAdminSignUpLogin,
+      isLogin
     );
-    if (result) {
-      // Navigate based on the result or logic
-      navigate('/home');
-    }
   };
   return (
     <Box className="w-full h-screen flex items-center justify-center">
@@ -125,57 +131,72 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
           onSubmit={handleSubmit(handleSignupLogin)}
           className="w-full gap-4 flex flex-col"
         >
-          <Controller
-            name="name"
-            control={control}
-            rules={{ required: 'Name is required' }}
-            render={({ field }) => (
-              <TInput
-                {...field}
-                placeHolderText="Enter Your Name"
-                error={!!errors.name}
-                helperText={errors.name?.message}
-              />
-            )}
-          />
+          {!isLogin && (
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <TInput
+                  {...field}
+                  placeHolderText="Enter Your Name"
+                  error={!!errors.name}
+                  helperText={errors.name?.message}
+                />
+              )}
+            />
+          )}
+          {!isLogin && (
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <TInput
+                  {...field}
+                  placeHolderText="Enter Your Phone"
+                  error={!!errors.phone}
+                  helperText={errors.phone?.message}
+                />
+              )}
+            />
+          )}
+          {!isLogin && (
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TInput
+                  {...field}
+                  placeHolderText="Enter Your email"
+                  error={!!errors.phone}
+                  helperText={errors.phone?.message}
+                />
+              )}
+            />
+          )}
 
-          <Controller
-            name="phone"
-            control={control}
-            rules={{ required: 'Phone number is required' }}
-            render={({ field }) => (
-              <TInput
-                {...field}
-                placeHolderText="Enter Your Phone"
-                error={!!errors.phone}
-                helperText={errors.phone?.message}
-              />
-            )}
-          />
+          {isLogin && (
+            <Controller
+              name="emailPhone"
+              control={control}
+              render={({ field }) => (
+                <TInput
+                  {...field}
+                  placeHolderText="Enter Your Email/Phone"
+                  error={!!errors.emailPhone}
+                  helperText={errors.emailPhone?.message}
+                />
+              )}
+            />
+          )}
           <Controller
             name="password"
             control={control}
-            rules={{ required: 'Password is required' }}
             render={({ field }) => (
               <TInput
                 {...field}
                 placeHolderText="Enter Your Password"
                 error={!!errors.password}
                 helperText={errors.password?.message}
-              />
-            )}
-          />
-
-          <Controller
-            name="mobileNumber"
-            control={control}
-            rules={{ required: 'Mobile number is required' }}
-            render={({ field }) => (
-              <TInput
-                {...field}
-                placeHolderText="Enter Your Mobile Number"
-                error={!!errors.mobileNumber}
-                helperText={errors.mobileNumber?.message}
               />
             )}
           />

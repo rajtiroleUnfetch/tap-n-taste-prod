@@ -6,11 +6,13 @@ import theme from '../theme';
 import './app.css';
 import '@fontsource/poppins'; // Defaults to weight 400
 import { LoginSignUp } from '@tap-n-taste/ui';
+import { ToastContainer } from 'react-toastify';
 
 // Main App Component
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
+       <ToastContainer position="top-right" autoClose={5000} />
       <CssBaseline /> {/* Ensures consistent baseline styles across browsers */}
       <Routes>
         {/* Default Route */}
