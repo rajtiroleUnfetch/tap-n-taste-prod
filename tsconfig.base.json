@@ -20,6 +20,7 @@
       "@tap-n-taste/assets": ["libs/assets/src/index.ts"],
       "@tap-n-taste/features": ["libs/features/src/index.ts"],
       "@tap-n-taste/hooks": ["libs/hooks/src/index.ts"],
+      "@tap-n-taste/constant": ["libs/constant/src/index.ts"],
       "@tap-n-taste/libs": ["libs/src/index.ts"],
       "@tap-n-taste/services": ["libs/services/src/index.ts"],
       "@tap-n-taste/shared-types": ["shared-types/src/index.ts"],
