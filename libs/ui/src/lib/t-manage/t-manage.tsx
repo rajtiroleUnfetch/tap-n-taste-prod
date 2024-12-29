@@ -29,7 +29,7 @@ export function TManage() {
 
   return (
     <>
-      <StyledTManage className="flex">
+      <StyledTManage className="flex !bg-[#F1414F]">
         <Button onClick={handleFilterOpen}>
           <TuneIcon style={{ fontSize: '20px' }} />
           Filters
@@ -69,7 +69,7 @@ const StyledTManage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch; /* Ensures children fill the height */
-  background-color: #f94f4f;
+  background-color: #f1414f;
   border-radius: 15px;
   overflow: hidden;
   width: fit-content;
