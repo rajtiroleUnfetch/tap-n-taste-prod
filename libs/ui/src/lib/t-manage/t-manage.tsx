@@ -29,17 +29,15 @@ export function TManage() {
 
   return (
     <>
-      <StyledTManage>
-        <Container>
-          <Button onClick={handleFilterOpen}>
-            <TuneIcon style={{ fontSize: '20px' }} />
-            Filters
-          </Button>
-          <Button onClick={handleSortOpen}>
-            <SwapVertIcon style={{ fontSize: '20px' }} />
-            Sort
-          </Button>
-        </Container>
+      <StyledTManage className="flex">
+        <Button onClick={handleFilterOpen}>
+          <TuneIcon style={{ fontSize: '20px' }} />
+          Filters
+        </Button>
+        <Button onClick={handleSortOpen}>
+          <SwapVertIcon style={{ fontSize: '20px' }} />
+          Sort
+        </Button>
       </StyledTManage>
       {/* Filter Dialog */}
       <Dialog
@@ -69,9 +67,10 @@ export default TManage;
 // Styled Components
 const StyledTManage = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: stretch; /* Ensures children fill the height */
   background-color: #f94f4f;
-  border-radius: 50px;
+  border-radius: 15px;
   overflow: hidden;
   width: fit-content;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

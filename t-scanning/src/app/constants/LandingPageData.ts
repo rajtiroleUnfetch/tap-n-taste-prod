@@ -139,7 +139,7 @@ export const navLinksData = [
   {
     icon: NotificationsActiveOutlinedIcon,
     linkText: 'Notifications',
-    path: '/restaurants/:id/notification',
+    path: '/restaurant/:restaurantId/notification',
     end: true,
   },
   {

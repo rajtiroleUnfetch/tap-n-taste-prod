@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 // Styled Components
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 15px;
   margin-top: 20px;
 `;
 
@@ -17,8 +17,8 @@ const ButtonContainer = styled.div`
 `;
 
 const SliderWrapper = styled.div`
-  width: 60px; /* Match slider width */
-  height: 30px; /* Match slider height */
+  width: 55px; /* Match slider width */
+  height: 28px; /* Match slider height */
   border: 2px solid #d3d3d3; /* Light gray border for outer wrapper */
   border-radius: 25px; /* Fully rounded corners */
   display: flex;
@@ -29,7 +29,7 @@ const SliderWrapper = styled.div`
   padding: 2px; /* Ensure padding for proper alignment */
 `;
 
-const SliderCircle = styled.div<{ position: "left" | "right"; color: string }>`
+const SliderCircle = styled.div<{ position: 'left' | 'right'; color: string }>`
   width: 20px;
   height: 20px;
   background-color: ${(props) => props.color};
@@ -38,14 +38,14 @@ const SliderCircle = styled.div<{ position: "left" | "right"; color: string }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${(props) => (props.position === "left" ? "left: 5px;" : "right: 5px;")}
+  ${(props) => (props.position === 'left' ? 'left: 5px;' : 'right: 5px;')}
 `;
 
 const Label = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 `;
 
 // Functional Component
@@ -55,12 +55,12 @@ export function TCategory() {
 
   const handleNonVegClick = () => {
     setNonVegActive(!isNonVegActive);
-    console.log("Non-Veg slider toggled");
+    console.log('Non-Veg slider toggled');
   };
 
   const handleVegClick = () => {
     setVegActive(!isVegActive);
-    console.log("Veg slider toggled");
+    console.log('Veg slider toggled');
   };
 
   return (
@@ -71,7 +71,7 @@ export function TCategory() {
         <SliderWrapper onClick={handleNonVegClick}>
           <SliderCircle
             color="red"
-            position={isNonVegActive ? "right" : "left"}
+            position={isNonVegActive ? 'right' : 'left'}
           />
         </SliderWrapper>
       </ButtonContainer>
@@ -82,7 +82,7 @@ export function TCategory() {
         <SliderWrapper onClick={handleVegClick}>
           <SliderCircle
             color="green"
-            position={isVegActive ? "right" : "left"}
+            position={isVegActive ? 'right' : 'left'}
           />
         </SliderWrapper>
       </ButtonContainer>

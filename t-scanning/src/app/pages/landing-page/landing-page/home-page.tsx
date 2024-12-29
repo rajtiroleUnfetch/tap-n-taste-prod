@@ -46,6 +46,7 @@ const HomePage = () => {
         <TManage />
         <TCategory />
       </Box>
+
       <TViewBar />
 
       {/* Offers Section */}
