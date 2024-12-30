@@ -1,19 +1,12 @@
 import axios from 'axios';
 
+// Create the axios instance with a base URL and any other global configurations
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3000/api', // API Base URL
-  withCredentials: true, // Send cookies with requests
-});
-
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+  withCredentials: true, // Send cookies with requests (if needed for authentication)
+  headers: {
+    'Content-Type': 'application/json', // Default content type for JSON requests
   },
-  (error) => Promise.reject(error)
-);
+});
 
 export default axiosInstance;
