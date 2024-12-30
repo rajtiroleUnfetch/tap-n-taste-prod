@@ -1,8 +1,11 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import connectDB from './config/database';
 import restaurantRoutes from './routes/restaurant.routes';
 import authRoutes from './routes/auth.routes';
-import dotenv from 'dotenv';
+import googleAuthRoutes from './routes/googleAuthRoutes';
+import passport from 'passport';
+import './config/passport';
 import errorHandler from './middlewares/errorHandler';
 
 // Load environment variables from .env file
@@ -13,15 +16,15 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+app.use(passport.initialize());
 
 // Database Connection
 connectDB();
 
 // Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes); // Email/Phone & Password Authentication
+app.use('/api/auth', googleAuthRoutes); // Google Authentication
 app.use('/api/restaurants', restaurantRoutes);
-// Error Handler
-app.use(errorHandler);
 
 // Health Route
 app.get('/health', async (req, res) => {
@@ -31,12 +34,10 @@ app.get('/health', async (req, res) => {
     timestamp: new Date(),
     database: 'Unknown',
     memoryUsage: process.memoryUsage(),
-    // loadAverage: process.loadavg(),
   };
 
   try {
     // Check database connection
-    // (Replace `checkConnection` with a valid DB health check function)
     const isDatabaseConnected = await checkDatabaseConnection();
     healthReport.database = isDatabaseConnected ? 'Connected' : 'Disconnected';
   } catch (err) {
@@ -56,6 +57,9 @@ app.get('/', (req, res) => {
   res.send({ message: 'Welcome to the Tap-n-Taste API!' });
 });
 
+// Error Handler Middleware
+app.use(errorHandler);
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
@@ -63,8 +67,6 @@ app.listen(PORT, () => {
 
 // Helper function to check database connection
 async function checkDatabaseConnection() {
-  // Implement database health check logic here
-  // Example (for MongoDB):
   const mongoose = require('mongoose');
   return mongoose.connection.readyState === 1;
 }

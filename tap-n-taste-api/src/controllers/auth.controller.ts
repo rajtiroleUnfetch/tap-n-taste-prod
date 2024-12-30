@@ -9,20 +9,21 @@ const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 // Regular user signup
 export const signup = async (req: Request, res: Response) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, phone, password } = req.body;
 
-    // Check if user exists
-    const existingUser = await User.findOne({ email });
+    // Check if user exists by email or phone
+    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
     if (existingUser) {
-      return res.status(400).json({ error: 'Email already registered' });
+      return res.status(400).json({ error: 'Email or phone already registered' });
     }
 
     // Create new user with 'User' role
     const user = new User({
       name,
       email,
-      password,
-      role: 'User'
+      phone,
+      password,  // Store password as plain text
+      role: 'User',
     });
 
     await user.save();
@@ -35,21 +36,22 @@ export const signup = async (req: Request, res: Response) => {
 // Admin signup request
 export const requestAdminSignup = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, restaurantId } = req.body;
+    const { name, email, phone, password, restaurantId } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
     if (existingUser) {
-      return res.status(400).json({ error: 'Email already registered' });
+      return res.status(400).json({ error: 'Email or phone already registered' });
     }
 
     // Create admin with pending status
     const admin = new User({
       name,
       email,
-      password,
+      phone,
+      password,  // Store password as plain text
       role: 'Admin',
       restaurantId,
-      status: 'pending' // Add this field to user model
+      status: 'pending', // Add this field to user model
     });
 
     await admin.save();
@@ -83,42 +85,56 @@ export const approveAdmin = async (req: AuthenticatedRequest, res: Response) => 
   }
 };
 
-// Login for all users
+// Login for all users (via email or phone)
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
 
-    const user = await User.findOne({ email });
-    console.log(user);
-    
+    // Validate input
+    if (!identifier || !password) {
+      return res.status(400).json({ error: 'Identifier and password are required' });
+    }
+
+    // Determine if the identifier is an email or a phone number
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
+    const query = isEmail
+      ? { email: identifier.toLowerCase() }
+      : { phone: identifier };
+
+    // Find user by email or phone
+    const user = await User.findOne(query);
+
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
+    // Verify password directly (no hashing)
+    if (user.password !== password) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // For admin, check if approved
+    // Check if admin account is approved
     if (user.role === 'Admin' && user.status !== 'active') {
       return res.status(401).json({ error: 'Admin account pending approval' });
     }
 
+    // Generate JWT token
     const token = jwt.sign(
       { id: user._id, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRY }
     );
 
+    // Respond with user details and token
     res.json({
       token,
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
-      }
+        phone: user.phone,
+        role: user.role,
+      },
     });
   } catch (error) {
     res.status(500).json({ error: 'Login failed' });

@@ -5,16 +5,26 @@ import { useState } from 'react';
 import TSidebar from '../t-sidebar/t-sidebar';
 import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
 import { TButton } from '../t-button';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 
 const themeColor = '#F1414F'; // Define your color here
 
 export function TopNav() {
   const navigate = useNavigate();
+  const location = useLocation(); // Get the current path
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleNotificationClick = () => {
+    // Get the current path
+    const currentPath = location.pathname;
+
+    // Check if 'notifications' is already part of the path
+    if (!currentPath.includes('/notifications')) {
+      const newPath = `${currentPath}/notifications`; // Append /notifications to the current path
+      navigate(newPath); // Navigate to the new path
+    }
+
     setSnackbarMessage('Notifications icon clicked!');
     setSnackbarOpen(true);
   };
@@ -91,7 +101,7 @@ export function TopNav() {
           <NotificationsNoneIcon
             className="text-black hover:text-[#F1414F] transition-colors duration-300 cursor-pointer"
             fontSize="large"
-            onClick={handleNotificationClick}
+            onClick={handleNotificationClick} // Use the handler to navigate
           />
         </Box>
 

@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import uploadImage from './imageupload.png'; // Make sure to adjust this path
 
 const ProductAdd: React.FC = () => {
@@ -102,9 +102,9 @@ const ProductAdd: React.FC = () => {
       await axios.post("/api/products", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      toast.success("Dish added successfully!");
+      //toast.success("Dish added successfully!");
     } catch (error) {
-      toast.error("Failed to add dish.");
+     // toast.error("Failed to add dish.");
     }
   };
 

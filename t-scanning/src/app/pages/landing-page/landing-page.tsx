@@ -22,7 +22,7 @@ export const LandingPage = () => {
         <Route path="user/:userId/order" element={<div>Order Page</div>} />
         <Route
           path="user/:userId/notification"
-          element={<div>Notification Page</div>}
+          element={<TNotificationPage></TNotificationPage>}
         />
         <Route path="faq" element={<TFaq />} />
         <Route path="login/otp" element={<TSubmit />} />
@@ -36,7 +36,7 @@ export const LandingPage = () => {
         <Route path="notification" element={<TNotificationPage />} />
         <Route path="coupons" element={<TCouponpage />} />
         <Route path="productadd" element={<ProductAdd />} />
-      </Routes>
+             </Routes>
     </Box>
   );
 };
