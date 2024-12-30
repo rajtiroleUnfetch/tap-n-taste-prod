@@ -57,30 +57,16 @@ export default function MenuPage() {
 
       {/* Custom Card */}
       <Box className="mb-4">
-        <TCustomCard
-          image={burgerImage}
-          title="Burger"
-          description="Succulent Grilled Chicken Patty Nestled Between Toasted Buns, Crowned With Crisp Lettuce And Tangy Mayo, Delivering Savory Satisfaction In Every Bite."
-          rating={4.5}
-          price={250}
-          veg={true} // Non-vegetarian
-        />
-        <TCustomCard
-          image={pastaImage}
-          title="Pasta"
-          description="A creamy, comforting dish made with al dente pasta, rich sauce, and a blend of fresh herbs"
-          rating={4.8}
-          price={200}
-          veg={false} // Vegetarian
-        />
-        <TCustomCard
-          image={friesImage}
-          title="Fries"
-          description="Golden, crispy on the outside and soft on the inside, these perfectly seasoned fries are the ultimate snack for any craving."
-          rating={4.1}
-          price={200}
-          veg={true} // Vegetarian
-        />
+        {menuCardData.map((item, index) => (
+          <TCustomCard
+            image={item.image}
+            title={item.title}
+            description={item.description}
+            rating={item.rating}
+            price={item.price}
+            veg={item.isVeg}
+          />
+        ))}
       </Box>
 
       <BottomInfoPopUp noOfItems={3} />
