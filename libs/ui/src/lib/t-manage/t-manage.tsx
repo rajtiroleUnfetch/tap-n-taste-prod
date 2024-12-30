@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export function TManage() {
+export const TManage = () => {
   const [openFilter, setOpenFilter] = React.useState(false);
   const [openSort, setOpenSort] = React.useState(false);
 
@@ -29,16 +29,20 @@ export function TManage() {
 
   return (
     <>
-      <StyledTManage className="flex !bg-[#F1414F]">
-        <Button onClick={handleFilterOpen}>
-          <TuneIcon style={{ fontSize: '20px' }} />
-          Filters
-        </Button>
-        <Button onClick={handleSortOpen}>
-          <SwapVertIcon style={{ fontSize: '20px' }} />
-          Sort
-        </Button>
+      <StyledTManage>
+        <StyledContainer>
+          <StyledButton onClick={handleFilterOpen}>
+            <TuneIcon style={{ fontSize: '16px' }} />
+            <span>Filters</span>
+          </StyledButton>
+          <Divider />
+          <StyledButton onClick={handleSortOpen}>
+            <SwapVertIcon style={{ fontSize: '16px' }} />
+            <span>Sort</span>
+          </StyledButton>
+        </StyledContainer>
       </StyledTManage>
+
       {/* Filter Dialog */}
       <Dialog
         open={openFilter}
@@ -60,33 +64,37 @@ export function TManage() {
       </Dialog>
     </>
   );
-}
-
-export default TManage;
+};
 
 // Styled Components
 const StyledTManage = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: stretch; /* Ensures children fill the height */
-  background-color: #f1414f;
-  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #f94f4f;
+  border-radius: 50px;
   overflow: hidden;
-  width: fit-content;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: fit-content;
 `;
 
-const Button = styled.button`
+const StyledContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  padding: 0;
+`;
+
+const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   background: transparent;
   border: none;
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
-  padding: 10px 10px; /* Decreased padding for smaller height */
+  padding: 1px 8px;
   transition: background-color 0.3s ease;
 
   &:hover {
@@ -94,13 +102,18 @@ const Button = styled.button`
   }
 
   span {
-    font-weight: 300;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 6px 10px;
   }
 `;
 
 const Divider = styled.div`
-  width: 2px; /* Increased thickness for bold effect */
+  width: 1px;
+  height: 20px;
   background-color: white;
-  opacity: 1; /* Full opacity for bold look */
-  margin: 0; /* Removes extra spacing */
+  opacity: 1;
 `;
