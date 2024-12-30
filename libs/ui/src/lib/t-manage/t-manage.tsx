@@ -82,6 +82,11 @@ const StyledContainer = styled(Container)`
   display: flex;
   align-items: center;
   padding: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const StyledButton = styled.button`
