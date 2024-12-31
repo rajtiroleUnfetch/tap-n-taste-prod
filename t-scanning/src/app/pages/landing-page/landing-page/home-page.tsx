@@ -17,6 +17,7 @@ import GalleryPage from 't-scanning/src/components/GalleryPage';
 import TopCustomerLikes from 't-scanning/src/components/TopCustomerLikes';
 import { RestaurantInfoPage } from 't-scanning/src/components/RestaurantInfoPage';
 import ReviewPage from 't-scanning/src/components/ReviewCard';
+import FooterPage from '../../footer-page/footer-page';
 
 const HomePage = () => {
   return (
@@ -74,7 +75,7 @@ const HomePage = () => {
       <TFaq />
 
       {/* About Section */}
-      <TAbout />
+      <FooterPage />
 
       {/* Bottom Text */}
       <Box className="mt-10 mb-5 pb-20 sm:pb-0">
