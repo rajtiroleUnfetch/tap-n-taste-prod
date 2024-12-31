@@ -3,15 +3,14 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import User from '../models/user.model';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  T_ADMIN_FRONTEND_URL,
+  T_SCANNING_FRONTEND_URL,
+} from '../constant/route.constant';
 
 const OTP_EXPIRY = 5 * 60 * 1000; // OTP expires in 5 minutes
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
-
-// Google Auth Logic
-export const googleAuth = passport.authenticate('google', {
-  scope: ['profile', 'email'],
-});
 
 export const googleAuthCallback = (req: Request, res: Response) => {
   passport.authenticate('google', { session: false }, async (err, user) => {
@@ -19,7 +18,7 @@ export const googleAuthCallback = (req: Request, res: Response) => {
     console.log('User:', user);
 
     if (err || !user) {
-      return res.status(401).json({ error: 'Google authentication failed' });
+      return res.status(401).json({ message: 'Google authentication failed' });
     }
 
     try {
@@ -50,21 +49,37 @@ export const googleAuthCallback = (req: Request, res: Response) => {
         JWT_SECRET,
         { expiresIn: JWT_EXPIRY }
       );
-
-      // Set token in headers
-      res.setHeader('Authorization', `Bearer ${token}`);
-
       // Set token in cookies
       res.cookie('token', token, {
         httpOnly: true, // Prevents client-side JS from accessing the cookie
         secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-        sameSite: 'strict', // Mitigate CSRF attacks
+        sameSite: 'none', // Mitigate CSRF attacks
       });
+      // Extract restaurant ID from the request if provided
+      const providedRestaurantId = req.query.restaurantId;
+      // Determine the restaurant ID to use based on the role
+      let restaurantId;
+      if (existingUser.role === 'Admin') {
+        // For admin, always use the restaurant ID from the user model
+        restaurantId = existingUser.restaurantId;
+      } else if (existingUser.role === 'User') {
+        // For user, prefer the provided restaurant ID; otherwise, use the model
+        restaurantId = providedRestaurantId || existingUser.restaurantId || '1';
+      }
 
-      res.status(200).json({ token, user: existingUser });
+      // Determine redirect URL based on role
+      let redirectUrl = '';
+      if (existingUser.role === 'User') {
+        redirectUrl = `${T_SCANNING_FRONTEND_URL}/restaurant/${restaurantId}/user/${existingUser.id}/`;
+      } else if (existingUser.role === 'Admin') {
+        redirectUrl = `${T_ADMIN_FRONTEND_URL}/restaurant/${restaurantId}/admin/${existingUser.id}/`;
+      }
+
+      // Redirect the user
+      res.redirect(redirectUrl);
     } catch (error) {
       console.error('Error during callback processing:', error);
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ message: 'Internal server error' });
     }
   })(req, res);
 };
@@ -191,7 +206,7 @@ export const signup = async (req: Request, res: Response) => {
     // Validate inputs
     if (!name || !password || (!email && !phone)) {
       return res.status(400).json({
-        error: 'Name, password, and either email or phone are required',
+        message: 'Name, password, and either email or phone are required',
       });
     }
 
@@ -201,13 +216,16 @@ export const signup = async (req: Request, res: Response) => {
     if (phone) query.phone = phone;
 
     // Check if user with the same email or phone already exists
-    const existingUser = await User.findOne({email});
-    const existingUserPhone = await User.findOne({phone});
+    const existingUser = await User.findOne({ email });
+    const existingUserPhone = await User.findOne({ phone });
 
-    if (existingUser||existingUserPhone) {
+    if (existingUser || existingUserPhone) {
       return res
         .status(400)
-        .json({ error: 'Email or Phone already registered', existingUser });
+        .json({
+          message: 'Email or Phone already registered',
+          user: existingUser || existingUserPhone,
+        });
     }
 
     // Create new user
@@ -236,7 +254,7 @@ export const signup = async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ error: 'Signup failed' });
+    res.status(500).json({ message: 'Signup failed' });
   }
 };
 
@@ -247,7 +265,7 @@ export const login = async (req: Request, res: Response) => {
     if (!password || (!email && !phone)) {
       return res
         .status(400)
-        .json({ error: 'Password and either email or phone are required' });
+        .json({ message: 'Password and either email or phone are required' });
     }
 
     // Build query conditionally
@@ -261,18 +279,20 @@ export const login = async (req: Request, res: Response) => {
     });
 
     if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Check password match
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Admin check: Only active admins can login
     if (user.role === 'Admin' && user.status !== 'verified') {
-      return res.status(401).json({ error: 'Admin account pending approval' });
+      return res
+        .status(401)
+        .json({ message: 'Admin account pending approval' });
     }
 
     // Generate JWT token
@@ -281,20 +301,26 @@ export const login = async (req: Request, res: Response) => {
       JWT_SECRET,
       { expiresIn: JWT_EXPIRY }
     );
-    // Set token in headers
-    res.setHeader('Authorization', `Bearer ${token}`);
 
-    // Set token in cookies
-    res.cookie('token', token, {
-      httpOnly: true, // Prevents client-side JS from accessing the cookie
-      secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
-      sameSite: 'strict', // Mitigate CSRF attacks
-    });
-
-    res.status(200).json({ token, user });
+    res
+      .setHeader('token', token)
+      .status(200)
+      .cookie('token', token, {
+        httpOnly: true, // Prevents client-side JS from accessing the cookie
+        secure: true, // Send only over HTTPS in production
+        sameSite: 'none', // For cross-origin requests, SameSite must be 'None'
+      })
+      .json({
+        token,
+        user,
+        message: 'Login successful',
+        id: user?.id,
+        restaurantId: user?.restaurantId,
+        role: user?.role,
+      })
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Login failed' });
+    res.status(500).json({ message: 'Login failed' });
   }
 };
 
@@ -375,7 +401,7 @@ export const verifyLoginOTP = async (req: Request, res: Response) => {
 // Admin Signup Request (Pending Approval)
 export const requestAdminSignup = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, restaurantId } = req.body;
+    const { name, email, password, restaurantId, phone } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -386,6 +412,7 @@ export const requestAdminSignup = async (req: Request, res: Response) => {
     const admin = new User({
       name,
       email,
+      phone: phone || email,
       password,
       role: 'Admin',
       restaurantId,
@@ -395,9 +422,14 @@ export const requestAdminSignup = async (req: Request, res: Response) => {
     await admin.save();
     res
       .status(201)
-      .json({ message: 'Admin registration request submitted for approval' });
+      .json({
+        message: 'Admin registration request submitted for approval',
+        admin,
+      });
   } catch (error) {
-    res.status(500).json({ error: 'Registration request failed' });
+    res
+      .status(500)
+      .json({ errorMessage: 'Registration request failed', error });
   }
 };
 

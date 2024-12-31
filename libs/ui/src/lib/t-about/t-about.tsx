@@ -5,10 +5,12 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import GradeIcon from '@mui/icons-material/Grade';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { Box } from '@mui/material';
+import { TopNav } from '../t-top-nav';
 
 // Main container for the restaurant card
 const RestaurantCard = styled.div`
-  background-color: #F5F6F7;
+  background-color: #f5f6f7;
   border-radius: 8px;
   padding: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -28,7 +30,7 @@ const Header = styled.div`
 `;
 
 const CheckCircleIcon = styled(CheckCircleOutlineIcon)`
-  color: #A9A9A9;
+  color: #a9a9a9;
   font-size: 5px;
 `;
 
@@ -36,7 +38,7 @@ const RestaurantName = styled.h1`
   font-size: 16px;
   font-weight: bold;
   margin: 0;
-  color: #A9A9A9;
+  color: #a9a9a9;
 `;
 
 const Rating = styled.div`
@@ -64,7 +66,7 @@ const Timing = styled.div`
   margin-top: 4px;
   font-size: 12px;
   font-weight: bold;
-  color: #A9A9A9;
+  color: #a9a9a9;
 `;
 
 const SectionHeader = styled.div`
@@ -74,11 +76,11 @@ const SectionHeader = styled.div`
   margin-top: 12px;
   font-size: 14px;
   font-weight: bold;
-  color: #A9A9A9;
+  color: #a9a9a9;
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     flex-grow: 1;
     height: 1px;
@@ -121,7 +123,7 @@ const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F3EFEF;
+  background-color: #f3efef;
   border-radius: 50%;
   padding: 8px;
   font-size: 14px;
@@ -140,27 +142,30 @@ const IconButton = styled.button`
 
 // Component
 export function TAbout({
-  restaurantName = "Restaurant Name",
-  openingTime = "10:00am",
-  closingTime = "11:00pm",
-  cuisines = "Chinese | Italian | Cafe",
-  address = "Address, address",
-  phoneNumber = "Phone Number",
-  distance = "2.2km away",
+  restaurantName = 'Restaurant Name',
+  openingTime = '10:00am',
+  closingTime = '11:00pm',
+  cuisines = 'Chinese | Italian | Cafe',
+  address = 'Address, address',
+  phoneNumber = 'Phone Number',
+  distance = '2.2km away',
   facilities = [
-    "Take away Available",
-    "Indoor Seating",
-    "Event Booking",
-    "Table Booking",
-    "Dine In",
-    "Home Delivery",
+    'Take away Available',
+    'Indoor Seating',
+    'Event Booking',
+    'Table Booking',
+    'Dine In',
+    'Home Delivery',
   ],
 }) {
   return (
     <RestaurantCard>
       <Header>
         <RestaurantName>{restaurantName}</RestaurantName>
-        <Rating><GradeIcon />4.5</Rating>
+        <Rating>
+          <GradeIcon />
+          4.5
+        </Rating>
       </Header>
       <Details>
         {cuisines}
@@ -178,7 +183,10 @@ export function TAbout({
       <FacilityList>
         {facilities.map((facility, index) => (
           <FacilityItem key={index}>
-            <Checkmark><CheckCircleIcon /></Checkmark> {facility}
+            <Checkmark>
+              <CheckCircleIcon />
+            </Checkmark>{' '}
+            {facility}
           </FacilityItem>
         ))}
       </FacilityList>

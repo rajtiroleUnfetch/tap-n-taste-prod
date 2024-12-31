@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const NavContainer = styled.div`
   display: flex;
@@ -14,7 +14,8 @@ const NavItem = styled.div<{ isActive: boolean }>`
   position: relative;
   font-size: 16px; /* Default font size for larger screens */
   font-weight: 600; /* Set font-weight to bold for all tabs */
-  color: ${(props) => (props.isActive ? "#e53935" : "#4F4F4F")}; /* Custom inactive text color */
+  color: ${(props) =>
+    props.isActive ? '#e53935' : '#4F4F4F'}; /* Custom inactive text color */
   cursor: pointer;
   transition: color 0.2s ease-in-out;
   text-align: center;
@@ -25,13 +26,14 @@ const NavItem = styled.div<{ isActive: boolean }>`
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -4px;
     left: 0;
     right: 0;
     height: 2px;
-    background-color: ${(props) => (props.isActive ? "#F1414F" : "transparent")};
+    background-color: ${(props) =>
+      props.isActive ? '#F1414F' : 'transparent'};
     transition: background-color 0.2s ease-in-out;
   }
 
@@ -42,9 +44,9 @@ const NavItem = styled.div<{ isActive: boolean }>`
 `;
 
 const TViewBar = () => {
-  const [activeTab, setActiveTab] = useState("Offers");
+  const [activeTab, setActiveTab] = useState('Offers');
 
-  const tabs = ["Offers", "Photos", "Reviews", "About", "Events"];
+  const tabs = ['Offers', 'Photos', 'Reviews', 'About', 'Events'];
 
   return (
     <NavContainer>

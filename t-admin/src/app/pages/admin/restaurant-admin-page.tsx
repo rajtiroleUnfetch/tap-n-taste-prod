@@ -6,15 +6,17 @@ import {
   AdminOrderPage,
   AdminOrderViews,
   AdminPaymentPage,
-  AdminMenuPage
+  AdminMenuPage,
+  
 } from '@tap-n-taste/admin';
-import { Navbar } from '@tap-n-taste/ui';
+import { LoginSignUp, Navbar } from '@tap-n-taste/ui';
 
 export const RestaurantAdminPage = () => {
   return (
     <Box>
       <Navbar />
       <Routes>
+      {/* <Route path="/auth/google/callback" element={<GoogleAuthCallback />} /> */}
         <Route path="/" element={<AdminHomepage />}>
           <Route index element={<AdminDashboard />} />
           <Route path="dashboard" element={<AdminDashboard />} />

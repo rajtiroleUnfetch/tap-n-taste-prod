@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { TButton, TCard } from '@tap-n-taste/ui';
-import { topLinkingData } from '../../constants/LandingPageData';
+import { topLinkingData } from '../app/constants/LandingPageData';
 
 const TopCustomerLikes = () => {
   return (

@@ -1,11 +1,11 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 
-// Create an Axios instance with default configurations
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/api', // Replace with your backend base URL
-  timeout: 10000, // Optional: Set a timeout
+// Create the axios instance with a base URL and any other global configurations
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:3000/api', // API Base URL
+  withCredentials: true, // Send cookies with requests (if needed for authentication)
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json', // Default content type for JSON requests
   },
 });
 

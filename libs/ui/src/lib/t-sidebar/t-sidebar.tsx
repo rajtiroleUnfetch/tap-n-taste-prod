@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { navLinksData } from 't-scanning/src/app/constants/LandingPageData';
 import { Typography } from '@mui/material';
 import Logo from '../../assets/logo.png';
+import { NavLink } from 'react-router-dom';
 
 export default function TSidebar() {
   const [open, setOpen] = React.useState(false);
@@ -21,7 +22,7 @@ export default function TSidebar() {
     >
       <Box className="flex flex-col gap-4 cursor-pointer">
         {navLinksData.map((navLink, index) => (
-          <Box key={index}>
+          <NavLink key={navLink.linkText} to={navLink.path} end={navLink.end}>
             <Box className="px-6 py-2 hover:bg-primary hover:text-white flex gap-2 items-center justify-start transition-all duration-300">
               <navLink.icon
                 sx={{
@@ -37,7 +38,7 @@ export default function TSidebar() {
                 {navLink.linkText}
               </Typography>
             </Box>
-          </Box>
+          </NavLink>
         ))}
       </Box>
 

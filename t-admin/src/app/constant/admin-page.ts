@@ -13,3 +13,7 @@ export const AdminPageroutes = [
   { path: '/settings', label: 'Settings', icon: SettingsIcon },
   { path: '/logout', label: 'Logout', icon: LogoutIcon },
 ];
+
+export const BackendUrl = 'http://localhost:3000/api/auth/google'
+export const UserRedirecUrl = 'http://localhost:4200/api/auth/google'
+export const AdminRedirecUrl = 'http://localhost:3000/api/auth/google'

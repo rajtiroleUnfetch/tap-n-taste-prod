@@ -1,13 +1,15 @@
 import { Box, Chip, Grid, Rating } from '@mui/material';
 import { ImageSlider } from '@tap-n-taste/ui';
 import { TButton } from '@tap-n-taste/ui';
-import { sliderImages } from '../../constants/LandingPageData';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import AssistantDirectionOutlinedIcon from '@mui/icons-material/AssistantDirectionOutlined';
 import CallIcon from '@mui/icons-material/Call';
+import { useNavigate } from 'react-router-dom';
+import { sliderImages } from '../app/constants/LandingPageData';
 
 interface RestaurantProps {
   restaurantName: string;
@@ -32,6 +34,7 @@ export const RestaurantInfoPage = ({
   distance,
   ratings,
 }: RestaurantProps) => {
+  const navigate = useNavigate();
   return (
     <Box className="z-10 font-primary">
       <ImageSlider
@@ -48,14 +51,16 @@ export const RestaurantInfoPage = ({
         aria-label="Custom Image Slider"
       />
       <Box className="section">
-        <Box className="header flex justify-between items-center">
+        <Box className="header flex flex-col sm:flex-row justify-between items-center">
           <Box>
             <h1 className="text-3xl sm:text-4xl font-semibold">
               {restaurantName}
             </h1>
-            <p className="text-[#8E8E8E] mb-5">{restaurantDesc}</p>
+            <p className="text-[#8E8E8E] text-sm md:text-base mb-5">
+              {restaurantDesc}
+            </p>
           </Box>
-          <Box>
+          <Box className="flex">
             <TButton
               text=""
               className={{ root: 'p-0' }}
@@ -69,7 +74,7 @@ export const RestaurantInfoPage = ({
             <TButton text="" className={{ root: 'p-0' }} icon={<CallIcon />} />
           </Box>
         </Box>
-        <Box className="sm:flex sm:justify-between">
+        <Box className="sm:flex sm:justify-between mt-4">
           <Grid item xs={12} sm={6}>
             <Box display="flex" alignItems="center" mb={2}>
               <LocationOnIcon color="action" sx={{ mr: 1 }} />
@@ -116,6 +121,14 @@ export const RestaurantInfoPage = ({
             </Box>
           </Grid>
         </Box>
+      </Box>
+      <Box className="mt-4 mb-8">
+        <TButton
+          text="Menu"
+          className={{ root: '!bg-[#F1414F] !text-white w-full' }}
+          icon={<RestaurantMenuIcon className="text-white" />}
+          onClick={() => navigate('/restaurant/:restaurantId/menu')} // Navigate to Menu
+        />
       </Box>
     </Box>
   );

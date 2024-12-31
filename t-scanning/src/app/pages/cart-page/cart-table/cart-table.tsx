@@ -11,7 +11,7 @@ import {
 const CartTable = () => {
   return (
     <Box
-      className="w-full mt-11 bg-zinc-100 p-2 mb-10"
+      className="w-full mt-11 bg-zinc-100 text-black p-2 mb-10"
       sx={{
         borderRadius: 3,
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
@@ -29,18 +29,18 @@ const CartTable = () => {
           </TableRow>
           <TableRow>
             <TableCell>
-              <Typography color="text.secondary">Taxes & Fees</Typography>
+              <Typography color="text.primary">Taxes & Fees</Typography>
             </TableCell>
             <TableCell align="right">
-              <Typography color="text.secondary">₹150</Typography>
+              <Typography color="text.primary">₹150</Typography>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>
-              <Typography color="text.secondary">Service fee</Typography>
+              <Typography color="text.primary">Service fee</Typography>
             </TableCell>
             <TableCell align="right">
-              <Typography color="text.secondary">₹50</Typography>
+              <Typography color="text.primary">₹50</Typography>
             </TableCell>
           </TableRow>
           <TableRow>

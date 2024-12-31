@@ -15,8 +15,8 @@ export function TopNav() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleNotificationClick = () => {
-    setSnackbarMessage('Notifications icon clicked!');
-    setSnackbarOpen(true);
+    const restaurantId = 'your-restaurant-id'; // Replace with actual restaurantId
+    navigate(`/restaurant/${restaurantId}/notification`);
   };
 
   const handleSnackbarClose = (
@@ -69,7 +69,7 @@ export function TopNav() {
               border: '2px solid #F1414F',
               color: '#F1414F',
             }}
-            onClick={() => navigate('/restaurants/:id/sign-up')} // Navigate to sign-up
+            onClick={() => navigate('/restaurant/:restaurantId/sign-up')} // Navigate to sign-up
           />
           <TButton
             text="Sign In"
@@ -82,7 +82,7 @@ export function TopNav() {
                 backgroundColor: '#DC3D4A',
               },
             }}
-            onClick={() => navigate('/restaurants/:id/login')} // Navigate to login
+            onClick={() => navigate('/restaurant/:restaurantId/login')} // Navigate to login
           />
         </Box>
 
