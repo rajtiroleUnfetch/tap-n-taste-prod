@@ -15,8 +15,8 @@ export function TopNav() {
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleNotificationClick = () => {
-    setSnackbarMessage('Notifications icon clicked!');
-    setSnackbarOpen(true);
+    const restaurantId = 'your-restaurant-id'; // Replace with actual restaurantId
+    navigate(`/restaurant/${restaurantId}/notification`);
   };
 
   const handleSnackbarClose = (

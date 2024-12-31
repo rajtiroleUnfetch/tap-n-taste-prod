@@ -127,7 +127,7 @@ export const RestaurantInfoPage = ({
           text="Menu"
           className={{ root: '!bg-[#F1414F] !text-white w-full' }}
           icon={<RestaurantMenuIcon className="text-white" />}
-          onClick={() => navigate('/restaurants/1/menu')} // Navigate to Menu
+          onClick={() => navigate('/restaurant/:restaurantId/menu')} // Navigate to Menu
         />
       </Box>
     </Box>
