@@ -159,54 +159,50 @@ export function TAbout({
   ],
 }) {
   return (
-    <Box className="px-[8%] sm:px-[15%]">
-      {/* Top Navigation Bar */}
-      <TopNav />
-      <RestaurantCard>
-        <Header>
-          <RestaurantName>{restaurantName}</RestaurantName>
-          <Rating>
-            <GradeIcon />
-            4.5
-          </Rating>
-        </Header>
-        <Details>
-          {cuisines}
-          <br />
-          {address}
-          <br />
-          {phoneNumber}
-          <br />
-          {distance}
-          <Timing>
-            Opens at {openingTime} | Closes at {closingTime}
-          </Timing>
-        </Details>
-        <SectionHeader>Facilities</SectionHeader>
-        <FacilityList>
-          {facilities.map((facility, index) => (
-            <FacilityItem key={index}>
-              <Checkmark>
-                <CheckCircleIcon />
-              </Checkmark>{' '}
-              {facility}
-            </FacilityItem>
-          ))}
-        </FacilityList>
-        <SectionHeader>Connect with us</SectionHeader>
-        <IconsButtonContainer>
-          <IconButton>
-            <InstagramIcon />
-          </IconButton>
-          <IconButton>
-            <FacebookIcon />
-          </IconButton>
-          <IconButton>
-            <XIcon />
-          </IconButton>
-        </IconsButtonContainer>
-      </RestaurantCard>
-    </Box>
+    <RestaurantCard>
+      <Header>
+        <RestaurantName>{restaurantName}</RestaurantName>
+        <Rating>
+          <GradeIcon />
+          4.5
+        </Rating>
+      </Header>
+      <Details>
+        {cuisines}
+        <br />
+        {address}
+        <br />
+        {phoneNumber}
+        <br />
+        {distance}
+        <Timing>
+          Opens at {openingTime} | Closes at {closingTime}
+        </Timing>
+      </Details>
+      <SectionHeader>Facilities</SectionHeader>
+      <FacilityList>
+        {facilities.map((facility, index) => (
+          <FacilityItem key={index}>
+            <Checkmark>
+              <CheckCircleIcon />
+            </Checkmark>{' '}
+            {facility}
+          </FacilityItem>
+        ))}
+      </FacilityList>
+      <SectionHeader>Connect with us</SectionHeader>
+      <IconsButtonContainer>
+        <IconButton>
+          <InstagramIcon />
+        </IconButton>
+        <IconButton>
+          <FacebookIcon />
+        </IconButton>
+        <IconButton>
+          <XIcon />
+        </IconButton>
+      </IconsButtonContainer>
+    </RestaurantCard>
   );
 }
 

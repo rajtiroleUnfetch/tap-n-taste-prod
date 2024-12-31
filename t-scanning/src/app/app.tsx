@@ -5,6 +5,7 @@ import { TAbout } from '@tap-n-taste/ui';
 import { ToastContainer } from 'react-toastify';
 import theme from 't-admin/src/theme';
 import ContactPage from './pages/contact-page/contact-page';
+import AboutPage from './pages/about-page/about-page';
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -13,7 +14,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<div>Tap-n-Taste Page</div>} />
       <Route path="/restaurant/:restaurantId/*" element={<LandingPage />} />
-      <Route path="/about*" element={<TAbout />} />
+      <Route path="/about*" element={<AboutPage />} />
       <Route path="/contact*" element={<ContactPage />} />
     </Routes>
   </ThemeProvider>
