@@ -20,7 +20,7 @@ const ImageContainer = styled.div`
   overflow: hidden; /* Ensures the image stays inside the circle */
   margin-right: 16px; /* Space between the image and the text */
   flex-shrink: 0; /* Prevent image container from shrinking */
-  border: 2px solid #F1414F;
+  border: 2px solid #f1414f;
 `;
 
 const TextContainer = styled.div`

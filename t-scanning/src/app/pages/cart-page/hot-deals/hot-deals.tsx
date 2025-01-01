@@ -24,7 +24,7 @@ const HotDeals = () => {
           <TCard
             key={index}
             imgURL={card.imgURL}
-            gradient={true}
+            gradient={false}
             primeText={card.primeText}
             secText={card.secText}
             sx={{

@@ -84,6 +84,7 @@ export const menuCardData = [
     description: 'Crispy on the outside, juicy on the inside.',
     rating: 4.5,
     price: 9.99,
+    isVeg: true,
   },
   {
     image:
@@ -92,6 +93,7 @@ export const menuCardData = [
     description: 'Classic cheeseburger with all the fixings.',
     rating: 4.2,
     price: 12.99,
+    isVeg: false,
   },
   {
     image:
@@ -100,5 +102,6 @@ export const menuCardData = [
     description: 'Crispy on the outside, juicy on the inside.',
     rating: 4.5,
     price: 9.99,
+    isVeg: false,
   },
 ];

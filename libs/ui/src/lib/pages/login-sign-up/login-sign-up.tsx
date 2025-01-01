@@ -6,7 +6,7 @@ import { Box, TextField, Typography } from '@mui/material';
 import { TButton, TInput } from '@tap-n-taste/ui';
 import { BackendUrl } from '@tap-n-taste/admin';
 import { axiosInstance, useAuth } from '@tap-n-taste/hooks';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 import { restaurantId } from '@tap-n-taste/constant';
 import axios from 'axios';
 
@@ -135,7 +135,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
             <Controller
               name="name"
               control={control}
-              render={({ field }) => (
+              render={({ field }: { field: FieldValues }) => (
                 <TInput
                   {...field}
                   placeHolderText="Enter Your Name"
@@ -149,7 +149,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
             <Controller
               name="phone"
               control={control}
-              render={({ field }) => (
+              render={({ field }: { field: FieldValues }) => (
                 <TInput
                   {...field}
                   placeHolderText="Enter Your Phone"
@@ -163,7 +163,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
             <Controller
               name="email"
               control={control}
-              render={({ field }) => (
+              render={({ field }: { field: FieldValues }) => (
                 <TInput
                   {...field}
                   placeHolderText="Enter Your email"
@@ -178,7 +178,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
             <Controller
               name="emailPhone"
               control={control}
-              render={({ field }) => (
+              render={({ field }: { field: FieldValues }) => (
                 <TInput
                   {...field}
                   placeHolderText="Enter Your Email/Phone"
@@ -191,7 +191,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
           <Controller
             name="password"
             control={control}
-            render={({ field }) => (
+            render={({ field }: { field: FieldValues }) => (
               <TInput
                 {...field}
                 placeHolderText="Enter Your Password"
@@ -206,7 +206,7 @@ export function LoginSignUp({ type, isAdminSignUpLogin }: Props) {
               name="restaurantId"
               control={control}
               rules={{ required: 'Restaurant ID is required' }}
-              render={({ field }) => (
+              render={({ field }: { field: FieldValues }) => (
                 <TInput
                   {...field}
                   placeHolderText="Enter Your Restaurant ID"

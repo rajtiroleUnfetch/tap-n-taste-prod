@@ -5,25 +5,44 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { TNavButton } from '@tap-n-taste/ui';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export function TFooter() {
+  const navigate = useNavigate();
+  const restaurantId = 'your-restaurant-id'; // Replace with actual restaurantId
+
   return (
     <Box className="fixed z-[999] sm:hidden w-[85%] bg-white rounded-lg bottom-0 flex items-center justify-between p-4">
-      <Button>
+      <Button onClick={() => navigate(`/restaurant/${restaurantId}/`)}>
         <IoHomeOutline />
       </Button>
-      <Button>
+      <Button
+        onClick={() =>
+          navigate(`/restaurant/${restaurantId}/user/:userId/order`)
+        }
+      >
         <TbTruckDelivery />
       </Button>
       <StyledTNavButton
         icon={<LocalDiningIcon sx={{ color: '#f1f1f1' }} />}
-        onClick={() => alert('Button clicked!')}
+        onClick={() => {
+          console.log('Navigating to coupons page');
+          navigate(`/restaurant/${restaurantId}/coupons`);
+        }}
         backgroundColor="red"
       />
-      <Button>
+      <Button
+        onClick={() =>
+          navigate(`/restaurant/${restaurantId}/user/:userId/cart`)
+        }
+      >
         <IoCartOutline />
       </Button>
-      <Button>
+      <Button
+        onClick={() =>
+          navigate(`/restaurant/${restaurantId}/user/:userId/profile`)
+        }
+      >
         <PermIdentityIcon />
       </Button>
     </Box>

@@ -42,10 +42,10 @@ const HomePage = () => {
         ratings={4.5}
       />
 
-      <Box className="flex justify-between items-center mb-8">
+      {/* <Box className="flex justify-between items-center mb-8">
         <TManage />
         <TCategory />
-      </Box>
+      </Box> */}
 
       <TViewBar />
 

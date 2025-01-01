@@ -30,7 +30,7 @@ export const hotDealsData = [
     imgURL:
       'https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     primeText: 'Up To',
-    secText: '20% OFF with Free Delivery',
+    secText: '20% OFF',
   },
   {
     imgURL:

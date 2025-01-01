@@ -7,6 +7,7 @@ import {
   TManage,
   TopNav,
   TSearchbar,
+  TView,
 } from '@tap-n-taste/ui';
 import FooterPage from '../footer-page/footer-page';
 import CuisinesOffered from './cuisines-offered/cuisines-offered';
@@ -17,17 +18,11 @@ import BottomInfoPopUp from './bottom-info-popup/bottom-info-popup';
 import { menuCardData } from '../../constants/MenuPageData';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import burgerImage from '../../../assets/burger.jpg';
+import pastaImage from '../../../assets/pasta.jpg';
+import friesImage from '../../../assets/potatofries.jpg';
 
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-const MenuPage = () => {
+export default function MenuPage() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -38,11 +33,20 @@ const MenuPage = () => {
     setOpen(false);
   };
 
+  const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+      children: React.ReactElement<any, any>;
+    },
+    ref: React.Ref<unknown>
+  ) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
   return (
     <Box className="px-[8%] sm:px-[15%]">
       <TopNav />
       <TSearchbar />
-      {/* <TFoodItemTypes /> */}
+      <TView />
 
       <Box className="flex justify-between items-center mb-8">
         <TManage />
@@ -51,46 +55,24 @@ const MenuPage = () => {
 
       <CuisinesOffered />
 
-      <Box className="mt-10 mb-10">
+      {/* Custom Card */}
+      <Box className="mb-4">
         {menuCardData.map((item, index) => (
           <TCustomCard
-            onClick={handleClickOpen}
             image={item.image}
             title={item.title}
             description={item.description}
             rating={item.rating}
             price={item.price}
-            veg={false}
+            veg={item.isVeg}
           />
         ))}
       </Box>
 
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-        className="rounded-2xl"
-      >
-        <ItemInfoPage
-          itemName="Burger"
-          itemDesc="Succulent grilled chicken patty nestled between toasted buns, crowned with crisp lettuce and tangy mayo, delivering savory satisfaction in every bite."
-          itemPrice={234.9}
-          itemVeg={false}
-          ratings={3}
-        />
-      </Dialog>
-
-      <BottomInfoPopUp />
-
-      <FooterPage />
-
-      <Box className="mt-6 mb-6"></Box>
-
-      <TFooter />
+      <BottomInfoPopUp noOfItems={3} />
+      <Box className="mb-4">
+        <TFooter />
+      </Box>
     </Box>
   );
-};
-
-export default MenuPage;
+}
