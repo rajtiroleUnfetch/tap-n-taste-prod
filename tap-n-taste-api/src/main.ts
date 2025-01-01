@@ -14,10 +14,8 @@ import cors from 'cors';  // Import CORS for cross-origin handling
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app);  // Create an HTTP server from Express
-export const io = new socketIo.Server(server, {  // Initialize Socket.IO
-  
-});
+const server = http.createServer(app);
+export const io = new socketIo.Server(server);
 
 const PORT = process.env.PORT || 3000;
 
