@@ -31,6 +31,7 @@
     "chart.js": "^4.4.7",
     "classnames": "^2.5.1",
     "cloudinary": "^1.41.3",
+    "clsx": "^2.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
