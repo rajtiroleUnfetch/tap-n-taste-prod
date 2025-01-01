@@ -15,7 +15,17 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'md-lg': { min: '1024px', max: '1440px' }, // Custom range
+      },
+      fontFamily: {
+        primary: ['Poppins', 'sans-serif'], // Add Poppins as the default sans font
+      },
+      colors: {
+        primary: '#F1414F', // Your main red color
+      },
+    },
   },
   plugins: [],
   presets: [tailwindcssPreset],

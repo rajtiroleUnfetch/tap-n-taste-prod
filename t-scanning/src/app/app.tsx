@@ -1,58 +1,23 @@
-// src/App.tsx
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline, Container, Box } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Libs } from '@tap-n-taste/libs';
-import { TMainLayout } from '@tap-n-taste/ui';
-import {Assets } from '@tap-n-taste/assets';
-import { Features} from '@tap-n-taste/features';
-import {Hooks } from '@tap-n-taste/hooks';
-import { Services} from '@tap-n-taste/services';
-import { State } from '@tap-n-taste/state';
-import {Theme } from '@tap-n-taste/theme';
-import { Utils } from '@tap-n-taste/utils';
-import './style.css'
-import { LandingPage } from './pages/landing-page/landing-page'
+import { Routes, Route } from 'react-router-dom';
+import { LandingPage } from './pages/landing-page/landing-page';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { TAbout } from '@tap-n-taste/ui';
+import { ToastContainer } from 'react-toastify';
+import theme from 't-admin/src/theme';
+import ContactPage from './pages/contact-page/contact-page';
+import AboutPage from './pages/about-page/about-page';
 
-const theme = createTheme({
-  palette: {
-    primary: { main: '#1976d2' },
-  },
-});
-
-
-
-const About = () => (
-  <div>
-    <h1>About</h1>
-    <p>This is the About Page.</p>
-  </div>
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline /> {/* Ensures consistent baseline styles across browsers */}
+    <ToastContainer position="top-right" autoClose={5000} />
+    <Routes>
+      <Route path="/" element={<div>Tap-n-Taste Page</div>} />
+      <Route path="/restaurant/:restaurantId/*" element={<LandingPage />} />
+      <Route path="/about*" element={<AboutPage />} />
+      <Route path="/contact*" element={<ContactPage />} />
+    </Routes>
+  </ThemeProvider>
 );
-
-const NotFound = () => (
-  <div>
-    <h1>404 - Page Not Found</h1>
-    <p>Oops! The page you are looking for does not exist.</p>
-    <Link to="/">Go back to Home</Link>
-  </div>
-);
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-        <TMainLayout>
-          
-            {/* Define Routes */}
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/restaurants/:id" element={<LandingPage />} />
-              <Route path="/about" element={<About />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            </TMainLayout>
-    </ThemeProvider>
-  );
-}
 
 export default App;

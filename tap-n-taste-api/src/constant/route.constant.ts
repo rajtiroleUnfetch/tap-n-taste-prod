@@ -1,0 +1,2 @@
+export const T_SCANNING_FRONTEND_URL = process.env.T_SCANNING_FRONTEND_URL ;
+export const T_ADMIN_FRONTEND_URL = process.env.T_ADMIN_FRONTEND_URL;

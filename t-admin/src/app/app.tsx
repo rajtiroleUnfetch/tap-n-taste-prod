@@ -1,52 +1,42 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import React from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { RestaurantAdminPage } from './pages'; // Assuming you have this component
+import theme from '../theme';
+import './app.css';
+import '@fontsource/poppins'; // Defaults to weight 400
+import { LoginSignUp } from '@tap-n-taste/ui';
+import { ToastContainer } from 'react-toastify';
 
-import { Route, Routes, Link } from 'react-router-dom';
-
-export function App() {
+// Main App Component
+const App: React.FC = () => {
   return (
-    <div>
-      <NxWelcome title="t-admin" />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
+    <ThemeProvider theme={theme}>
+       <ToastContainer position="top-right" autoClose={5000} />
+      <CssBaseline /> {/* Ensures consistent baseline styles across browsers */}
       <Routes>
+        {/* Default Route */}
+        <Route path="/" element={<div>Tap-n-Taste Home Page</div>} />
+
         <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
+          path="/restaurant/:restaurantId/login"
+          element={<LoginSignUp isAdminSignUpLogin={true} type="login" />}
         />
         <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
+          path="/restaurant/:restaurantId/sign-up"
+          element={<LoginSignUp isAdminSignUpLogin={true} type="signup" />}
+        />
+        {/* Admin Route */}
+        <Route path="/admin" element={<Outlet />}></Route>
+
+        {/* Dynamic Restaurant Admin Page Route */}
+        <Route
+          path="/restaurant/:restaurantId/admin/:adminId/*"
+          element={<RestaurantAdminPage />}
         />
       </Routes>
-      {/* END: routes */}
-    </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -11,3 +11,4 @@ export function App() {
 }
 
 export default App;
+//eslint-disable-next-line @typescript-eslint/no-unused-vars
